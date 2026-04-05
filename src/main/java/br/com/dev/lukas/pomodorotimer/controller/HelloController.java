@@ -36,6 +36,7 @@ public class HelloController {
     @FXML  public Button buttonTask;
     @FXML private BorderPane mainPane;
     @FXML private VBox timerVBox;
+    @FXML private VBox rightPane;
     @FXML private Button skipStageButton;
 
 
@@ -132,8 +133,7 @@ public class HelloController {
 
 
             mainPane.setCenter(configScreen);
-
-
+            mainPane.setRight(null);
 
         } catch (IOException e) {
             System.out.println("Erro ao carregar configurações" + e.getMessage());
@@ -141,9 +141,27 @@ public class HelloController {
     }
 
     @FXML
+    public void onPokedex(){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/dev/lukas/pomodorotimer/pokedex-view.fxml"));
+            Parent pokedexScreen = loader.load();
+
+            PokedexController gerenteDaTela = loader.getController();
+
+            gerenteDaTela.setCentralController(this);
+
+            mainPane.setCenter(pokedexScreen);
+            mainPane.setRight(null);
+        }catch (IOException e) {
+            System.out.println("Erro ao carregar pokedex" +e.getMessage());
+        }
+    }
+
+    @FXML
     public void openTimer() {
         // coloca no centro o Vbox do timer
         mainPane.setCenter(timerVBox);
+        mainPane.setRight(rightPane);
     }
 
     @FXML

@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 
-public class SettingsController {
+public class                                                                                                                     SettingsController {
     @FXML private Spinner<Integer> numberBreakSpinner;
     @FXML private TextField inputFocusDuration;
     @FXML private TextField inputBreakDuration;
