@@ -4,6 +4,7 @@ public class Pomodoro implements Timer {
     int remainingSeconds;
     int firstTime;
     boolean status;
+    int cycleCounter;
 
     public Pomodoro(int timeInput) {
         remainingSeconds = timeInput*60;
@@ -29,7 +30,7 @@ public class Pomodoro implements Timer {
         return remainingSeconds <= 0;
     }
     public void setTimer(int timeInput) {
-        remainingSeconds = timeInput*60;
+        remainingSeconds = timeInput;
         firstTime = remainingSeconds;
     }
     public boolean isRunning(){
@@ -44,5 +45,21 @@ public class Pomodoro implements Timer {
         this.status = status;
     }
 
+    public boolean cycleCheck(){
+        if (cycleCounter == 4){
+            cycleCounter = 0;
+            return true;
+        }
+        return false;
+    }
+
+    public void resetCycleCounter(){
+        cycleCounter = 0;
+    }
+
+    public void increaseCycleCounter(){
+        cycleCounter++;
+        System.out.println("Current Cycle Counter: " + cycleCounter);
+    }
 
 }
