@@ -20,13 +20,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -80,7 +78,7 @@ public class HelloController {
             labelTimer.setText(pomodoroTimer.formatedTime());
             if (pomodoroTimer.isFinished()){
                 timeline.stop(); animationBushTimiline.stop();
-                buttonTimer.setText("Retomar");
+                setPlayIcon();
                 breakTime();
 
 
@@ -96,28 +94,28 @@ public class HelloController {
             if (timeline.getStatus() == Animation.Status.STOPPED) {
                 timeline.play();
                 soundChooser(2);
-                buttonTimer.setText("Pausar");
+                setPauseIcon();
             }else  if (timeline.getStatus() == Animation.Status.RUNNING) {
                 timeline.stop();
-                buttonTimer.setText("Retomar");
+                setPlayIcon();
             }
         }else if(breakTimer.isStatus()){
             if (breaktimeline.getStatus() == Animation.Status.STOPPED) {
                 breaktimeline.play();
                 soundChooser(2);
-                buttonTimer.setText("Pausar");
+                setPauseIcon();
             }else  if (breaktimeline.getStatus() == Animation.Status.RUNNING) {
                 breaktimeline.stop();
-                buttonTimer.setText("Retomar");
+                setPlayIcon();
             }
         } else if (longbreakTimer.isStatus()) {
             if (longbreaktimeline.getStatus() == Animation.Status.STOPPED) {
                 longbreaktimeline.play();
                 soundChooser(2);
-                buttonTimer.setText("Pausar");
+                setPauseIcon();
             }else  if (longbreaktimeline.getStatus() == Animation.Status.RUNNING) {
                 longbreaktimeline.stop();
-                buttonTimer.setText("Retomar");
+                setPlayIcon();
             }
 
         }
@@ -226,7 +224,7 @@ public class HelloController {
                 if (breakTimer.isFinished()){
                     breaktimeline.stop();
                     pomodoroTimer();
-                    buttonTimer.setText("Retomar");
+                    setPlayIcon();
                 }
             }));
             breaktimeline.setCycleCount(Timeline.INDEFINITE);
@@ -242,7 +240,7 @@ public class HelloController {
                 if (longbreakTimer.isFinished()){
                     longbreaktimeline.stop();
                     pomodoroTimer();
-                    buttonTimer.setText("Retomar");
+                    setPlayIcon();
                 }
             }));
             breakTimer.resetCycleCounter();
@@ -256,15 +254,15 @@ public class HelloController {
 
         if (pomodoroTimer.isStatus()) {
             timeline.stop();
-            buttonTimer.setText("Retomar");
+            setPlayIcon();
             breakTime();
         } else if (breakTimer.isStatus()) {
             breaktimeline.stop();
-            buttonTimer.setText("Retomar");
+            setPlayIcon();
             pomodoroTimer();
         } else if (longbreakTimer.isStatus()) {
             longbreaktimeline.stop();
-            buttonTimer.setText("Retomar");
+            setPlayIcon();
             pomodoroTimer();
         }
     }
@@ -273,16 +271,16 @@ public class HelloController {
     public void soundChooser(int option) {
         switch (option) {
             case 0:
-                SoundManager.play("/sounds/PokemonCenterRecoverwav.wav",-20.0f);
+                SoundManager.play("/br/com/dev/lukas/pomodorotimer/sounds/PokemonCenterRecoverwav.wav",-20.0f);
                 break;
             case 1:
-                SoundManager.play("/sounds/PokemonLevelUp.wav",-20.0f);
+                SoundManager.play("/br/com/dev/lukas/pomodorotimer/sounds/PokemonLevelUp.wav",-20.0f);
                 break;
             case 2:
-                SoundManager.play("/sounds/ButtonPressed.wav",-15.0f);
+                SoundManager.play("/br/com/dev/lukas/pomodorotimer/sounds/ButtonPressed.wav",-15.0f);
                 break;
             case 3:
-                SoundManager.play("/sounds/GrassSound.wav",-50.0f);
+                SoundManager.play("/br/com/dev/lukas/pomodorotimer/sounds/GrassSound.wav",-50.0f);
                 break;
         }
     }
@@ -343,6 +341,25 @@ public class HelloController {
         }));
 
         animationBushTimiline.setCycleCount(Timeline.INDEFINITE);
+    }
+
+    public void setPlayIcon (){
+        Image playImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/br/com/dev/lukas" +
+                "/pomodorotimer/images/play-solid.png")));
+        ImageView playView = new ImageView(playImg);
+        playView.setFitHeight(40);
+        playView.setFitWidth(40);
+        buttonTimer.setGraphic(playView);
+    }
+
+    public void setPauseIcon (){
+        Image pauseImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/br/com/dev/lukas" +
+                "/pomodorotimer/images/pause-solid.png")));
+        ImageView pauseView = new ImageView(pauseImg);
+
+        pauseView.setFitHeight(40);
+        pauseView.setFitWidth(40);
+        buttonTimer.setGraphic(pauseView);
     }
 
 }

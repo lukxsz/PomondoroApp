@@ -139,7 +139,9 @@ public class PokedexController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Pokemon Desconhecido");
                 alert.setHeaderText(null);
-                alert.setContentText("Você precisa concluir mais ciclos de Pomodoro para descobrir informações deste " +
+                alert.setContentText("Você precisa concluir mais ciclos de Pomodoro para descobrir informações sobre " +
+                        "este" +
+                        " " +
                         "Pokemon");
 
                 alert.showAndWait();

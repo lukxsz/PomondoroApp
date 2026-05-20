@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.HelloController">
+<BorderPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.HelloController">
    <center>
       <VBox fx:id="timerVBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
@@ -26,10 +26,14 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Button fx:id="buttonTimer" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="40.0" prefWidth="100.0" text="Iniciar">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+            <Button fx:id="buttonTimer" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="40.0" prefWidth="100.0">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/play-solid.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <Button fx:id="skipStageButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSkipStageButtonClicked" text="&gt;&gt;" />
          </children>
@@ -45,7 +49,7 @@
                <children>
                   <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" smooth="false">
                      <image>
-                        <Image url="@../../../../../images/BattleBackgroundPokemon.jpeg" />
+                        <Image url="@images/BattleBackgroundPokemon.jpeg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="imgMoita" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" smooth="false" StackPane.alignment="BOTTOM_CENTER">
@@ -53,7 +57,7 @@
                         <Rectangle2D />
                      </viewport>
                      <image>
-                        <Image url="@../../../../../images/tallGrassPokemon.png" />
+                        <Image url="@images/tallGrassPokemon.png" />
                      </image>
                   </ImageView>
                </children>
@@ -64,7 +68,7 @@
                   <Insets bottom="20.0" />
                </padding>
             </StackPane>
-            <TextField fx:id="inputTask" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onAddTask" promptText="Digite uma tarefa">
+            <TextField fx:id="inputTask" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#onAddTask" promptText="Digite uma tarefa">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

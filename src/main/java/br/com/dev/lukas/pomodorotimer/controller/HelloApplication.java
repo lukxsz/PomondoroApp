@@ -21,7 +21,8 @@ public class HelloApplication extends Application {
             Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
             stage.setMinHeight(300);
             stage.setMinWidth(400);
-            stage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("/images/clipart1908920.png"))));
+            stage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("/br/com" +
+                    "/dev/lukas/pomodorotimer/images/clipart1908920.png"))));
             //stage.setResizable(false); // Disable resizable window
             stage.setTitle(" Pomondoro");
             //stage.setFullScreen(true);
