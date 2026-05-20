@@ -1,0 +1,42 @@
+
+.main-background {
+    -fx-background-color: #f2ede2;
+}
+
+#labelTimer {
+    -fx-text-fill: #c8e27c; /* Soft white text */
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5)
+}
+
+#buttonTimer {
+    -fx-background-color: transparent;
+
+
+}
+
+#taskView  {
+
+    /*-fx-border-style: hidden solid solid hidden;*/
+    -fx-border-width: 5px;
+    -fx-border-radius: 5px 5px 5px 5px;
+    -fx-border-color: #c79158 #9d7357 #9d7357 #c79158;
+
+
+    -fx-background-color: #c79158;
+    /*top-left, top-right, bottom-right, and bottom-left corners*/
+    -fx-background-radius: 0pc 0px 10px 10px;
+
+}
+
+#inputTask {
+    -fx-font-size: 15px;
+    -fx-prompt-text-fill: #f2ede2;
+    -fx-text-fill: #f2ede2;
+
+
+    -fx-background-color: #c79158;
+    -fx-background-radius: 10px 10px 0px 0px;
+
+}
+
