@@ -44,8 +44,10 @@ public class HelloController {
     @FXML private BorderPane mainPane;
     @FXML private VBox timerVBox;
     @FXML private VBox rightPane;
+    @FXML private VBox leftPane;
     @FXML private Button skipStageButton;
     @FXML private ImageView imgMoita;
+    @FXML private  ImageView cenarioView;
 
 
     private Timeline animationBushTimiline;
@@ -60,7 +62,17 @@ public class HelloController {
         animationTallGrass();
         pomodoroTimer();
 
-    };
+        // Listener de responsividade: oculta os painéis laterais em telas pequenas
+        mainPane.widthProperty().addListener((observable, oldValue, newValue) -> {
+            boolean isLargeEnough = newValue.doubleValue() >= 600;
+            
+            leftPane.setVisible(isLargeEnough);
+            leftPane.setManaged(isLargeEnough);
+            
+            rightPane.setVisible(isLargeEnough);
+            rightPane.setManaged(isLargeEnough);
+        });
+    }
 
     @FXML
     private void pomodoroTimer() {

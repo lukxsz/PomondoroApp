@@ -35,15 +35,20 @@
     -fx-background-color: rgba(0, 0, 0, 0.15);
 }
 
+#cenarioView{
+    -fx-border-color: #ffff;
+    -fx-border-width: 50px;
+}
+
 /* TIMER LABEL */
 #labelTimer {
-    -fx-border-color: #222220;
-    -fx-border-width: 5px;
-    -fx-border-radius: 5px;
+    /*-fx-border-color: #222220;*/
+    /*-fx-border-width: 5px;*/
+    /*-fx-border-radius: 5px;*/
 
-    -fx-background-color: #8aa459;
-    -fx-background-radius: 10px;
-    -fx-text-fill: #333333;
+    /*-fx-background-color: #8aa459;*/
+    /*-fx-background-radius: 10px;*/
+    -fx-text-fill: #ffffff;
     -fx-font-family: 'Segoe UI', sans-serif;
     -fx-font-weight: bold;
     /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.10), 5, 0, 0, 2);*/
@@ -101,11 +106,10 @@
 
 /* TASK VIEW & LIST */
 #taskView {
-    -fx-background-color: #989894;
-    -fx-background-radius: 0 0 5px 5px;
-    -fx-border-color: #222220;
-    -fx-border-width: 0 5px 5px 5px;
-    -fx-border-radius: 0 0 5px 5px;
+    -fx-background-color: #c7c7c4;
+    -fx-background-radius: 0 0 10px 10px;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 2);
 }
 
@@ -122,7 +126,7 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #E3350D;
+    -fx-background-color: #665d9c;
     -fx-text-fill: white;
 }
 
@@ -131,21 +135,27 @@
     -fx-font-size: 14px;
     -fx-prompt-text-fill: #000000;
     -fx-text-fill: #333333;
-    -fx-background-color: #989894;
-    -fx-background-radius: 12px 12px 0 0;
-    -fx-border-color: #222220;
-    -fx-border-width: 5px 5px 0 5px;
-    -fx-border-radius: 5px 5px 0 0;
+    -fx-background-color: #c7c7c4;
+    -fx-background-radius: 10px 10px 0 0;
     -fx-padding: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 2, 0);
 }
 
 #inputTask:focused {
-    -fx-border-color: #3B4CCA;
+    -fx-border-color: #222220;
 }
 
 /* RIGHT PANE CONTAINER */
 #rightPane {
     -fx-background-color: transparent;
+}
+
+/* BATTLE SCENARIO CONTAINER */
+.battle-container {
+    -fx-border-color: #000000;
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 8, 0, 0, 4);
 }
 
 /* =========================================
