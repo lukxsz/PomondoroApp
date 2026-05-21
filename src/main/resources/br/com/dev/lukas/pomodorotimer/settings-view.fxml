@@ -8,22 +8,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="configScreen" alignment="CENTER" cache="true" depthTest="DISABLE" focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.SettingsController">
+<VBox fx:id="configScreen" alignment="CENTER" cache="true" depthTest="DISABLE" focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" spacing="20.0" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.SettingsController">
    <children>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
          <children>
             <Label text="Foco :" />
-            <Spinner fx:id="spinnerMinutesFocus" />
+            <Spinner fx:id="spinnerMinutesFocus" styleClass="split-arrows-vertical" />
             <Label text=":" />
-            <Spinner fx:id="spinnerSecondsFocus" />
+            <Spinner fx:id="spinnerSecondsFocus" styleClass="split-arrows-vertical" />
          </children>
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
          <children>
             <Label text="Pausa :" />
-            <Spinner fx:id="spinnerMinutesBreak" />
+            <Spinner fx:id="spinnerMinutesBreak" styleClass="split-arrows-vertical" />
             <Label text=":" />
-            <Spinner fx:id="spinnerSecondsBreak" />
+            <Spinner fx:id="spinnerSecondsBreak" styleClass="split-arrows-vertical" />
          </children>
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
@@ -33,22 +33,22 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <Spinner fx:id="spinnerMinutesLBreak" />
+            <Spinner fx:id="spinnerMinutesLBreak" styleClass="split-arrows-vertical" />
             <Label text=":" />
-            <Spinner fx:id="spinnerSecondsLBreak" />
+            <Spinner fx:id="spinnerSecondsLBreak" styleClass="split-arrows-vertical" />
          </children>
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
          <children>
             <Label text="Ciclos até Pausa Longa" />
-            <Spinner fx:id="customCicleSpinner" prefWidth="50.0" />
+            <Spinner fx:id="customCicleSpinner" prefWidth="50.0" styleClass="split-arrows-vertical" />
          </children>
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
          <children>
-            <Button fx:id="saveChangesButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSavedChanges" text="Salvar" textAlignment="CENTER">
+            <Button fx:id="saveChangesButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSavedChanges" style="-fx-background-color: #E3350D; -fx-text-fill: white; -fx-padding: 10 20; -fx-background-radius: 8;" text="Salvar" textAlignment="CENTER">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Button>
          </children>

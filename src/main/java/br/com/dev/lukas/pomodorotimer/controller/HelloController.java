@@ -345,20 +345,19 @@ public class HelloController {
 
     public void setPlayIcon (){
         Image playImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/br/com/dev/lukas" +
-                "/pomodorotimer/images/play-solid.png")));
+                "/pomodorotimer/images/right-arrow.png")));
         ImageView playView = new ImageView(playImg);
-        playView.setFitHeight(40);
-        playView.setFitWidth(40);
+        playView.setFitHeight(30);
+        playView.setFitWidth(30);
         buttonTimer.setGraphic(playView);
     }
 
     public void setPauseIcon (){
         Image pauseImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/br/com/dev/lukas" +
-                "/pomodorotimer/images/pause-solid.png")));
+                "/pomodorotimer/images/pause-button.png")));
         ImageView pauseView = new ImageView(pauseImg);
-
-        pauseView.setFitHeight(40);
-        pauseView.setFitWidth(40);
+        pauseView.setFitHeight(30);
+        pauseView.setFitWidth(30);
         buttonTimer.setGraphic(pauseView);
     }
 
