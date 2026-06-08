@@ -18,9 +18,9 @@ public class HelloApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/br/com/dev/lukas/pomodorotimer" +
                 "/hello-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1024, 720);
-//            stage.setMinHeight(600);
-//            stage.setMinWidth(400);
+            Scene scene = new Scene(fxmlLoader.load(), 1366, 768);
+            stage.setMinHeight(256);
+            stage.setMinWidth(306);
             stage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("/br/com" +
                     "/dev/lukas/pomodorotimer/images/clipart1908920.png"))));
             //stage.setResizable(false); // Disable resizable window
