@@ -46,7 +46,7 @@
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
          <children>
-            <Button fx:id="saveChangesButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSavedChanges" style="-fx-background-color: #E3350D; -fx-text-fill: white; -fx-padding: 10 20; -fx-background-radius: 8;" text="Salvar" textAlignment="CENTER">
+            <Button fx:id="saveChangesButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSavedChanges" text="Salvar" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

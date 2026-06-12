@@ -9,7 +9,7 @@
 }
 
 .main-background {
-    -fx-background-color: #65B1F7; /* Fundo cinza bem claro/moderno */
+    -fx-background-color: #65B1F7;
 }
 
 /* SIDEBAR MENU */
@@ -17,7 +17,7 @@
     /*-fx-border-width: 2px;*/
     /*-fx-border-color: #dadad8;*/
     /*-fx-border-radius: 0px 10px 10px 0px;*/
-    -fx-background-color: #85F765; /* Vermelho Pokédex com 75% de opacidade */
+    -fx-background-color: #85F765;
     -fx-background-radius: 0px 10px 10px 0px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 2, 0);
 }
@@ -133,8 +133,8 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #665d9c;
-    -fx-text-fill: white;
+    /*-fx-background-color: #665d9c;*/
+    /*-fx-text-fill: white;*/
 }
 
 /* INPUT TASK */
@@ -152,6 +152,7 @@
 
 #inputTask:focused {
     -fx-border-color: #222220;
+
 }
 
 /* RIGHT PANE CONTAINER */
@@ -176,15 +177,15 @@
 }
 
 .spinner {
-    -fx-background-color: transparent;
+    -fx-background-color: #f8f8f5;
 }
 
 .spinner.split-arrows-vertical .text-field {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
-    -fx-border-color: #E0E0E0;
-    -fx-border-width: 0 1px 0 1px;
-    -fx-padding: 8px;
+    /*-fx-border-color: #E0E0E0;*/
+    /*-fx-border-width: 0 1px 0 1px;*/
+    -fx-padding: 0px;
     -fx-text-fill: #333333;
     -fx-font-weight: bold;
     -fx-alignment: center;
@@ -197,31 +198,39 @@
 }
 
 .spinner.split-arrows-vertical .increment-arrow-button {
-    -fx-background-radius: 8px 8px 0 0;
-    -fx-border-color: #E0E0E0;
-    -fx-border-width: 1px 1px 0 1px;
-    -fx-border-radius: 8px 8px 0 0;
-}
+    /*    -fx-background-radius: 8px 8px 0 0;*/
+    /*    -fx-border-color: #E0E0E0;*/
+    /*    -fx-border-width: 1px 1px 0 1px;*/
+    /*    -fx-border-radius: 8px 8px 0 0;*/
+    /*}*/
 
-.spinner.split-arrows-vertical .decrement-arrow-button {
-    -fx-background-radius: 0 0 8px 8px;
-    -fx-border-color: #E0E0E0;
-    -fx-border-width: 0 1px 1px 1px;
-    -fx-border-radius: 0 0 8px 8px;
-}
+    .spinner.split-arrows-vertical .decrement-arrow-button {
+        /*-fx-background-radius: 0 0 8px 8px;*/
+        /*-fx-border-color: #E0E0E0;*/
+        /*-fx-border-width: 0 1px 1px 1px;*/
+        /*-fx-border-radius: 0 0 8px 8px;*/
+    }
 
-.spinner.split-arrows-vertical .increment-arrow-button:hover,
-.spinner.split-arrows-vertical .decrement-arrow-button:hover {
-    -fx-background-color: #E3350D;
-    -fx-border-color: #E3350D;
-}
+    .spinner.split-arrows-vertical .increment-arrow-button:hover,
+    .spinner.split-arrows-vertical .decrement-arrow-button:hover {
+        /*-fx-background-color: #E3350D;*/
+        /*-fx-border-color: #E3350D;*/
+    }
 
-.spinner.split-arrows-vertical .increment-arrow-button .increment-arrow,
-.spinner.split-arrows-vertical .decrement-arrow-button .decrement-arrow {
-    -fx-background-color: #555555;
-}
+    .spinner.split-arrows-vertical .increment-arrow-button .increment-arrow,
+    .spinner.split-arrows-vertical .decrement-arrow-button .decrement-arrow {
+        -fx-background-color: #555555;
+    }
 
-.spinner.split-arrows-vertical .increment-arrow-button:hover .increment-arrow,
-.spinner.split-arrows-vertical .decrement-arrow-button:hover .decrement-arrow {
-    -fx-background-color: white; 
+    .spinner.split-arrows-vertical .increment-arrow-button:hover .increment-arrow,
+    .spinner.split-arrows-vertical .decrement-arrow-button:hover .decrement-arrow {
+        -fx-background-color: white;
+    }
+
+
+}
+#saveChangesButton{
+    -fx-background-color: #f8f8f5;
+    -fx-font-family: "Ari-W9500";
+    -fx-font-weight: bold;
 }
