@@ -77,7 +77,7 @@
 }
 
 #buttonTimer:hover {
-
+    -fx-cursor: hand;
 }
 
 #buttonTimer:pressed {
@@ -129,7 +129,7 @@
 }
 
 .list-cell:filled:hover {
-    -fx-background-color: #fff6cf;
+    -fx-cursor: hand;
 }
 
 .list-cell:filled:selected {
@@ -171,6 +171,11 @@
 /* =========================================
    ESTILO PARA SPINNERS VERTICAIS
    ========================================= */
+.label{
+    -fx-font-family: "Ari-W9500";
+    -fx-text-fill: #001F3F;
+    -fx-font-weight: bold;
+}
 
 /* Silencia o aviso da IDE para a classe vertical nativa */
 .split-arrows-vertical {
@@ -178,6 +183,9 @@
 
 .spinner {
     -fx-background-color: #f8f8f5;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+
 }
 
 .spinner.split-arrows-vertical .text-field {
@@ -189,6 +197,7 @@
     -fx-text-fill: #333333;
     -fx-font-weight: bold;
     -fx-alignment: center;
+
 }
 
 .spinner.split-arrows-vertical .increment-arrow-button,
@@ -197,40 +206,39 @@
     -fx-cursor: hand;
 }
 
-.spinner.split-arrows-vertical .increment-arrow-button {
-    /*    -fx-background-radius: 8px 8px 0 0;*/
-    /*    -fx-border-color: #E0E0E0;*/
-    /*    -fx-border-width: 1px 1px 0 1px;*/
-    /*    -fx-border-radius: 8px 8px 0 0;*/
-    /*}*/
-
-    .spinner.split-arrows-vertical .decrement-arrow-button {
-        /*-fx-background-radius: 0 0 8px 8px;*/
-        /*-fx-border-color: #E0E0E0;*/
-        /*-fx-border-width: 0 1px 1px 1px;*/
-        /*-fx-border-radius: 0 0 8px 8px;*/
-    }
-
-    .spinner.split-arrows-vertical .increment-arrow-button:hover,
-    .spinner.split-arrows-vertical .decrement-arrow-button:hover {
-        /*-fx-background-color: #E3350D;*/
-        /*-fx-border-color: #E3350D;*/
-    }
-
-    .spinner.split-arrows-vertical .increment-arrow-button .increment-arrow,
-    .spinner.split-arrows-vertical .decrement-arrow-button .decrement-arrow {
-        -fx-background-color: #555555;
-    }
-
-    .spinner.split-arrows-vertical .increment-arrow-button:hover .increment-arrow,
-    .spinner.split-arrows-vertical .decrement-arrow-button:hover .decrement-arrow {
-        -fx-background-color: white;
-    }
-
-
+.spinner.split-arrows-vertical .increment-arrow-button .increment-arrow {
+    -fx-shape: "M 0 10 L 10 0 L 20 10 L 17 13 L 10 6 L 3 13 Z";
 }
+.spinner.split-arrows-vertical .decrement-arrow-button {
+    -fx-shape: "M 0 10 L 10 0 L 20 10 L 17 13 L 10 6 L 3 13 Z";
+}
+
+.spinner.split-arrows-vertical .increment-arrow-button:hover,
+.spinner.split-arrows-vertical .decrement-arrow-button:hover {
+    -fx-shape: "M 0 10 L 10 0 L 20 10 L 17 13 L 10 6 L 3 13 Z";
+}
+
+.spinner.split-arrows-vertical .increment-arrow-button .increment-arrow {
+    -fx-shape: "M 0 10 L 10 0 L 20 10 L 17 13 L 10 6 L 3 13 Z";
+    -fx-background-color: #555555;
+}
+
+.spinner.split-arrows-vertical .decrement-arrow-button .decrement-arrow {
+    -fx-shape: "M 0 3 L 10 13 L 20 3 L 17 0 L 10 7 L 3 0 Z";
+    -fx-background-color: #555555;
+}
+
+.spinner.split-arrows-vertical .increment-arrow-button:hover .increment-arrow,
+.spinner.split-arrows-vertical .decrement-arrow-button:hover .decrement-arrow {
+    -fx-background-color: #001F3F;
+}
+
 #saveChangesButton{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 8, 0, 0, 4);
+    -fx-background-radius: 0;
     -fx-background-color: #f8f8f5;
     -fx-font-family: "Ari-W9500";
     -fx-font-weight: bold;
+    -fx-text-fill: #001F3F;
+    -fx-cursor: hand;
 }

@@ -8,40 +8,58 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="configScreen" alignment="CENTER" cache="true" depthTest="DISABLE" focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" spacing="20.0" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.SettingsController">
+<VBox fx:id="configScreen" alignment="CENTER" cache="true" depthTest="DISABLE" focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="200.0" spacing="20.0" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.SettingsController">
    <children>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
          <children>
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="40.0" text="Foco" wrapText="true" />
-            <Spinner fx:id="spinnerMinutesFocus" styleClass="split-arrows-vertical" />
-            <Label text=":" />
-            <Spinner fx:id="spinnerSecondsFocus" styleClass="split-arrows-vertical" />
+            <Label prefHeight="15.0" prefWidth="50.0" text="Foco" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Spinner fx:id="spinnerMinutesFocus" prefHeight="45.0" prefWidth="50.0" styleClass="split-arrows-vertical">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin></Spinner>
+            <Label />
+            <Spinner fx:id="spinnerSecondsFocus" prefHeight="45.0" prefWidth="50.0" styleClass="split-arrows-vertical" />
          </children>
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
          <children>
-            <Label prefHeight="31.0" prefWidth="40.0" text="Pausa" wrapText="true" />
-            <Spinner fx:id="spinnerMinutesBreak" styleClass="split-arrows-vertical" />
-            <Label text=":" />
-            <Spinner fx:id="spinnerSecondsBreak" styleClass="split-arrows-vertical" />
+            <Label prefHeight="31.0" prefWidth="50.0" text="Pausa" wrapText="true" />
+            <Spinner fx:id="spinnerMinutesBreak" prefHeight="45.0" prefWidth="50.0" styleClass="split-arrows-vertical">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin></Spinner>
+            <Label />
+            <Spinner fx:id="spinnerSecondsBreak" prefHeight="45.0" prefWidth="50.0" styleClass="split-arrows-vertical" />
          </children>
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
          <children>
-            <Label alignment="CENTER" prefHeight="40.0" prefWidth="40.0" text="Pausa Longa " textOverrun="CLIP" wrapText="true">
+            <Label alignment="CENTER" prefHeight="40.0" prefWidth="50.0" text="Pausa Longa " textOverrun="CLIP" wrapText="true">
                <font>
                   <Font size="12.0" />
                </font>
             </Label>
-            <Spinner fx:id="spinnerMinutesLBreak" styleClass="split-arrows-vertical" />
-            <Label text=":" />
-            <Spinner fx:id="spinnerSecondsLBreak" styleClass="split-arrows-vertical" />
+            <Spinner fx:id="spinnerMinutesLBreak" prefHeight="45.0" prefWidth="50.0" styleClass="split-arrows-vertical">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin></Spinner>
+            <Label />
+            <Spinner fx:id="spinnerSecondsLBreak" prefHeight="45.0" prefWidth="50.0" styleClass="split-arrows-vertical" />
          </children>
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
          <children>
-            <Label prefHeight="28.0" prefWidth="146.0" text="Ciclos até Pausa Longa" textOverrun="CLIP" wrapText="true" />
-            <Spinner fx:id="customCicleSpinner" prefWidth="50.0" styleClass="split-arrows-vertical" />
+            <Label prefHeight="30.0" prefWidth="105.0" text="Ciclos até Pausa Longa" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <padding>
+                  <Insets right="5.0" />
+               </padding></Label>
+            <Spinner fx:id="customCicleSpinner" prefHeight="45.0" prefWidth="50.0" styleClass="split-arrows-vertical" />
          </children>
       </HBox>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
@@ -50,6 +68,9 @@
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
             </Button>
          </children>
       </HBox>
