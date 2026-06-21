@@ -12,6 +12,12 @@
     -fx-background-color: #65B1F7;
 }
 
+.label{
+    -fx-font-family: "Ari-W9500";
+    -fx-text-fill: #001F3F;
+    -fx-font-weight: bold;
+}
+
 /* SIDEBAR MENU */
 .sidebar {
     /*-fx-border-width: 2px;*/
@@ -171,18 +177,15 @@
 /* =========================================
    ESTILO PARA SPINNERS VERTICAIS
    ========================================= */
-.label{
-    -fx-font-family: "Ari-W9500";
-    -fx-text-fill: #001F3F;
-    -fx-font-weight: bold;
-}
 
 /* Silencia o aviso da IDE para a classe vertical nativa */
 .split-arrows-vertical {
 }
 
 .spinner {
-    -fx-background-color: #f8f8f5;
+    -fx-font-family: "Ari-W9500";
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
 
@@ -191,13 +194,14 @@
 .spinner.split-arrows-vertical .text-field {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
-    /*-fx-border-color: #E0E0E0;*/
-    /*-fx-border-width: 0 1px 0 1px;*/
     -fx-padding: 0px;
-    -fx-text-fill: #333333;
+    -fx-text-fill: #f8f8f5;
     -fx-font-weight: bold;
     -fx-alignment: center;
 
+}
+.text-field{
+    -fx-font-size: 20px;
 }
 
 .spinner.split-arrows-vertical .increment-arrow-button,
@@ -220,17 +224,25 @@
 
 .spinner.split-arrows-vertical .increment-arrow-button .increment-arrow {
     -fx-shape: "M 0 10 L 10 0 L 20 10 L 17 13 L 10 6 L 3 13 Z";
-    -fx-background-color: #555555;
+    -fx-background-color: #001F3F;
 }
 
 .spinner.split-arrows-vertical .decrement-arrow-button .decrement-arrow {
     -fx-shape: "M 0 3 L 10 13 L 20 3 L 17 0 L 10 7 L 3 0 Z";
-    -fx-background-color: #555555;
+    -fx-background-color: #001F3F;
 }
 
 .spinner.split-arrows-vertical .increment-arrow-button:hover .increment-arrow,
 .spinner.split-arrows-vertical .decrement-arrow-button:hover .decrement-arrow {
-    -fx-background-color: #001F3F;
+    -fx-background-color: #f8f8f5;
+}
+
+#labelSeparatorFocus,
+#labelSeparatorBreak,
+#labelSeparatorLBreak {
+    -fx-font-family: "Ari-W9500";
+    -fx-font-weight: bold;
+    -fx-text-fill: #f8f8f5;
 }
 
 #saveChangesButton{
@@ -241,4 +253,9 @@
     -fx-font-weight: bold;
     -fx-text-fill: #001F3F;
     -fx-cursor: hand;
+}
+#saveChangesButton:hover, #saveChangesButton:pressed, #saveChangesButton:focused {
+    -fx-effect: null; /* Remove qualquer efeito padrão */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
 }
