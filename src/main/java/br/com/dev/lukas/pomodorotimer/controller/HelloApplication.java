@@ -24,7 +24,7 @@ public class HelloApplication extends Application {
             stage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("/br/com" +
                     "/dev/lukas/pomodorotimer/images/clipart1908920.png"))));
             //stage.setResizable(false); // Disable resizable window
-            stage.setTitle(" Pomondoro");
+            stage.setTitle("Pomondoro");
             //stage.setFullScreen(true);
 
             stage.setScene(scene);

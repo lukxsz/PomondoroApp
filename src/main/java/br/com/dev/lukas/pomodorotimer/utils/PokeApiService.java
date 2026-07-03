@@ -50,6 +50,10 @@ public class PokeApiService {
 
             JsonObject jsonBase = JsonParser.parseString(response.body()).getAsJsonObject();
 
+            //Nome:
+            String rawName = jsonBase.get("name").getAsString();
+            pokemonDetails.name = rawName.substring(0, 1).toUpperCase() + rawName.substring(1);
+
             //Tipos:
             JsonArray typesArray = jsonBase.getAsJsonArray("types");
 

@@ -45,14 +45,12 @@ public class PokedexController {
         // pagina
 
         pokedexPagination.setPageFactory(paginationIndice -> createPage(paginationIndice));
-
-
     }
 
     private Node createPage(int paginationIndex){
         TilePane grid = new TilePane();
-        grid.setHgap(15);
-        grid.setVgap(15);
+        grid.setHgap(12);
+        grid.setVgap(12);
         grid.setAlignment(Pos.CENTER);
         grid.setPadding(new Insets(10));
 
@@ -91,7 +89,7 @@ public class PokedexController {
     }
 
     private VBox createCard(int id, String nome) {
-        VBox card = new VBox(5);
+        VBox card = new VBox();
         //card.setStyle("-fx-border-color: rgba(0, 0, 255, 0.3);");
         card.setAlignment(Pos.CENTER);
         card.getStyleClass().add("card-pokemon");
@@ -104,7 +102,7 @@ public class PokedexController {
         ImageView moldura = new ImageView(imagem);
         moldura.setPreserveRatio(true);
         moldura.setSmooth(true);
-        moldura.fitWidthProperty().bind(pokedexPagination.widthProperty().divide(5).multiply(0.6));
+        moldura.fitWidthProperty().bind(pokedexPagination.widthProperty().divide(5).multiply(0.5));
 
         boolean isCaptured = User.getInstance().verifyPokemon(id);
         String exhibitionName;
@@ -139,10 +137,10 @@ public class PokedexController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Pokemon Desconhecido");
                 alert.setHeaderText(null);
-                alert.setContentText("Você precisa concluir mais ciclos de Pomodoro para descobrir informações sobre " +
-                        "este" +
-                        " " +
-                        "Pokemon");
+                alert.setContentText("Você precisa concluir mais ciclos de Pomodoro para descobrir informações sobre este Pokemon.");
+
+                alert.getDialogPane().getStylesheets().add(getClass().getResource("/br/com/dev/lukas/pomodorotimer/css/style.css").toExternalForm());
+                alert.getDialogPane().getStyleClass().add("pokemon-alert");
 
                 alert.showAndWait();
             }
@@ -182,7 +180,5 @@ public class PokedexController {
             e.printStackTrace();
         }
     }
-
-
 
 }

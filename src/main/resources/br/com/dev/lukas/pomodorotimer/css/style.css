@@ -259,3 +259,164 @@
     -fx-scale-x: 1;
     -fx-scale-y: 1;
 }
+
+/* =========================================
+   ESTILO PARA OS ALERTS POKÉMON (DIÁLOGOS)
+   ========================================= */
+
+.pokemon-alert {
+    -fx-background-color: #001F3F, #f8f8f5;
+    -fx-background-insets: 0, 4px;
+    -fx-padding: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.35), 15, 0, 0, 5);
+}
+
+.pokemon-alert .label {
+    -fx-font-family: "Ari-W9500";
+    -fx-text-fill: #001F3F;
+}
+
+/* Painel de Conteúdo e Texto do Alerta */
+.pokemon-alert > .content.label {
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 6px;
+    -fx-padding: 15px 20px;
+}
+
+/* Container do Ícone/Imagem (Pokémon) */
+.pokemon-alert > .graphic-container {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+/* Barra de Botões do Alerta */
+.pokemon-alert > .button-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 10px 0 0 0;
+}
+
+.pokemon-alert > .button-bar > .container {
+    -fx-background-color: transparent;
+}
+
+/* Botões do Alerta estilo Pokémon Retro */
+.pokemon-alert > .button-bar > .container > .button {
+    -fx-background-color: #001F3F;
+    -fx-text-fill: #f8f8f5;
+    -fx-font-family: "Ari-W9500";
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 8px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 3, 0, 0, 2);
+}
+
+.pokemon-alert > .button-bar > .container > .button:hover {
+    -fx-border-color: #001F3F;
+    -fx-text-fill: #ffffff;
+}
+
+.pokemon-alert > .button-bar > .container > .button:pressed {
+    -fx-translate-y: 2px;
+    -fx-effect: none;
+}
+
+/* =========================================
+   ESTILO PARA A TELA DE DETALHES DO POKÉMON (MODAL)
+   ========================================= */
+
+.pokemon-modal {
+    -fx-background-color: #001F3F, #f8f8f5;
+    -fx-background-insets: 0, 4px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 6);
+}
+
+.pokemon-title {
+    -fx-font-family: "Ari-W9500";
+    -fx-font-size: 30px;
+    -fx-text-fill: #001F3F; /* Vermelho Pokémon */
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.type-badge {
+    -fx-background-color: #001F3F;
+    -fx-background-radius: 15px;
+    -fx-text-fill: #f8f8f5;
+    -fx-font-family: "Ari-W9500";
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4px 12px;
+    -fx-alignment: center;
+}
+
+.pokedex-description {
+    -fx-font-family: "Ari-W9500";
+    -fx-font-size: 14px;
+    -fx-text-fill: #001F3F;
+    -fx-line-spacing: 5px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #001F3F;
+    -fx-border-width: 2px;
+    -fx-background-radius: 6px;
+    -fx-padding: 15px;
+}
+
+/* =========================================
+   ESTILO PARA A PAGINAÇÃO DA POKÉDEX (JavaFX Pagination)
+   ========================================= */
+
+/* Componente principal da paginação */
+#pokedexPagination {
+    -fx-background-color: transparent;
+}
+
+/* Barra inferior que contém os botões e páginas */
+#pokedexPagination > .pagination-control {
+    -fx-background-color: transparent;
+}
+
+/* Container interno (HBox) dos botões de controle */
+#pokedexPagination > .pagination-control > .control-box {
+    -fx-spacing: 5px;
+    -fx-alignment: center;
+}
+
+#pokedexPagination > .pagination-control > .control-box > .toggle-button {
+    -fx-min-width: 0;
+    -fx-max-width: 0;
+    -fx-pref-width: 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    -fx-padding: 0;
+    -fx-opacity: 0;
+}
+
+/* Estilo padrão para os botões de navegação (Setas) e número de página */
+#pokedexPagination > .pagination-control > .control-box > .button,
+#pokedexPagination > .pagination-control > .control-box > .toggle-button {
+    -fx-font-family: "Ari-W9500";
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+    -fx-text-fill: #001F3F;
+    -fx-background-color: transparent;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-padding: 6px 12px;
+}
+
+
+/* Seta interna (desenho) do botão de ir para esquerda/anterior */
+#pokedexPagination .left-arrow {
+    -fx-background-color: #001F3F;
+    -fx-shape: "M 10 0 L 0 10 L 10 20 L 13 17 L 6 10 L 13 3 Z"; /* Seta em formato pixel retro */
+}
+
+/* Seta interna (desenho) do botão de ir para direita/próximo */
+#pokedexPagination .right-arrow {
+    -fx-background-color: #001F3F;
+    -fx-shape: "M 0 0 L 10 10 L 0 20 L -3 17 L 4 10 L -3 3 Z"; /* Seta em formato pixel retro */
+}

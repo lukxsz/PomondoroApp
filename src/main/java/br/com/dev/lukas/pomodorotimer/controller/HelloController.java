@@ -319,7 +319,7 @@ public class HelloController {
         animationBushTimiline.stop();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Um pokemon selvagem apareceu!");
-        alert.setHeaderText("");
+        alert.setHeaderText(null);
 
         String urlImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official" +
                 "-artwork/" + idPokemon + ".png";
@@ -329,9 +329,10 @@ public class HelloController {
 
         alert.setGraphic(imageView);
 
-        alert.setContentText("Você encontrou um novo pokemon! \nQue tal checar sua pokédex para saber quem é!");
+        alert.setContentText("Você encontrou um novo pokemon!\nQue tal checar sua pokédex para saber quem é!");
 
-        alert.getDialogPane().setStyle("-fx-background-color: #fff");
+        alert.getDialogPane().getStylesheets().add(getClass().getResource("/br/com/dev/lukas/pomodorotimer/css/style.css").toExternalForm());
+        alert.getDialogPane().getStyleClass().add("pokemon-alert");
 
         alert.showAndWait();
     }
