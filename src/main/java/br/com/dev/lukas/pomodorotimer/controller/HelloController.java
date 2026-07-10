@@ -64,13 +64,14 @@ public class HelloController {
 
         // Listener de responsividade: oculta os painéis laterais em telas pequenas
         mainPane.widthProperty().addListener((observable, oldValue, newValue) -> {
-            boolean isLargeEnough = newValue.doubleValue() >= 400;
+            boolean isLargeEnoughLeft = newValue.doubleValue() >= 400;
+            boolean isLargeEnoughRight = newValue.doubleValue() >= 600;
             
-            leftPane.setVisible(isLargeEnough);
-            leftPane.setManaged(isLargeEnough);
+            leftPane.setVisible(isLargeEnoughLeft);
+            leftPane.setManaged(isLargeEnoughLeft);
             
-            rightPane.setVisible(isLargeEnough);
-            rightPane.setManaged(isLargeEnough);
+            rightPane.setVisible(isLargeEnoughRight);
+            rightPane.setManaged(isLargeEnoughRight);
         });
     }
 

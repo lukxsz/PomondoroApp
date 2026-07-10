@@ -15,7 +15,7 @@ public class Task {
     }
 
     public String toString() {
-        return (done ? "[OK] " : "[  ] ") + taskName.toUpperCase();
+        return (done ? "[OK] " : "[  ] ") + taskName;
     }
 
     public String getTaskName() {
