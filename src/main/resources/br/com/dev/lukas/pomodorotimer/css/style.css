@@ -462,3 +462,62 @@
     -fx-background-color: #001F3F;
     -fx-shape: "M 0 0 L 10 10 L 0 20 L -3 17 L 4 10 L -3 3 Z"; /* Seta em formato pixel retro */
 }
+
+/* =========================================
+   PERSONALIZAÇÃO DA SCROLLBAR DO TASKVIEW
+   ========================================= */
+
+/* =========================================
+   PERSONALIZAÇÃO DA SCROLLBAR DO TASKVIEW
+   ========================================= */
+
+/* Barra Vertical */
+#taskView .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 12px;
+}
+#taskView .scroll-bar:vertical .track {
+    -fx-background-color: #EAEAEA;
+    -fx-background-radius: 6px;
+}
+#taskView .scroll-bar:vertical .thumb {
+    -fx-background-color: #001F3F;
+    -fx-background-radius: 6px;
+}
+#taskView .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #85F765;
+}
+
+/* Barra Horizontal */
+#taskView .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-height: 12px;
+}
+#taskView .scroll-bar:horizontal .track {
+    -fx-background-color: #EAEAEA;
+    -fx-background-radius: 6px;
+}
+#taskView .scroll-bar:horizontal .thumb {
+    -fx-background-color: #001F3F;
+    -fx-background-radius: 6px;
+}
+#taskView .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #85F765;
+}
+
+/* Esconder setas incrementais/decrementais */
+#taskView .scroll-bar .increment-button,
+#taskView .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0px;
+}
+#taskView .scroll-bar .increment-arrow,
+#taskView .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0px;
+}
+
+/* Força as células a serem mais largas que a lista (200px) apenas para testar a rolagem horizontal */
+#taskView .list-cell {
+    -fx-min-width: 400px;
+}

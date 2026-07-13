@@ -12,15 +12,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.HelloController">
    <center>
       <VBox fx:id="timerVBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
-            <StackPane fx:id="battleContainer" maxHeight="250.0" maxWidth="300.0" styleClass="battle-container">
+            <StackPane fx:id="battleContainer" prefHeight="250.0" prefWidth="300.0" styleClass="battle-container">
                <children>
-                  <ImageView id="cenarioView" fx:id="cenarioView" fitHeight="250.0" fitWidth="300.0" pickOnBounds="true" smooth="false">
+                  <ImageView id="cenarioView" fx:id="cenarioView" pickOnBounds="true" smooth="false">
                      <image>
                         <Image url="@images/BattleBackgroundPokemon.jpeg" />
                      </image>
@@ -34,13 +33,11 @@
                      </image>
                   </ImageView>
                   <Label fx:id="labelTimer" alignment="CENTER" contentDisplay="CENTER" text="00:00" textAlignment="JUSTIFY" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" StackPane.alignment="TOP_CENTER">
-                     <font>
-                        <Font name="System Bold" size="80.0" />
-                     </font>
+
                   </Label>
                </children>
             </StackPane>
-            <HBox alignment="CENTER" spacing="10.0">
+            <HBox fx:id="buttonsHbox" alignment="CENTER" spacing="10.0">
                <children>
                   <Button fx:id="buttonTimer" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="60.0" prefWidth="60.0">
                      <graphic>
@@ -78,7 +75,7 @@
                   <Insets />
                </VBox.margin>
             </TextField>
-            <ListView fx:id="taskView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#onMarkAsDone" prefWidth="200.0">
+            <ListView id="taskView" fx:id="taskView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#onMarkAsDone" prefWidth="200.0">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

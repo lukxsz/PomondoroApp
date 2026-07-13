@@ -8,14 +8,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="configScreen" alignment="CENTER" cache="true" depthTest="DISABLE" focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="200.0" spacing="20.0" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.SettingsController">
+<VBox fx:id="configScreen" alignment="CENTER" cache="true" depthTest="DISABLE" focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT"
+      spacing="20.0" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.SettingsController">
    <children>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308">
          <children>
-            <Label prefHeight="15.0" prefWidth="50.0" text="Foco" wrapText="true">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
+            <Label prefHeight="15.0" prefWidth="50.0" text="Foco" wrapText="true"/>
             <Spinner fx:id="spinnerMinutesFocus" prefHeight="45.0" prefWidth="50.0" styleClass="split-arrows-vertical">
                <HBox.margin>
                   <Insets />

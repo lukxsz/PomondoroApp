@@ -10,6 +10,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -30,6 +33,7 @@ import java.util.Random;
 
 public class HelloController {
 
+    @FXML private HBox buttonsHbox;
     @FXML private Label labelTimer;
     @FXML public Button buttonTimer;
     @FXML private Timeline timeline;
@@ -48,12 +52,8 @@ public class HelloController {
     @FXML private Button skipStageButton;
     @FXML private ImageView imgMoita;
     @FXML private  ImageView cenarioView;
-
-
+    @FXML private StackPane battleContainer;
     private Timeline animationBushTimiline;
-
-
-
 
     @FXML
     private void initialize() {
@@ -66,13 +66,42 @@ public class HelloController {
         mainPane.widthProperty().addListener((observable, oldValue, newValue) -> {
             boolean isLargeEnoughLeft = newValue.doubleValue() >= 400;
             boolean isLargeEnoughRight = newValue.doubleValue() >= 600;
+            boolean isWidgetMode = newValue.doubleValue() < 380;
             
             leftPane.setVisible(isLargeEnoughLeft);
             leftPane.setManaged(isLargeEnoughLeft);
             
             rightPane.setVisible(isLargeEnoughRight);
             rightPane.setManaged(isLargeEnoughRight);
+
+            buttonsHbox.setVisible(!isWidgetMode);
+            buttonsHbox.setManaged(!isWidgetMode);
+
+            if (isWidgetMode && mainPane.getCenter() != timerVBox) {
+                openTimer();
+            }
         });
+
+        cenarioView.fitWidthProperty().bind(battleContainer.prefWidthProperty().subtract(6));
+        cenarioView.fitHeightProperty().bind(battleContainer.prefHeightProperty().subtract(6));
+
+        imgMoita.fitWidthProperty().bind(battleContainer.prefWidthProperty().divide(3.0));
+
+        labelTimer.styleProperty().bind(
+                Bindings.concat(
+                        "-fx-font-size: ",
+                        battleContainer.prefHeightProperty().multiply(0.32).asString(),
+                        "px;"
+                )
+        );
+        timerVBox.widthProperty().addListener((obs,oldVal,newVal)-> redimensionarArea());
+        timerVBox.heightProperty().addListener((obs,oldVal,newVal)-> redimensionarArea());
+
+        battleContainer.maxWidthProperty().bind(battleContainer.prefWidthProperty());
+        battleContainer.maxHeightProperty().bind(battleContainer.prefHeightProperty());
+
+        battleContainer.setMinWidth(0);
+        battleContainer.setMinHeight(0);
     }
 
     @FXML
@@ -375,4 +404,32 @@ public class HelloController {
         buttonTimer.setGraphic(pauseView);
     }
 
+    public void redimensionarArea(){
+        boolean isWidgetMode = mainPane.getWidth() < 380;
+
+        double margemLargura = isWidgetMode ? 0 : 40;
+        double margemAltura = isWidgetMode ? 0 : 120;
+
+        double larguraDisponivel = timerVBox.getWidth() - margemLargura;
+        double alturaDisponivel = timerVBox.getHeight() - margemAltura;
+
+
+        if (larguraDisponivel <= 0 || alturaDisponivel <= 0) return;
+
+        double proporcaoIdeal = 300.0 / 250.0 ;
+
+        double novaLargura;
+        double novaAltura;
+
+        if(larguraDisponivel / alturaDisponivel > proporcaoIdeal){
+            novaAltura = alturaDisponivel;
+            novaLargura = alturaDisponivel * proporcaoIdeal;
+        }else{
+            novaLargura = larguraDisponivel;
+            novaAltura = larguraDisponivel / proporcaoIdeal;
+        }
+
+        battleContainer.setPrefWidth(novaLargura);
+        battleContainer.setPrefHeight(novaAltura);
+    }
 }
