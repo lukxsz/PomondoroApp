@@ -118,18 +118,23 @@
 /* TASK VIEW & LIST */
 #taskView {
     -fx-background-color: #f8f8f5;
-    /*-fx-background-radius: 0 0 10px 10px;*/
+    -fx-background-radius: 0;
     -fx-background-insets: 0;
     -fx-padding: 0;
+}
+#taskView:focused {
+    -fx-background-color: #f8f8f5;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
 }
 
 .list-cell {
     -fx-font-family: "Ari-W9500";
-    -fx-font-size: 14px;
+    -fx-font-size: 10px;
     -fx-text-fill: #444444;
-    -fx-padding: 10px;
+    -fx-padding: 5px;
     -fx-background-color: white;
-    -fx-border-color: transparent transparent #F0F0F0 transparent;
+    -fx-border-color: transparent transparent #d9d9d9 transparent;
 }
 
 .list-cell:filled:hover {
@@ -150,12 +155,16 @@
     -fx-text-fill: #333333;
     -fx-background-color: #f8f8f5;
     -fx-background-radius: 0 0 0 0;
+    -fx-background-insets: 0;
     -fx-padding: 12px;
 }
 
 #inputTask:focused {
-    -fx-border-color: #222220;
-
+    -fx-background-color: #f8f8f5;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-insets: 0 0 1 0 ;
+    -fx-border-color: transparent transparent #d9d9d9 transparent;
 }
 
 /* RIGHT PANE CONTAINER */
@@ -231,7 +240,8 @@
 
 .spinner.split-arrows-vertical .increment-arrow-button:pressed .increment-arrow,
 .spinner.split-arrows-vertical .decrement-arrow-button:pressed .decrement-arrow {
-    -fx-background-color: #f8f8f5;
+    -fx-translate-x: 1px;
+    -fx-background-color: #001831;
 }
 
 #labelSeparatorFocus,
@@ -276,6 +286,10 @@
     -fx-max-width: 100px;
     -fx-min-height: 40px;
     -fx-max-height: 40px;
+
+}
+#saveChangesButton:pressed{
+    -fx-translate-y: 2px;
 }
 
 /* =========================================
@@ -463,9 +477,10 @@
     -fx-shape: "M 0 0 L 10 10 L 0 20 L -3 17 L 4 10 L -3 3 Z"; /* Seta em formato pixel retro */
 }
 
-/* =========================================
-   PERSONALIZAÇÃO DA SCROLLBAR DO TASKVIEW
-   ========================================= */
+.right-arrow .left-arrow:pressed{
+    -fx-translate-y: 1px;
+    -fx-background-color: #001831;
+}
 
 /* =========================================
    PERSONALIZAÇÃO DA SCROLLBAR DO TASKVIEW
@@ -474,35 +489,43 @@
 /* Barra Vertical */
 #taskView .scroll-bar:vertical {
     -fx-background-color: transparent;
-    -fx-pref-width: 12px;
+    -fx-pref-width: 6px;
+    -fx-background-radius: 0;
 }
 #taskView .scroll-bar:vertical .track {
-    -fx-background-color: #EAEAEA;
-    -fx-background-radius: 6px;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
 }
 #taskView .scroll-bar:vertical .thumb {
-    -fx-background-color: #001F3F;
+    -fx-background-color: #444444;
     -fx-background-radius: 6px;
-}
-#taskView .scroll-bar:vertical .thumb:hover {
-    -fx-background-color: #85F765;
 }
 
 /* Barra Horizontal */
 #taskView .scroll-bar:horizontal {
     -fx-background-color: transparent;
-    -fx-pref-height: 12px;
+    -fx-pref-height: 6px;
 }
 #taskView .scroll-bar:horizontal .track {
-    -fx-background-color: #EAEAEA;
-    -fx-background-radius: 6px;
+    -fx-background-color: transparent;
 }
 #taskView .scroll-bar:horizontal .thumb {
-    -fx-background-color: #001F3F;
-    -fx-background-radius: 6px;
+    -fx-background-color: #444444;
+    -fx-background-radius: 2px;
 }
-#taskView .scroll-bar:horizontal .thumb:hover {
-    -fx-background-color: #85F765;
+
+/* Prevenir efeito de foco e hover no ScrollBar e Track */
+#taskView .scroll-bar:focused,
+#taskView .scroll-bar:hover,
+#taskView .scroll-bar .track:focused,
+#taskView .scroll-bar .track:hover {
+    -fx-background-color: transparent;
+}
+
+/* Prevenir alteração de cor no thumb ao passar o mouse ou focar */
+#taskView .scroll-bar .thumb:hover,
+#taskView .scroll-bar .thumb:focused {
+    -fx-background-color: #444444;
 }
 
 /* Esconder setas incrementais/decrementais */
@@ -517,7 +540,3 @@
     -fx-padding: 0px;
 }
 
-/* Força as células a serem mais largas que a lista (200px) apenas para testar a rolagem horizontal */
-#taskView .list-cell {
-    -fx-min-width: 400px;
-}
