@@ -5,6 +5,7 @@ module br.com.dev.lukas.pomodorotimer {
     requires java.desktop;
     requires com.google.gson;
     requires java.net.http;
+    requires java.sql;
 
 
     opens br.com.dev.lukas.pomodorotimer to javafx.fxml;
