@@ -23,17 +23,17 @@ public class SettingsController {
 
     public void initialize() {
 
-        SpinnerValueFactory<Integer> minutes = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 99, 25);
+        SpinnerValueFactory<Integer> minutes = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 25);
         spinnerMinutesFocus.setValueFactory(minutes);
         SpinnerValueFactory<Integer> seconds = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
         spinnerSecondsFocus.setValueFactory(seconds);
 
-        SpinnerValueFactory<Integer> minutesBreak = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 15, 5);
+        SpinnerValueFactory<Integer> minutesBreak = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 15, 5);
         spinnerMinutesBreak.setValueFactory(minutesBreak);
         SpinnerValueFactory<Integer> secondsBreak = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
         spinnerSecondsBreak.setValueFactory(secondsBreak);
 
-        SpinnerValueFactory<Integer> minutesLBreak = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 30, 15);
+        SpinnerValueFactory<Integer> minutesLBreak = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 30, 15);
         spinnerMinutesLBreak.setValueFactory(minutesLBreak);
         SpinnerValueFactory<Integer> secondsLBreak = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
         spinnerSecondsLBreak.setValueFactory(secondsLBreak);

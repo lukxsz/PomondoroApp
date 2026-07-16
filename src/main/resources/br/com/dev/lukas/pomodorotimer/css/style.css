@@ -20,11 +20,12 @@
 
 /* SIDEBAR MENU */
 .sidebar {
-    /*-fx-border-width: 2px;*/
-    /*-fx-border-color: #dadad8;*/
-    /*-fx-border-radius: 0px 10px 10px 0px;*/
+    -fx-border-width: 1px;
+    /*-fx-border-color: transparent #dadad8 #dadad8 transparent;*/
+    -fx-border-radius: 0px 10px 10px 0px;
     -fx-background-color: #85F765;
     -fx-background-radius: 0px 10px 10px 0px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 8, 0, 0, 4)
 }
 
 .sidebar-button {
@@ -38,9 +39,7 @@
     -fx-background-radius: 8px;
 }
 
-.sidebar-button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.15);
-}
+
 
 .sidebar-button:pressed {
     -fx-background-color: rgba(0, 0, 0, 0.15);
@@ -151,12 +150,13 @@
     -fx-font-family: "Ari-W9500";
     -fx-font-weight: bold;
     -fx-font-size: 14px;
-    -fx-prompt-text-fill: #000000;
+    -fx-prompt-text-fill: #333333;
     -fx-text-fill: #333333;
     -fx-background-color: #f8f8f5;
     -fx-background-radius: 0 0 0 0;
     -fx-background-insets: 0;
     -fx-padding: 12px;
+    -fx-border-color: transparent transparent #d9d9d9 transparent;
 }
 
 #inputTask:focused {
@@ -406,6 +406,8 @@
     -fx-font-weight: bold;
     -fx-padding: 4px 12px;
     -fx-alignment: center;
+    -fx-max-width: 80px;
+    -fx-min-width: 80px;
 }
 
 .pokedex-description {
@@ -414,7 +416,7 @@
     -fx-text-fill: #001F3F;
     -fx-line-spacing: 5px;
     -fx-background-color: #ffffff;
-    -fx-border-color: #001F3F;
+    -fx-border-color: #85F765;
     -fx-border-width: 2px;
     -fx-background-radius: 6px;
     -fx-padding: 15px;

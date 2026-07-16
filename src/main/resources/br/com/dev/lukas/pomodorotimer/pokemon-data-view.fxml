@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="pokemon-modal" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.PokemonDataController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="pokemon-modal" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.PokemonDataController">
    <padding>
-      <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+      <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
    </padding>
    <children>
       <Label fx:id="labelPokemonName" styleClass="pokemon-title" text="POKÉMON">
@@ -17,7 +17,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="15.0" top="15.0" />
+            <Insets bottom="10.0" top="5.0" />
          </VBox.margin>
       </Label>
       <HBox alignment="CENTER">
@@ -31,11 +31,17 @@
                         <Label fx:id="labelType1" styleClass="type-badge" text="TIPO 1" textFill="#0a0404" />
                         <Label fx:id="labelType2" styleClass="type-badge" text="TIPO 2" textFill="#051eda" />
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
             </VBox>
             <!-- A PAREDE: maxWidth="250.0" impede que o texto estique a janela infinitamente -->
-            <Label fx:id="labelPokedexEntry" styleClass="pokedex-description" maxWidth="250.0" text="label" wrapText="true">
+            <Label fx:id="labelPokedexEntry" maxWidth="250.0" styleClass="pokedex-description" text="label" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
