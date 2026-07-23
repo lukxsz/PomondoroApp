@@ -22,21 +22,21 @@
 .sidebar {
     -fx-border-width: 1px;
     /*-fx-border-color: transparent #dadad8 #dadad8 transparent;*/
-    -fx-border-radius: 0px 10px 10px 0px;
+    -fx-border-radius: 0 0.67em 0.67em 0;
     -fx-background-color: #85F765;
-    -fx-background-radius: 0px 10px 10px 0px;
+    -fx-background-radius: 0 0.67em 0.67em 0;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 8, 0, 0, 4)
 }
 
 .sidebar-button {
     -fx-background-color: transparent;
     -fx-text-fill: white;
-    -fx-font-size: 15px;
+    -fx-font-size: 1.0em;
     -fx-font-weight: bold;
-    -fx-padding: 12px 20px;
+    -fx-padding: 0.80em 1.33em;
     -fx-cursor: hand;
     -fx-alignment: center-left;
-    -fx-background-radius: 8px;
+    -fx-background-radius: 0.53em;
 }
 
 
@@ -47,7 +47,7 @@
 
 #cenarioView{
     -fx-border-color: #ffff;
-    -fx-border-width: 50px;
+    -fx-border-width: 3px;
 }
 
 /* TIMER LABEL */
@@ -69,11 +69,11 @@
     /*-fx-border-color: #222220;*/
     /*-fx-border-width: 2px;*/
     -fx-background-color: #f8f8f5;
-    -fx-background-radius: 1px; /* Circulo */
-    -fx-min-width: 40px;
-    -fx-min-height: 40px;
-    -fx-max-width: 40px;
-    -fx-max-height: 40px;
+    -fx-background-radius: 0.07em; /* Circulo */
+    -fx-min-width: 2.67em;
+    -fx-min-height: 2.67em;
+    -fx-max-width: 2.67em;
+    -fx-max-height: 2.67em;
     -fx-cursor: hand;
     /*-fx-effect: dropshadow(three-pass-box, rgba(59,76,202,0.4), 10, 0, 0, 4);*/
     -fx-content-display: center;
@@ -94,11 +94,11 @@
     /*-fx-border-color: #222220;*/
     /*-fx-border-width: 2px;*/
     -fx-background-color: #f8f8f5;
-    -fx-background-radius: 1px; /* Circulo */
-    -fx-min-width: 40px;
-    -fx-min-height: 40px;
-    -fx-max-width: 40px;
-    -fx-max-height: 40px;
+    -fx-background-radius: 0.07em; /* Circulo */
+    -fx-min-width: 2.67em;
+    -fx-min-height: 2.67em;
+    -fx-max-width: 2.67em;
+    -fx-max-height: 2.67em;
     -fx-cursor: hand;
     /*-fx-effect: dropshadow(three-pass-box, rgba(59,76,202,0.4), 10, 0, 0, 4);*/
     -fx-content-display: center;
@@ -129,9 +129,9 @@
 
 .list-cell {
     -fx-font-family: "Ari-W9500";
-    -fx-font-size: 10px;
+    -fx-font-size: 0.67em;
     -fx-text-fill: #444444;
-    -fx-padding: 5px;
+    -fx-padding: 0.33em;
     -fx-background-color: white;
     -fx-border-color: transparent transparent #d9d9d9 transparent;
 }
@@ -149,13 +149,13 @@
 #inputTask {
     -fx-font-family: "Ari-W9500";
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-size: 0.93em;
     -fx-prompt-text-fill: #333333;
     -fx-text-fill: #333333;
     -fx-background-color: #f8f8f5;
-    -fx-background-radius: 0 0 0 0;
+    -fx-background-radius: 0;
     -fx-background-insets: 0;
-    -fx-padding: 12px;
+    -fx-padding: 0.80em;
     -fx-border-color: transparent transparent #d9d9d9 transparent;
 }
 
@@ -200,14 +200,14 @@
 .spinner.split-arrows-vertical .text-field {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
-    -fx-padding: 0px;
+    -fx-padding: 0;
     -fx-text-fill: #f8f8f5;
     -fx-font-weight: bold;
     -fx-alignment: center;
 
 }
 .text-field{
-    -fx-font-size: 20px;
+    -fx-font-size: 3em;
 }
 
 .spinner.split-arrows-vertical .increment-arrow-button,
@@ -247,9 +247,11 @@
 #labelSeparatorFocus,
 #labelSeparatorBreak,
 #labelSeparatorLBreak {
+    -fx-font-size: 3em;
     -fx-font-family: "Ari-W9500";
     -fx-font-weight: bold;
     -fx-text-fill: #f8f8f5;
+
 }
 
 #saveChangesButton {
@@ -257,17 +259,17 @@
     -fx-background-color: #f8f8f5;
     -fx-font-family: "Ari-W9500";
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-size: 0.93em;
     -fx-text-fill: #001F3F;
     -fx-cursor: hand;
     -fx-scale-x: 1.0;
     -fx-scale-y: 1.0;
     -fx-background-insets: 0;
     -fx-border-width: 0;
-    -fx-min-width: 100px;
-    -fx-max-width: 100px;
-    -fx-min-height: 40px;
-    -fx-max-height: 40px;
+    -fx-min-width: 6.67em;
+    -fx-max-width: 6.67em;
+    -fx-min-height: 2.67em;
+    -fx-max-height: 2.67em;
 }
 #saveChangesButton:hover,
 #saveChangesButton:focused,
@@ -276,16 +278,16 @@
     -fx-background-color: #f8f8f5;
     -fx-font-family: "Ari-W9500";
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
+    -fx-font-size: 0.93em;
     -fx-text-fill: #001F3F;
     -fx-scale-x: 1.0;
     -fx-scale-y: 1.0;
     -fx-background-insets: 0;
     -fx-border-width: 0;
-    -fx-min-width: 100px;
-    -fx-max-width: 100px;
-    -fx-min-height: 40px;
-    -fx-max-height: 40px;
+    -fx-min-width: 6.67em;
+    -fx-max-width: 6.67em;
+    -fx-min-height: 2.67em;
+    -fx-max-height: 2.67em;
 
 }
 #saveChangesButton:pressed{
@@ -298,8 +300,8 @@
 
 .pokemon-alert {
     -fx-background-color: #001F3F, #f8f8f5;
-    -fx-background-insets: 0, 4px;
-    -fx-padding: 16px;
+    -fx-background-insets: 0, 0.27em;
+    -fx-padding: 1.07em;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.35), 15, 0, 0, 5);
 }
 
@@ -311,22 +313,22 @@
 /* Painel de Conteúdo e Texto do Alerta */
 .pokemon-alert > .content.label {
     -fx-background-color: transparent;
-    -fx-font-size: 14px;
-    -fx-line-spacing: 6px;
-    -fx-padding: 15px 20px;
+    -fx-font-size: 0.93em;
+    -fx-line-spacing: 0.40em;
+    -fx-padding: 1.0em 1.33em;
 }
 
 /* Container do Ícone/Imagem (Pokémon) */
 .pokemon-alert > .graphic-container {
     -fx-background-color: transparent;
-    -fx-padding: 10px;
+    -fx-padding: 0.67em;
     -fx-alignment: center;
 }
 
 /* Barra de Botões do Alerta */
 .pokemon-alert > .button-bar {
     -fx-background-color: transparent;
-    -fx-padding: 10px 0 0 0;
+    -fx-padding: 0.67em 0 0 0;
 }
 
 .pokemon-alert > .button-bar > .container {
@@ -339,8 +341,8 @@
     -fx-text-fill: #f8f8f5;
     -fx-font-family: "Ari-W9500";
     -fx-font-weight: bold;
-    -fx-font-size: 13px;
-    -fx-padding: 8px 20px;
+    -fx-font-size: 0.87em;
+    -fx-padding: 0.53em 1.33em;
     -fx-cursor: hand;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 3, 0, 0, 2);
     -fx-background-insets: 0;
@@ -355,8 +357,8 @@
     -fx-text-fill: #f8f8f5;
     -fx-font-family: "Ari-W9500";
     -fx-font-weight: bold;
-    -fx-font-size: 13px;
-    -fx-padding: 8px 20px;
+    -fx-font-size: 0.87em;
+    -fx-padding: 0.53em 1.33em;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 3, 0, 0, 2);
     -fx-background-insets: 0;
     -fx-border-width: 0;
@@ -369,8 +371,8 @@
     -fx-text-fill: #f8f8f5;
     -fx-font-family: "Ari-W9500";
     -fx-font-weight: bold;
-    -fx-font-size: 13px;
-    -fx-padding: 8px 20px;
+    -fx-font-size: 0.87em;
+    -fx-padding: 0.53em 1.33em;
     -fx-background-insets: 0;
     -fx-border-width: 0;
     -fx-scale-x: 1.0;
@@ -385,13 +387,50 @@
 
 .pokemon-modal {
     -fx-background-color: #001F3F, #f8f8f5;
-    -fx-background-insets: 0, 4px;
+    -fx-background-insets: 0, 0.27em;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 6);
+}
+
+.pokemon-number {
+    -fx-font-family: "Ari-W9500";
+    -fx-font-size: 1.6em;
+    -fx-text-fill: #85F765;
+    -fx-font-weight: bold;
+}
+
+.pokemon-category {
+    -fx-font-family: "Ari-W9500";
+    -fx-font-size: 0.80em;
+    -fx-text-fill: #666666;
+    -fx-font-weight: bold;
+}
+
+.pokemon-info-box {
+    -fx-background-color: #f0f0ed;
+    -fx-background-radius: 0.40em;
+    -fx-border-color: #d9d9d9;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0.40em;
+    -fx-min-width: 10.0em;
+}
+
+.pokemon-stat-label {
+    -fx-font-family: "Ari-W9500";
+    -fx-font-size: 0.80em;
+    -fx-text-fill: #666666;
+    -fx-font-weight: bold;
+}
+
+.pokemon-stat-value {
+    -fx-font-family: "Ari-W9500";
+    -fx-font-size: 0.80em;
+    -fx-text-fill: #001F3F;
+    -fx-font-weight: bold;
 }
 
 .pokemon-title {
     -fx-font-family: "Ari-W9500";
-    -fx-font-size: 30px;
+    -fx-font-size: 2.0em;
     -fx-text-fill: #001F3F;
     -fx-font-weight: bold;
     -fx-alignment: center;
@@ -399,27 +438,32 @@
 
 .type-badge {
     -fx-background-color: #001F3F;
-    -fx-background-radius: 15px;
+    -fx-background-radius: 3px;
+    -fx-border-color: #111111;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
     -fx-text-fill: #f8f8f5;
     -fx-font-family: "Ari-W9500";
-    -fx-font-size: 11px;
+    -fx-font-size: 0.67em;
     -fx-font-weight: bold;
-    -fx-padding: 4px 12px;
     -fx-alignment: center;
-    -fx-max-width: 80px;
-    -fx-min-width: 80px;
+    -fx-min-width: 6.66em;
 }
+
 
 .pokedex-description {
     -fx-font-family: "Ari-W9500";
-    -fx-font-size: 14px;
+    -fx-font-size: 0.93em;
     -fx-text-fill: #001F3F;
-    -fx-line-spacing: 5px;
-    -fx-background-color: #ffffff;
-    -fx-border-color: #85F765;
+    -fx-line-spacing: 0.33em;
+    -fx-background-color:  #f8f8f5;
+    -fx-background-radius: 0.40em;
+    -fx-border-color: #001F3F;
     -fx-border-width: 2px;
-    -fx-background-radius: 6px;
-    -fx-padding: 15px;
+    -fx-border-radius: 5px;
+    -fx-padding: 1.0em;
+    -fx-min-height: 6.66em;
+    -fx-min-width: 200px;
 }
 
 /* =========================================
@@ -438,7 +482,7 @@
 
 /* Container interno (HBox) dos botões de controle */
 #pokedexPagination > .pagination-control > .control-box {
-    -fx-spacing: 5px;
+    -fx-spacing: 0.33em;
     -fx-alignment: center;
 }
 
@@ -458,12 +502,12 @@
 #pokedexPagination > .pagination-control > .control-box > .toggle-button {
     -fx-font-family: "Ari-W9500";
     -fx-font-weight: bold;
-    -fx-font-size: 10px;
+    -fx-font-size: 0.67em;
     -fx-text-fill: #001F3F;
     -fx-background-color: transparent;
-    -fx-background-radius: 4px;
+    -fx-background-radius: 0.27em;
     -fx-cursor: hand;
-    -fx-padding: 6px 12px;
+    -fx-padding: 0.40em 0.80em;
 }
 
 
@@ -534,11 +578,10 @@
 #taskView .scroll-bar .increment-button,
 #taskView .scroll-bar .decrement-button {
     -fx-background-color: transparent;
-    -fx-padding: 0px;
+    -fx-padding: 0;
 }
 #taskView .scroll-bar .increment-arrow,
 #taskView .scroll-bar .decrement-arrow {
     -fx-shape: " ";
-    -fx-padding: 0px;
+    -fx-padding: 0;
 }
-

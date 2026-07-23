@@ -23,7 +23,7 @@ public class Pomodoro implements Timer {
         int minutes = remainingSeconds / 60;
         int seconds = remainingSeconds % 60;
 
-        String timeString = String.format("%d:%02d", minutes, seconds);
+        String timeString = String.format("%02d:%02d", minutes, seconds);
         return timeString;
     }
     public boolean isFinished(){

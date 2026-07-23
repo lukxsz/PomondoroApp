@@ -62,6 +62,14 @@ public class HelloController {
         animationTallGrass();
         pomodoroTimer();
 
+        mainPane.styleProperty().bind(
+                Bindings.concat(
+                        "-fx-font-size: ",
+                        mainPane.widthProperty().divide(60).asString("%.1f"),
+                        "px;"
+                )
+        );
+
         // Listener de responsividade: oculta os painéis laterais em telas pequenas
         mainPane.widthProperty().addListener((observable, oldValue, newValue) -> {
             boolean isLargeEnoughLeft = newValue.doubleValue() >= 400;
@@ -90,7 +98,7 @@ public class HelloController {
         labelTimer.styleProperty().bind(
                 Bindings.concat(
                         "-fx-font-size: ",
-                        battleContainer.prefHeightProperty().multiply(0.32).asString(),
+                        battleContainer.prefWidthProperty().multiply(0.32).asString(),
                         "px;"
                 )
         );

@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {//Stage > Scene > SceneGraph
 
         SaveManager.loadData();
-
+            //docker run -d -p 5000:5000 libretranslate/libretranslate para o tradutor.
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/br/com/dev/lukas/pomodorotimer" +
                 "/hello-view.fxml"));
             Parent root = fxmlLoader.load();

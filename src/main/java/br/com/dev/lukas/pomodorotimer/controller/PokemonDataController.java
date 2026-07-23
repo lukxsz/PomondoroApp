@@ -8,49 +8,61 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.TextAlignment;
 
 public class PokemonDataController {
+    @FXML private Label labelPokemonNumber;
     @FXML private Label labelPokemonName;
     @FXML private ImageView imagePokemon;
     @FXML private Label labelType1;
     @FXML private Label labelType2;
+    @FXML private Label labelCategory;
+    @FXML private Label labelHeight;
+    @FXML private Label labelWeight;
     @FXML private Label labelPokedexEntry;
 
     public void dataOnScreen(int idPokemon, PokemonDetails pokemonDetails) {
+        // Número formatado
+        labelPokemonNumber.setText(String.format("#%03d", idPokemon));
+
+        // Nome
         labelPokemonName.setText(pokemonDetails.name);
 
+        // Categoria
+        if (pokemonDetails.category != null) {
+            labelCategory.setText(pokemonDetails.category);
+        }
+
+        // Altura e Peso
+        labelHeight.setText(String.format("%.1f m", pokemonDetails.height));
+        labelWeight.setText(String.format("%.1f kg", pokemonDetails.weight));
+
+        // Sprite GIF
         String urlGif = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation" +
                 "-v/black-white/animated/" + idPokemon + ".gif";
-
         Image gif = new Image(urlGif, 150, 150, true, true, true);
         imagePokemon.setImage(gif);
 
+        // Descrição
         labelPokedexEntry.setText(pokemonDetails.pokedexEntry);
         labelPokedexEntry.setWrapText(true);
         labelPokedexEntry.setTextAlignment(TextAlignment.CENTER);
-        labelPokedexEntry.setMaxWidth(250);
 
+        // Tipo 1
         labelType1.setText(pokemonDetails.type1.toUpperCase());
         labelType1.setVisible(true);
         labelType1.setManaged(true);
         String corTipo1 = obterCorDoTipo(pokemonDetails.type1);
         labelType1.setStyle("-fx-background-color: " + corTipo1 + "; -fx-text-fill: #ffffff;");
-       // labelType1.setStyle("-fx-border-color: #00ff00; -fx-border-width: 3px; -fx-text-fill: black; -fx-font-size:
-        // 24px; -fx-background-color: white;");
-        labelType1.setMinSize(50,25);
 
-
+        // Tipo 2
         if (pokemonDetails.type2 != null && !pokemonDetails.type2.isEmpty()) {
             labelType2.setText(pokemonDetails.type2.toUpperCase());
             labelType2.setVisible(true);
             labelType2.setManaged(true);
             String corTipo2 = obterCorDoTipo(pokemonDetails.type2);
             labelType2.setStyle("-fx-background-color: " + corTipo2 + "; -fx-text-fill: #ffffff;");
-            labelType2.setMinSize(50,25);
-
-        }else{
+        } else {
             labelType2.setVisible(false);
             labelType2.setManaged(false);
         }
-
     }
 
     private String obterCorDoTipo(String tipo) {
@@ -74,8 +86,8 @@ public class PokemonDataController {
             case "dark": return "#705746";      // Sombrio
             case "steel": return "#B7B7CE";     // Aço
             case "fairy": return "#D685AD";     // Fada
+            case "fighting": return "#C22E28";  // Lutador
             default: return "#777777";          // Cor padrão
         }
     }
-
 }

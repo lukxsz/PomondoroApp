@@ -28,8 +28,8 @@ import javafx.stage.Stage;
 public class PokedexController {
     @FXML private StackPane principalScreen;
     @FXML private Pagination pokedexPagination;
-    private final int ITEM_PER_PAGE = 15;
-    private final int POKEMON_TOTAL = 150;
+    private final int ITEM_PER_PAGE = 18;
+    private final int POKEMON_TOTAL = 151;
     private HelloController centralController;
     private final PokeApiService apiService = new PokeApiService();
 
@@ -49,8 +49,8 @@ public class PokedexController {
 
     private Node createPage(int paginationIndex){
         TilePane grid = new TilePane();
-        grid.setHgap(12);
-        grid.setVgap(12);
+        grid.setHgap(15);
+        grid.setVgap(15);
         grid.setAlignment(Pos.CENTER);
         grid.setPadding(new Insets(10));
 

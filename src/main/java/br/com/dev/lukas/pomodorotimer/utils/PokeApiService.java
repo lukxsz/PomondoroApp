@@ -12,6 +12,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
 public class PokeApiService {
+    private final TranslationService translator = new TranslationService();
+
     public void buscarPagina(int offset, int limite, Consumer<JsonArray> quandoTerminar) {
 
         String urlApi = "https://pokeapi.co/api/v2/pokemon?limit=" + limite + "&offset=" + offset;
@@ -50,6 +52,11 @@ public class PokeApiService {
 
             JsonObject jsonBase = JsonParser.parseString(response.body()).getAsJsonObject();
 
+            //ID, Altura e Peso:
+            pokemonDetails.id = id;
+            pokemonDetails.height = jsonBase.get("height").getAsInt() / 10.0;  // API retorna em decímetros
+            pokemonDetails.weight = jsonBase.get("weight").getAsInt() / 10.0;  // API retorna em hectogramas
+
             //Nome:
             String rawName = jsonBase.get("name").getAsString();
             pokemonDetails.name = rawName.substring(0, 1).toUpperCase() + rawName.substring(1);
@@ -84,13 +91,24 @@ public class PokeApiService {
 
                 if(idioma.equals("en")){
                     String textDirty = dexEntry.get("flavor_text").getAsString();
-                    pokemonDetails.pokedexEntry = textDirty.replaceAll("\\s+", " ");
-
+                    String cleanText = textDirty.replaceAll("\\s+", " ");
+                    pokemonDetails.pokedexEntry = translator.translate(cleanText, "en", "pt");
                     break;
                 }
             }
 
-            return  pokemonDetails;
+            //Categoria (genera):
+            JsonArray generaArray = jsonSpecie.getAsJsonArray("genera");
+            for (int i = 0; i < generaArray.size(); i++) {
+                JsonObject genera = generaArray.get(i).getAsJsonObject();
+                String idiomaGenera = genera.getAsJsonObject("language").get("name").getAsString();
+                if (idiomaGenera.equals("en")) {
+                    pokemonDetails.category = genera.get("genus").getAsString();
+                    break;
+                }
+            }
+
+            return pokemonDetails;
 
         }catch (Exception e){
             System.out.println("Erro na PokeAPI: " + e.getMessage());
