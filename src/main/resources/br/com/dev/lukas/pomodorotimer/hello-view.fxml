@@ -90,38 +90,33 @@
       <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER" />
    </top>
    <left>
-      <VBox fx:id="leftPane" alignment="TOP_CENTER" spacing="15.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+      <VBox fx:id="leftPane" alignment="TOP_CENTER" spacing="8.0" styleClass="sidebar" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="configurationButton" mnemonicParsing="false" onAction="#onConfiguration" prefWidth="60.0" styleClass="sidebar-button">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+
+            <Button fx:id="configurationButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onConfiguration" styleClass="sidebar-button" text="Config">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/burger-menu.png" />
                      </image>
                   </ImageView>
                </graphic>
-            </Button>
-            <Button fx:id="timerButton" mnemonicParsing="false" onAction="#openTimer" styleClass="sidebar-button">
                <VBox.margin>
-                  <Insets />
+                  <Insets top="10.0" />
                </VBox.margin>
+            </Button>
+            <Button fx:id="timerButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openTimer" styleClass="sidebar-button" text="Timer">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/alarm-clock.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onPokedex" styleClass="sidebar-button">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPokedex" styleClass="sidebar-button" text="Pokédex">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/search-book.png" />
                      </image>
@@ -130,7 +125,7 @@
             </Button>
          </children>
          <padding>
-            <Insets bottom="20.0" top="30.0" />
+            <Insets bottom="10.0" left="6.0" right="6.0" top="6.0" />
          </padding>
          <BorderPane.margin>
             <Insets right="20.0" />
