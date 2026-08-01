@@ -8,6 +8,18 @@
     src: url('../fonts/ari-w9500.ttf');
 }
 
+.root {
+    /* Definição da paleta de cores */
+    -cor-fundo: #65B1F7;
+    -cor-pokedex-primaria: #001F3F;
+    -cor-pokedex-secundaria: #001831;
+    -cor-retro-branco: #f8f8f5;
+    -cor-retro-verde: #85F765;
+    -cor-retro-verde-escuro: #4a9a38;
+    -cor-borda-cinza: #d9d9d9;
+    -cor-texto-escuro: #333333;
+}
+
 .main-background {
     -fx-background-color: #65B1F7;
 }
@@ -297,7 +309,6 @@
     -fx-max-width: 6.67em;
     -fx-min-height: 2.67em;
     -fx-max-height: 2.67em;
-
 }
 #saveChangesButton:pressed{
     -fx-translate-y: 2px;

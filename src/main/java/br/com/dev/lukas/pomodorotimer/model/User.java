@@ -40,6 +40,11 @@ public class User {
         return true;
     }
 
+    public int verifyListSize (){
+        return userPokemons.size();
+    }
+
+
 
 
 

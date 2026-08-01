@@ -27,8 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 
 public class HelloController {
@@ -344,13 +343,26 @@ public class HelloController {
     }
 
     public Integer pokemonIdGenerator(){
-       Random random = new Random();
+        Set<Integer> catched = User.getInstance().getUserPokemons();
 
-        int idPokemon = random.nextInt(150 - 1)+1;
-        if(!User.getInstance().verifyPokemon(idPokemon)){
-            pokemonIdGenerator();
+        if(catched.size() >= 150){
+            showCongratulations();
+            return null;
         }
-        return idPokemon;
+
+        List<Integer> missing = new ArrayList<>();
+        for(int i = 1; i <=150; i++){
+            if(!catched.contains(i)){
+                missing.add(i);
+            }
+        }
+
+        Random random = new Random();
+        return missing.get(random.nextInt(missing.size()));
+    }
+
+    private void showCongratulations(){
+
     }
 
     private void showCaptureAlert(int idPokemon) {
