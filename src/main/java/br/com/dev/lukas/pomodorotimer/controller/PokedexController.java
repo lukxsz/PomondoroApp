@@ -154,26 +154,24 @@ public class PokedexController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/dev/lukas/pomodorotimer/pokemon-data-view.fxml"));
             Parent root = loader.load();
-
-            PokeApiService service = new  PokeApiService();
-            PokemonDetails details = service.getPokemonDetails(idPokemon);
-
             PokemonDataController controller = loader.getController();
 
-            if (details != null){
-                controller.dataOnScreen(idPokemon, details);
-            }else{
-                System.out.println("Erro ao buscar pokemon do Pokemon");
-                return;
-            }
+            PokeApiService service = new  PokeApiService();
+            service.getPokemonDetails(idPokemon, details -> {
 
-            Stage modalStage = new Stage();
-            modalStage.setTitle("Dados do Pokemon");
-            modalStage.setScene(new Scene(root));
-            modalStage.setResizable(false);
-            modalStage.initModality(Modality.APPLICATION_MODAL);
+                if (details != null){
+                    controller.dataOnScreen(idPokemon, details);
 
-            modalStage.showAndWait();
+                    Stage modalStage = new Stage();
+                    modalStage.setTitle("Dados do Pokemon");
+                    modalStage.setScene(new Scene(root));
+                    modalStage.setResizable(false);
+                    modalStage.initModality(Modality.APPLICATION_MODAL);
+                    modalStage.showAndWait();
+                }else{
+                    System.out.println("Erro ao buscar dados do Pokemon");
+                }
+            });
 
         }catch (Exception e){
             System.out.println("Erro ao tentar abrir o FXML "+e.getMessage());

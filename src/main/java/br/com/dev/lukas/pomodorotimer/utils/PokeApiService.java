@@ -10,6 +10,7 @@ import br.com.dev.lukas.pomodorotimer.model.PokemonDetails;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
+import javafx.application.Platform;
 
 public class PokeApiService {
     private final TranslationService translator = new TranslationService();
@@ -37,82 +38,87 @@ public class PokeApiService {
         }).start();
     }
 
-    public PokemonDetails getPokemonDetails(int id) {
-        PokemonDetails pokemonDetails = new PokemonDetails();
+    public void getPokemonDetails(int id, Consumer<PokemonDetails> quandoTerminar) {
 
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            //Busca dos tipos:
-            String urlApi = "https://pokeapi.co/api/v2/pokemon/" + id;
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(urlApi))
-                    .GET()
-                    .build();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        new Thread(() -> {
+            PokemonDetails pokemonDetails = new PokemonDetails();
 
-            JsonObject jsonBase = JsonParser.parseString(response.body()).getAsJsonObject();
 
-            //ID, Altura e Peso:
-            pokemonDetails.id = id;
-            pokemonDetails.height = jsonBase.get("height").getAsInt() / 10.0;  // API retorna em decímetros
-            pokemonDetails.weight = jsonBase.get("weight").getAsInt() / 10.0;  // API retorna em hectogramas
+            try {
+                HttpClient client = HttpClient.newHttpClient();
 
-            //Nome:
-            String rawName = jsonBase.get("name").getAsString();
-            pokemonDetails.name = rawName.substring(0, 1).toUpperCase() + rawName.substring(1);
+                //Busca dos tipos:
+                String urlApi = "https://pokeapi.co/api/v2/pokemon/" + id;
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(urlApi))
+                        .GET()
+                        .build();
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            //Tipos:
-            JsonArray typesArray = jsonBase.getAsJsonArray("types");
+                JsonObject jsonBase = JsonParser.parseString(response.body()).getAsJsonObject();
 
-            pokemonDetails.type1 = typesArray.get(0).getAsJsonObject()
-                                                    .getAsJsonObject("type")
-                                                    .get("name").getAsString();
+                //ID, Altura e Peso:
+                pokemonDetails.id = id;
+                pokemonDetails.height = jsonBase.get("height").getAsInt() / 10.0;  // API retorna em decímetros
+                pokemonDetails.weight = jsonBase.get("weight").getAsInt() / 10.0;  // API retorna em hectogramas
 
-            if (typesArray.size() > 1) {
-                pokemonDetails.type2 = typesArray.get(1).getAsJsonObject()
-                                                        .getAsJsonObject("type")
-                                                        .get("name").getAsString();
-            }else{
-                pokemonDetails.type2 ="";
-            }
+                //Nome:
+                String rawName = jsonBase.get("name").getAsString();
+                pokemonDetails.name = rawName.substring(0, 1).toUpperCase() + rawName.substring(1);
 
-            String urlSpecies =  "https://pokeapi.co/api/v2/pokemon-species/" + id;
-            HttpRequest requestSpecie = HttpRequest.newBuilder().uri(URI.create(urlSpecies)).GET().build();
-            HttpResponse<String> responseSpecie = client.send(requestSpecie, HttpResponse.BodyHandlers.ofString());
+                //Tipos:
+                JsonArray typesArray = jsonBase.getAsJsonArray("types");
 
-            JsonObject jsonSpecie = JsonParser.parseString(responseSpecie.body()).getAsJsonObject();
+                pokemonDetails.type1 = typesArray.get(0).getAsJsonObject()
+                        .getAsJsonObject("type")
+                        .get("name").getAsString();
 
-            //Detalhes da Pokedex:
-            JsonArray dexEntryArray = jsonSpecie.getAsJsonArray("flavor_text_entries");
-
-            for (int i = 0; i < dexEntryArray.size(); i++) {
-                JsonObject dexEntry = dexEntryArray.get(i).getAsJsonObject();
-                String idioma = dexEntry.getAsJsonObject("language").get("name").getAsString();
-
-                if(idioma.equals("en")){
-                    String textDirty = dexEntry.get("flavor_text").getAsString();
-                    String cleanText = textDirty.replaceAll("\\s+", " ");
-                    pokemonDetails.pokedexEntry = translator.translate(cleanText, "en", "pt");
-                    break;
+                if (typesArray.size() > 1) {
+                    pokemonDetails.type2 = typesArray.get(1).getAsJsonObject()
+                            .getAsJsonObject("type")
+                            .get("name").getAsString();
+                }else{
+                    pokemonDetails.type2 ="";
                 }
-            }
 
-            //Categoria (genera):
-            JsonArray generaArray = jsonSpecie.getAsJsonArray("genera");
-            for (int i = 0; i < generaArray.size(); i++) {
-                JsonObject genera = generaArray.get(i).getAsJsonObject();
-                String idiomaGenera = genera.getAsJsonObject("language").get("name").getAsString();
-                if (idiomaGenera.equals("en")) {
-                    pokemonDetails.category = genera.get("genus").getAsString();
-                    break;
+                String urlSpecies =  "https://pokeapi.co/api/v2/pokemon-species/" + id;
+                HttpRequest requestSpecie = HttpRequest.newBuilder().uri(URI.create(urlSpecies)).GET().build();
+                HttpResponse<String> responseSpecie = client.send(requestSpecie, HttpResponse.BodyHandlers.ofString());
+
+                JsonObject jsonSpecie = JsonParser.parseString(responseSpecie.body()).getAsJsonObject();
+
+                //Detalhes da Pokedex:
+                JsonArray dexEntryArray = jsonSpecie.getAsJsonArray("flavor_text_entries");
+
+                for (int i = 0; i < dexEntryArray.size(); i++) {
+                    JsonObject dexEntry = dexEntryArray.get(i).getAsJsonObject();
+                    String idioma = dexEntry.getAsJsonObject("language").get("name").getAsString();
+
+                    if(idioma.equals("en")){
+                        String textDirty = dexEntry.get("flavor_text").getAsString();
+                        String cleanText = textDirty.replaceAll("\\s+", " ");
+                        pokemonDetails.pokedexEntry = translator.translate(cleanText, "en", "pt");
+                        break;
+                    }
                 }
+
+                //Categoria (genera):
+                JsonArray generaArray = jsonSpecie.getAsJsonArray("genera");
+                for (int i = 0; i < generaArray.size(); i++) {
+                    JsonObject genera = generaArray.get(i).getAsJsonObject();
+                    String idiomaGenera = genera.getAsJsonObject("language").get("name").getAsString();
+                    if (idiomaGenera.equals("en")) {
+                        pokemonDetails.category = genera.get("genus").getAsString();
+                        break;
+                    }
+                }
+
+                Platform.runLater(() -> quandoTerminar.accept(pokemonDetails));
+
+            } catch (Exception e) {
+                System.out.println("Erro na PokeAPI: " + e.getMessage());
+                Platform.runLater(() -> quandoTerminar.accept(null));
             }
-
-            return pokemonDetails;
-
-        }catch (Exception e){
-            System.out.println("Erro na PokeAPI: " + e.getMessage());
-            return null;
-        }
+        }).start();
     }
 }

@@ -109,11 +109,47 @@ public class HelloController {
 
         battleContainer.setMinWidth(0);
         battleContainer.setMinHeight(0);
+
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            pomodoroTimer.startTimer(); animationBushTimiline.play();
+            labelTimer.setText(pomodoroTimer.formatedTime());
+            if (pomodoroTimer.isFinished()){
+                stopAllTimers();
+                animationBushTimiline.stop();
+                setPlayIcon();
+                breakTime();
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
+        breaktimeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            breakTimer.startTimer();
+            labelTimer.setText(breakTimer.formatedTime());
+            if (breakTimer.isFinished()){
+                stopAllTimers();
+                setPlayIcon();
+                pomodoroTimer();
+            }
+        }));
+        breaktimeline.setCycleCount(Timeline.INDEFINITE);
+
+        longbreaktimeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            longbreakTimer.startTimer();
+            labelTimer.setText(longbreakTimer.formatedTime());
+            if (longbreakTimer.isFinished()){
+                stopAllTimers();
+                setPlayIcon();
+                pomodoroTimer();
+            }
+        }));
+        longbreaktimeline.setCycleCount(Timeline.INDEFINITE);
+
     }
 
     @FXML
     private void pomodoroTimer() {
         System.out.println("Hora de focar");
+        stopAllTimers();
         breakTimer.setStatus(false); longbreakTimer.setStatus(false);
         pomodoroTimer.setStatus(true);
         pomodoroTimer.reStartTimer();
@@ -122,19 +158,6 @@ public class HelloController {
         if(pomodoroTimer.cycleCheck()){
             isTimeToCatch();
         }
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event ->{ //define o tempo do tick
-            pomodoroTimer.startTimer(); animationBushTimiline.play();
-            labelTimer.setText(pomodoroTimer.formatedTime());
-            if (pomodoroTimer.isFinished()){
-                timeline.stop(); animationBushTimiline.stop();
-                setPlayIcon();
-                breakTime();
-
-
-            }
-        }));
-
-        timeline.setCycleCount(Timeline.INDEFINITE);
     }
 
     @FXML
@@ -245,6 +268,7 @@ public class HelloController {
 
     @FXML
     public void updateTimer(int newTime, int newBreakTime, int howMuchToLongBreak, int longBreakDuration) {
+        stopAllTimers();
         pomodoroTimer.setTimer(newTime);
         breakTimer.setTimer(newBreakTime);
         longbreakTimer.setTimer(longBreakDuration);
@@ -252,6 +276,7 @@ public class HelloController {
         labelTimer.setText(pomodoroTimer.formatedTime());
         pomodoroTimer.resetCycleCounter();
         breakTimer.resetCycleCounter();
+        setPlayIcon();
 
     }
 
@@ -259,7 +284,8 @@ public class HelloController {
     public void breakTime() {
         int whenLong = breakTimer.getWhenLongBreak();
         int cycleCounter = breakTimer.getCycleCounter();
-        animationBushTimiline.stop();
+        stopAllTimers();
+
         if (cycleCounter < whenLong) {
             soundChooser(1);
             pomodoroTimer.setStatus(false); longbreakTimer.setStatus(false);
@@ -267,33 +293,14 @@ public class HelloController {
             breakTimer.reStartTimer();
             labelTimer.setText(breakTimer.formatedTime());
             breakTimer.increaseCycleCounter();
-            breaktimeline = new Timeline(new KeyFrame(Duration.seconds(1), _ ->{ //define o tempo do tick
-                breakTimer.startTimer();
-                labelTimer.setText(breakTimer.formatedTime());
-                if (breakTimer.isFinished()){
-                    breaktimeline.stop();
-                    pomodoroTimer();
-                    setPlayIcon();
-                }
-            }));
-            breaktimeline.setCycleCount(Timeline.INDEFINITE);
+
         } else if (cycleCounter == whenLong) {
             soundChooser( 0);
             pomodoroTimer.setStatus(false); breakTimer.setStatus(false);
             longbreakTimer.setStatus(true);
             longbreakTimer.reStartTimer();
             labelTimer.setText(longbreakTimer.formatedTime());
-            longbreaktimeline = new Timeline(new KeyFrame(Duration.seconds(1), event ->{ //define o tempo do tick
-                longbreakTimer.startTimer();
-                labelTimer.setText(longbreakTimer.formatedTime());
-                if (longbreakTimer.isFinished()){
-                    longbreaktimeline.stop();
-                    pomodoroTimer();
-                    setPlayIcon();
-                }
-            }));
             breakTimer.resetCycleCounter();
-            longbreaktimeline.setCycleCount(Timeline.INDEFINITE);
         }
 
     }
@@ -362,7 +369,38 @@ public class HelloController {
     }
 
     private void showCongratulations(){
+        soundChooser(0);
+        Alert alert = createCongratulationsAlert();
+        alert.show();
+    }
 
+    Alert createCongratulationsAlert(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Parabéns, Mestre Pokémon!");
+        alert.setHeaderText(null);
+
+        // Mew (#151) como recompensa secreta por completar a Pokédex
+        String urlImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official"
+                + "-artwork/" + 151 + ".png";
+
+        Image pokemonImage = new Image(urlImage, 200, 200, true, true);
+        ImageView imageView = new ImageView(pokemonImage);
+
+        alert.setGraphic(imageView);
+
+        alert.setContentText(
+                "Você completou a Pokédex!\n"
+              + "Todos os 150 Pokémon foram capturados!\n\n"
+              + "Como recompensa, Mew apareceu para você!\n"
+              + "Você é um verdadeiro Mestre Pokémon!"
+        );
+
+        alert.getDialogPane().getStylesheets().add(
+                getClass().getResource("/br/com/dev/lukas/pomodorotimer/css/style.css").toExternalForm()
+        );
+        alert.getDialogPane().getStyleClass().add("pokemon-alert");
+
+        return alert;
     }
 
     private void showCaptureAlert(int idPokemon) {
@@ -451,5 +489,12 @@ public class HelloController {
 
         battleContainer.setPrefWidth(novaLargura);
         battleContainer.setPrefHeight(novaAltura);
+    }
+
+    public void stopAllTimers(){
+        if (timeline != null) timeline.stop();
+        if (breaktimeline != null) breaktimeline.stop();
+        if (longbreaktimeline != null) longbreaktimeline.stop();
+        if (animationBushTimiline != null) animationBushTimiline.stop();
     }
 }
