@@ -3,6 +3,7 @@ package br.com.dev.lukas.pomodorotimer.model;
 public class Task {
     String taskName;
     boolean done;
+    boolean active;
 
     public Task(String taskName) {
 
@@ -12,6 +13,7 @@ public class Task {
             this.taskName = taskName;
         }
         this.done = false;
+        this.active = false;
     }
 
     public String toString() {
@@ -32,6 +34,13 @@ public class Task {
 
     public boolean isDone() {
         return done;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
 

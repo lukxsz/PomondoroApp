@@ -167,26 +167,26 @@
 }
 
 /* INPUT TASK */
-#inputTask {
-    -fx-font-family: "Ari-W9500";
-    -fx-font-weight: bold;
-    -fx-font-size: 0.93em;
-    -fx-prompt-text-fill: #333333;
-    -fx-text-fill: #333333;
-    -fx-background-color: #f8f8f5;
-    -fx-background-radius: 0;
-    -fx-background-insets: 0;
-    -fx-padding: 0.80em;
-    -fx-border-color: transparent transparent #d9d9d9 transparent;
-}
+/*#inputTask {*/
+/*    -fx-font-family: "Ari-W9500";*/
+/*    -fx-font-weight: bold;*/
+/*    -fx-font-size: 0.93em;*/
+/*    -fx-prompt-text-fill: #333333;*/
+/*    -fx-text-fill: #333333;*/
+/*    -fx-background-color: #f8f8f5;*/
+/*    -fx-background-radius: 0;*/
+/*    -fx-background-insets: 0;*/
+/*    -fx-padding: 0.80em;*/
+/*    -fx-border-color: transparent transparent #d9d9d9 transparent;*/
+/*}*/
 
-#inputTask:focused {
-    -fx-background-color: #f8f8f5;
-    -fx-background-insets: 0;
-    -fx-background-radius: 0;
-    -fx-border-insets: 0 0 1 0 ;
-    -fx-border-color: transparent transparent #d9d9d9 transparent;
-}
+/*#inputTask:focused {*/
+/*    -fx-background-color: #f8f8f5;*/
+/*    -fx-background-insets: 0;*/
+/*    -fx-background-radius: 0;*/
+/*    -fx-border-insets: 0 0 1 0 ;*/
+/*    -fx-border-color: transparent transparent #d9d9d9 transparent;*/
+/*}*/
 
 /* RIGHT PANE CONTAINER */
 #rightPane {

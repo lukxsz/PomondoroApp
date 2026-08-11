@@ -43,7 +43,7 @@ public class HelloController {
     @FXML private Pomodoro pomodoroTimer = new Pomodoro(25);
     @FXML private BreakTimer breakTimer =  new BreakTimer(5);
     @FXML private BreakTimer longbreakTimer =  new BreakTimer(15);
-    @FXML private ObservableList<Task> visibleTasks = FXCollections.observableArrayList();
+    //@FXML private ObservableList<Task> visibleTasks = FXCollections.observableArrayList();
     @FXML private BorderPane mainPane;
     @FXML private VBox timerVBox;
     @FXML private VBox rightPane;
@@ -52,12 +52,14 @@ public class HelloController {
     @FXML private ImageView imgMoita;
     @FXML private  ImageView cenarioView;
     @FXML private StackPane battleContainer;
+    @FXML private VBox onGoingList;
+    @FXML private VBox toDoList;
+    @FXML private VBox finishedList;
     private Timeline animationBushTimiline;
 
     @FXML
     private void initialize() {
         labelTimer.setText(pomodoroTimer.formatedTime());
-        taskView.setItems(visibleTasks);
         animationTallGrass();
         pomodoroTimer();
 
@@ -194,35 +196,67 @@ public class HelloController {
     }
 
     @FXML
-    protected void onAddTask() {
+    private void onAddTask(ActionEvent event) {
         String text = inputTask.getText();
-         if (text != null && !text.isEmpty()) {
-             Task newTask = new Task(text);
 
-             visibleTasks.add(newTask);
+        if(text != null && !text.trim().isEmpty()){
+            CheckBox newTask = new CheckBox(text);
 
-             inputTask.clear();
-         }
-    }
 
-    @FXML
-    public void onMarkAsDone() {
-        Task selected = taskView.getSelectionModel().getSelectedItem();
-        if (selected != null && selected.isDone() == false)  {
-            selected.setDone(true);
+            int onGoingLimit = 1;
 
-            taskView.refresh(); // Força a interface a ler o toString() denovo
-        } else if (selected != null && selected.isDone()) {
-            int selectedIndex = taskView.getSelectionModel().getSelectedIndex();
+            newTask.setOnAction(e ->{
+                if(newTask.isSelected()){
+                    finishedList.getChildren().add(newTask);
+                    newTask.setDisable(true);
 
-            if (selectedIndex >= 0) {
-                visibleTasks.remove(taskView.getSelectionModel().getSelectedIndex());
+                    if(!toDoList.getChildren().isEmpty()){
+                        javafx.scene.Node proximaTarefa = toDoList.getChildren().get(0);
+
+                        toDoList.getChildren().remove(proximaTarefa);
+
+                        onGoingList.getChildren().add(proximaTarefa);
+                    }
+                }
+            });
+            if(onGoingList.getChildren().size() < onGoingLimit){
+                onGoingList.getChildren().add(newTask);
+                inputTask.clear();
+            } else{
+                toDoList.getChildren().add(newTask);
+                inputTask.clear();
             }
+
         }
-
-
-
     }
+
+//    @FXML
+//    public void onMarkAsDone() {
+//        CheckBox selected = toDoList.getChildren().  //TODO implementar finishedList, onGoingList
+//        if (selected != null && selected.isActive() == false) {
+//            selected.setActive(true);
+//
+//            onGoingList.getChildren.add(selected);
+//        } else if (selected != null && selected.isActive()) {
+//            selected.setActive(false);
+//
+//
+//        }
+//
+//        if (selected != null && selected.isDone() == false)  {
+//            selected.setDone(true);
+//
+//            taskView.refresh(); // Força a ‘interface’ a ler o toString() denovo
+//        } else if (selected != null && selected.isDone()) {
+//            int selectedIndex = taskView.getSelectionModel().getSelectedIndex();
+//
+//            if (selectedIndex >= 0) {
+//                visibleTasks.remove(taskView.getSelectionModel().getSelectedIndex());
+//
+//            }
+//        }
+//
+//    }
 
     @FXML
     public void onConfiguration() {
@@ -374,7 +408,7 @@ public class HelloController {
         alert.show();
     }
 
-    Alert createCongratulationsAlert(){
+    Alert createCongratulationsAlert(){ //Todo mudar o alert para stage scene
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Parabéns, Mestre Pokémon!");
         alert.setHeaderText(null);
