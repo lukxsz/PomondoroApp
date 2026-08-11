@@ -210,7 +210,7 @@ public class HelloController {
                     finishedList.getChildren().add(newTask);
                     newTask.setDisable(true);
 
-                    if(!toDoList.getChildren().isEmpty()){
+                    if(onGoingList.getChildren().isEmpty()){
                         javafx.scene.Node proximaTarefa = toDoList.getChildren().get(0);
 
                         toDoList.getChildren().remove(proximaTarefa);
