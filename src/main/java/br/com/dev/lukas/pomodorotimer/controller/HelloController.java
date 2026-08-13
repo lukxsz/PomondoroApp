@@ -201,8 +201,6 @@ public class HelloController {
 
         if(text != null && !text.trim().isEmpty()){
             CheckBox newTask = new CheckBox(text);
-
-
             int onGoingLimit = 1;
 
             newTask.setOnAction(e ->{
@@ -210,15 +208,21 @@ public class HelloController {
                     finishedList.getChildren().add(newTask);
                     newTask.setDisable(true);
 
-                    if(!toDoList.getChildren().isEmpty()){
-                        javafx.scene.Node proximaTarefa = toDoList.getChildren().get(0);
+                    try {
+                        if(onGoingList.getChildren().isEmpty()){
+                            if(!toDoList.getChildren().isEmpty()){
+                                javafx.scene.Node proximaTarefa = toDoList.getChildren().get(0);
 
-                        toDoList.getChildren().remove(proximaTarefa);
-
-                        onGoingList.getChildren().add(proximaTarefa);
+                                toDoList.getChildren().remove(proximaTarefa);
+                                onGoingList.getChildren().add(proximaTarefa);
+                            };
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
                 }
             });
+
             if(onGoingList.getChildren().size() < onGoingLimit){
                 onGoingList.getChildren().add(newTask);
                 inputTask.clear();
