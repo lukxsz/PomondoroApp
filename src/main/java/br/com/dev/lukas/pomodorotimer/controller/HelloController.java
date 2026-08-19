@@ -56,6 +56,9 @@ public class HelloController {
     @FXML private VBox toDoList;
     @FXML private VBox finishedList;
     private Timeline animationBushTimiline;
+    @FXML private HBox hBoxLogo;
+    @FXML private Label textLabel;
+    @FXML private VBox textVBox;
 
     @FXML
     private void initialize() {
