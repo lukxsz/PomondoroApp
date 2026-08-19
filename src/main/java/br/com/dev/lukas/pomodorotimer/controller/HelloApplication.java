@@ -27,13 +27,12 @@ public class HelloApplication extends Application {
             System.out.println(width+" "+height);
             Scene scene = new Scene(root, width, height);
 
-            width = width / 200;
-            height = height / 5.9;
-
-            System.out.println("width "+width+" height "+height );
-
-            stage.setMinHeight(height);
-            stage.setMinWidth(width);
+            // ── ETAPA 1: Tamanho mínimo do Stage ──
+            // Define o menor tamanho que a janela pode ter.
+            // 300px de largura permite o "widget mode" (só o relógio).
+            // Para alterar, basta mudar esses valores.
+            stage.setMinWidth(300);
+            stage.setMinHeight(200);
 
             stage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("/br/com" +
                     "/dev/lukas/pomodorotimer/images/clipart1908920.png"))));

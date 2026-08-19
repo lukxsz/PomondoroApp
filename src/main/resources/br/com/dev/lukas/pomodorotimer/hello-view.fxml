@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" minHeight="800.0" minWidth="1280.0" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.HelloController">
+<BorderPane fx:id="mainPane" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.HelloController">
    <center>
       <VBox fx:id="timerVBox" alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
@@ -39,30 +39,35 @@
                   </Label>
                </children>
             </StackPane>
-            <HBox fx:id="buttonsHbox" alignment="CENTER" spacing="10.0">
-               <children>
-                  <Button fx:id="buttonTimer" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="60.0" prefWidth="60.0">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/right-arrow.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="skipStageButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSkipStageButtonClicked" text=" ">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/next.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-               </children>
+            <VBox id="vBoxButtons" fx:id="vBoxButtons">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
-            </HBox>
+               <children>
+                  <HBox id="buttonsHbox" fx:id="buttonsHbox" alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Button fx:id="buttonTimer" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="60.0" prefWidth="60.0">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/right-arrow.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="skipStageButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSkipStageButtonClicked" text=" ">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/next.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
          <BorderPane.margin>
          </BorderPane.margin>

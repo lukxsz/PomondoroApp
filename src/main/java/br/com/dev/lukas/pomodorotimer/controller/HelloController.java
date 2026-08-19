@@ -56,9 +56,30 @@ public class HelloController {
     @FXML private VBox toDoList;
     @FXML private VBox finishedList;
     private Timeline animationBushTimiline;
+    @FXML private HBox hBoxCiclo;
+    @FXML private HBox hBoxPLonga;
+    @FXML private HBox hBoxFoco;
+    @FXML private HBox hBoxPausa;
+    @FXML private VBox vBoxButtons;
     @FXML private HBox hBoxLogo;
     @FXML private Label textLabel;
     @FXML private VBox textVBox;
+
+    // ── ETAPA 4: Controle de estado da tela ativa ──
+    // Essa variável rastreia qual view está sendo exibida no centro.
+    // Os métodos openTimer(), onConfiguration() e onPokedex() atualizam ela.
+    // O metodo atualizarLayout() usa ela para decidir se mostra o rightPane.
+    // Valores possíveis: "timer", "config", "pokedex"
+    private String telaAtiva = "timer";
+
+    // ── ETAPA 5: Breakpoints de responsividade ──
+    // Altere esses valores para mudar em qual largura cada componente aparece/desaparece.
+    // BREAKPOINT_WIDGET: abaixo disso, só o relógio aparece (sem botões, sem painéis)
+    // BREAKPOINT_SIDEBAR: abaixo disso, a sidebar esquerda é oculta
+    // BREAKPOINT_RIGHTPANE: abaixo disso, o painel direito (tarefas) é oculto
+    private static final double BREAKPOINT_WIDGET = 380;
+    private static final double BREAKPOINT_SIDEBAR = 500;
+    private static final double BREAKPOINT_RIGHTPANE = 750;
 
     @FXML
     private void initialize() {
@@ -66,6 +87,11 @@ public class HelloController {
         animationTallGrass();
         pomodoroTimer();
 
+        // ── ETAPA 2: Font-size dinâmico ──
+        // O font-size do app inteiro é proporcional à largura da janela.
+        // Isso faz todas as medidas em "em" no CSS escalarem automaticamente.
+        // Fórmula: largura ÷ 60. Ex: 1200px → 20px, 600px → 10px, 300px → 5px.
+        // Para fontes maiores/menores, altere o divisor (menor = fonte maior).
         mainPane.styleProperty().bind(
                 Bindings.concat(
                         "-fx-font-size: ",
@@ -74,25 +100,10 @@ public class HelloController {
                 )
         );
 
-        // Listener de responsividade: oculta os painéis laterais em telas pequenas
-        mainPane.widthProperty().addListener((observable, oldValue, newValue) -> {
-            boolean isLargeEnoughLeft = newValue.doubleValue() >= 400;
-            boolean isLargeEnoughRight = newValue.doubleValue() >= 600;
-            boolean isWidgetMode = newValue.doubleValue() < 380;
-            
-            leftPane.setVisible(isLargeEnoughLeft);
-            leftPane.setManaged(isLargeEnoughLeft);
-            
-            rightPane.setVisible(isLargeEnoughRight);
-            rightPane.setManaged(isLargeEnoughRight);
-
-            buttonsHbox.setVisible(!isWidgetMode);
-            buttonsHbox.setManaged(!isWidgetMode);
-
-            if (isWidgetMode && mainPane.getCenter() != timerVBox) {
-                openTimer();
-            }
-        });
+        // ── ETAPA 3: Listener único de responsividade ──
+        // Sempre que a largura da janela mudar, chama atualizarLayout().
+        // Esse é o ÚNICO lugar que escuta mudanças de tamanho.
+        mainPane.widthProperty().addListener((obs, oldVal, newVal) -> atualizarLayout());
 
         cenarioView.fitWidthProperty().bind(battleContainer.prefWidthProperty().subtract(6));
         cenarioView.fitHeightProperty().bind(battleContainer.prefHeightProperty().subtract(6));
@@ -275,9 +286,9 @@ public class HelloController {
 
             gerenteDaTela.setCentralController(this);
 
-
             mainPane.setCenter(configScreen);
-            mainPane.setRight(null);
+            telaAtiva = "config";
+            atualizarLayout(); // Deixa o método central decidir o que mostrar/esconder
 
         } catch (IOException e) {
             System.out.println("Erro ao carregar configurações" + e.getMessage());
@@ -295,7 +306,8 @@ public class HelloController {
             gerenteDaTela.setCentralController(this);
 
             mainPane.setCenter(pokedexScreen);
-            mainPane.setRight(null);
+            telaAtiva = "pokedex";
+            atualizarLayout(); // Deixa o método central decidir o que mostrar/esconder
         }catch (IOException e) {
             System.out.println("Erro ao carregar pokedex" +e.getMessage());
         }
@@ -304,7 +316,8 @@ public class HelloController {
     @FXML
     public void openTimer() {
         mainPane.setCenter(timerVBox);
-        mainPane.setRight(rightPane);
+        telaAtiva = "timer";
+        atualizarLayout(); // Deixa o método central decidir o que mostrar/esconder
     }
 
     @FXML
@@ -503,8 +516,62 @@ public class HelloController {
         buttonTimer.setGraphic(pauseView);
     }
 
+    // ══════════════════════════════════════════════════════════════
+    //  ETAPA 6: Método central de responsividade — atualizarLayout()
+    // ══════════════════════════════════════════════════════════════
+    //
+    //  COMO FUNCIONA:
+    //  Este é o ÚNICO método que controla a visibilidade dos painéis.
+    //  Ele é chamado em 2 situações:
+    //    1. Quando a largura da janela muda (pelo listener na ETAPA 3)
+    //    2. Quando o usuário troca de tela (openTimer, onConfiguration, onPokedex)
+    //
+    //  PARA MANUTENÇÃO:
+    //  - Para mudar os breakpoints, altere as constantes na ETAPA 5
+    //  - Para adicionar uma nova tela, crie o método (ex: onNovaView()),
+    //    defina telaAtiva = "novaView" e chame atualizarLayout()
+    //  - Para adicionar um novo painel responsivo, adicione a lógica aqui
+    //
+    //  FLUXO DE DECISÃO:
+    //  ┌─────────────────────────────────────────────────────────┐
+    //  │ largura < 380  → Widget mode (só relógio)              │
+    //  │ largura < 500  → Sem sidebar, sem painel direito       │
+    //  │ largura < 750  → Com sidebar, sem painel direito       │
+    //  │ largura >= 750 → Tudo visível (se tela = "timer")      │
+    //  └─────────────────────────────────────────────────────────┘
+    //
+    private void atualizarLayout() {
+        double largura = mainPane.getWidth();
+
+        boolean mostrarSidebar = largura >= BREAKPOINT_SIDEBAR;
+        boolean mostrarRightPane = largura >= BREAKPOINT_RIGHTPANE && "timer".equals(telaAtiva);
+        boolean widgetMode = largura < BREAKPOINT_WIDGET;
+
+        // Sidebar esquerda: visível apenas se tiver espaço suficiente
+        leftPane.setVisible(mostrarSidebar);
+        leftPane.setManaged(mostrarSidebar);
+
+        // Painel direito (tarefas): só aparece na tela do timer E se tiver espaço
+        if (mostrarRightPane) {
+            mainPane.setRight(rightPane);
+            rightPane.setPrefWidth(largura * 0.20); // 20% da largura total
+        } else {
+            mainPane.setRight(null); // Remove completamente do layout
+        }
+
+        // Botões de play/skip: ocultos no widget mode
+        buttonsHbox.setVisible(!widgetMode);
+        buttonsHbox.setManaged(!widgetMode);
+
+        // Widget mode: força a tela do timer (não faz sentido ver config/pokedex tão pequeno)
+        if (widgetMode && !"timer".equals(telaAtiva)) {
+            telaAtiva = "timer";
+            mainPane.setCenter(timerVBox);
+        }
+    }
+
     public void redimensionarArea(){
-        boolean isWidgetMode = mainPane.getWidth() < 380;
+        boolean isWidgetMode = mainPane.getWidth() < BREAKPOINT_WIDGET;
 
         double margemLargura = isWidgetMode ? 0 : 40;
         double margemAltura = isWidgetMode ? 0 : 120;
