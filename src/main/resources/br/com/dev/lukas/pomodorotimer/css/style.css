@@ -68,15 +68,15 @@
 }
 
 #hBoxLogo{
-    -fx-background-color: white;
-    -fx-background-insets: 0, 0, 1, 1;
+    -fx-border-color: transparent transparent white transparent;
+    -fx-border-width: 1px;
 }
 
-#labelLogo{
-    -fx-border-width: 1px;
-    -fx-border-insets: 0 0 0 1px;
-    --border-color: white;
-}
+/*#labelLogo{*/
+/*    -fx-border-width: 1px;*/
+/*    -fx-border-insets: 0 0 0 1px;*/
+/*    -border-color: white;*/
+/*}*/
 
 #cenarioView{
     -fx-border-color: #ffff;
@@ -95,6 +95,12 @@
     /*-fx-background-radius: 10px;*/
     -fx-text-fill: #ffffff;
     /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.10), 5, 0, 0, 2);*/
+}
+
+#vBoxButtons{
+    -fx-background-color: #4a9a38, #85F765 ;
+    -fx-background-insets: 0, 2px 2px 2px 2px;
+    -fx-background-radius: 0, 0;
 }
 
 /* ROUNDED PLAY/PAUSE BUTTON */
@@ -213,6 +219,16 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 8, 0, 0, 4);
 }
 
+#configScreen{
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+}
+
+#hBoxPausa{
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+}
+
 /* =========================================
    ESTILO PARA SPINNERS VERTICAIS
    ========================================= */
@@ -318,6 +334,7 @@
     -fx-background-insets: 0;
     -fx-border-width: 0;
     -fx-min-width: 6.67em;
+
     -fx-max-width: 6.67em;
     -fx-min-height: 2.67em;
     -fx-max-height: 2.67em;

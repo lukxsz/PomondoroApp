@@ -16,10 +16,6 @@ public class Task {
         this.active = false;
     }
 
-    public String toString() {
-        return (done ? "[OK] " : "[  ]  ") + taskName;
-    }
-
     public String getTaskName() {
         return taskName;
     }

@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.HelloController">
+<BorderPane fx:id="mainPane" prefHeight="800.0" prefWidth="1280.0" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.HelloController">
    <center>
-      <VBox fx:id="timerVBox" alignment="CENTER" BorderPane.alignment="CENTER">
+      <VBox fx:id="timerVBox" alignment="CENTER" maxWidth="600.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <StackPane fx:id="battleContainer" prefHeight="250.0" prefWidth="200.0" styleClass="battle-container">
+            <StackPane fx:id="battleContainer" styleClass="battle-container">
                <children>
                   <ImageView id="cenarioView" fx:id="cenarioView" pickOnBounds="true" smooth="false">
                      <image>
@@ -76,9 +76,9 @@
    <right>
       <VBox fx:id="rightPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="300.0" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox alignment="TOP_CENTER" spacing="10.0">
+                  <VBox alignment="TOP_CENTER" spacing="20.0">
                      <children>
                         <Label text="Lista de tarefas" />
                         <TextField fx:id="inputTask" maxWidth="1.7976931348623157E308" onAction="#onAddTask" promptText="Digite a nova task aqui..." />
@@ -104,7 +104,7 @@
                   </VBox>
                </content>
                <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="24.0" right="48.0" top="24.0" />
                </VBox.margin>
             </ScrollPane>
          </children>
