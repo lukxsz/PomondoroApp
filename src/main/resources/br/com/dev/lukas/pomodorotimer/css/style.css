@@ -7,34 +7,34 @@
 @font-face {
     src: url('../fonts/ari-w9500.ttf');
 }
+@font-face {
+    src: url('../fonts/VT323-Regular.ttf');
+}
 
 .root {
     /* Definição da paleta de cores */
-    -cor-fundo: #65B1F7;
-    -cor-pokedex-primaria: #001F3F;
-    -cor-pokedex-secundaria: #001831;
-    -cor-retro-branco: #f8f8f5;
-    -cor-retro-verde: #85F765;
-    -cor-retro-verde-escuro: #4a9a38;
-    -cor-borda-cinza: #d9d9d9;
-    -cor-texto-escuro: #333333;
+    -cor-fundo: #07332C;
+    -cor-fundo-secundaria: #0B3D33;
+    -cor-borda: #14907D;
+    -cor-destaque: #136655;
+    -cor-confirmação: #89D992;
+    -cor-texto: #F1FFE5;
+    -cor-texto-secundario: #C1CCB8;
 }
 
 .main-background {
-    -fx-background-color: #65B1F7;
+    -fx-background-color: -cor-fundo;
 }
 
 .label{
-    -fx-font-family: "Ari-W9500";
-    -fx-text-fill: #001F3F;
-    -fx-font-weight: bold;
+    -fx-font-family: "VT323";
 }
 
 /* SIDEBAR MENU — Estilo HGSS */
 
 .sidebar {
-    -fx-background-color: #4a9a38, #85F765 ;
-    -fx-background-insets: 0, 2px;
+    -fx-background-color: -cor-borda, -cor-fundo-secundaria;
+    -fx-background-insets: 0, 0 2px 0 0;
     -fx-background-radius: 0, 0;
     -fx-border-width: 0;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 4);
@@ -42,16 +42,16 @@
 
 
 .sidebar-button {
-    -fx-background-color: #5baf47;
-    -fx-text-fill: #f8f8f5;
-    -fx-font-family: "Ari-W9500";
-    /*-fx-font-size: 0.73em;*/
-    -fx-font-weight: bold;
+    -fx-background-color: -cor-fundo;
+    -fx-text-fill: -cor-texto;
+    -fx-font-family: "VT323";
+    -fx-font-size: 16px;
+    /*-fx-font-weight: bold;*/
     /*-fx-padding: 0.53em 0.67em;*/
     -fx-cursor: hand;
     -fx-alignment: center-left;
     -fx-background-radius: 8px;
-    -fx-border-color: #2d5e22;
+    -fx-border-color: -cor-borda;
     -fx-border-width: 1px;
     -fx-border-radius: 8px;
     -fx-graphic-text-gap: 0.53em;
@@ -59,24 +59,27 @@
 }
 
 .sidebar-button:hover {
-    -fx-background-color: #3b732e;
+    -fx-background-color: -cor-destaque;
 }
 
 .sidebar-button:pressed {
     -fx-background-color: rgba(0, 0, 0, 0.15);
     -fx-translate-y: 1px;
 }
-
-#hBoxLogo{
-    -fx-border-color: transparent transparent white transparent;
-    -fx-border-width: 1px;
+.sidebar-button:focused{
+    -fx-background-color: -cor-destaque;
 }
 
-/*#labelLogo{*/
-/*    -fx-border-width: 1px;*/
-/*    -fx-border-insets: 0 0 0 1px;*/
-/*    -border-color: white;*/
-/*}*/
+#hBoxLogo{
+    -fx-border-color: transparent transparent -cor-borda transparent;
+    -fx-border-width: 2px;
+}
+
+#labelLogo{
+    -fx-font-size: 20px;
+    -fx-text-fill: -cor-texto;
+}
+
 
 #cenarioView{
     -fx-border-color: #ffff;
@@ -93,7 +96,7 @@
 
     /*-fx-background-color: #8aa459;*/
     /*-fx-background-radius: 10px;*/
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: -cor-texto;
     /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.10), 5, 0, 0, 2);*/
 }
 

@@ -115,13 +115,16 @@
          <children>
             <HBox id="hBoxLogo" fx:id="hBoxLogo" alignment="CENTER_LEFT" BorderPane.alignment="CENTER_LEFT">
                <children>
-                  <ImageView fx:id="imgLogo" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="labelLogo" text="Pomondoro">
+                  <ImageView fx:id="imgLogo" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/LogoIcon.png" />
+                     </image></ImageView>
+                  <Label id="labelLogo" fx:id="labelLogo" text="Pomondoro">
                      <font>
                         <Font size="16.0" />
                      </font>
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="5.0" />
                      </HBox.margin>
                   </Label>
                </children>
@@ -132,27 +135,11 @@
                   <Insets bottom="24.0" />
                </padding>
             </HBox>
-
-            <Button fx:id="configurationButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onConfiguration" styleClass="sidebar-button" text="Config">
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/burger-menu.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-               </padding>
-            </Button>
             <Button fx:id="timerButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openTimer" styleClass="sidebar-button" text="Timer">
                <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
                      <image>
-                        <Image url="@images/alarm-clock.png" />
+                        <Image url="@images/Timer.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -162,15 +149,34 @@
             </Button>
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPokedex" styleClass="sidebar-button" text="Pokédex">
                <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
                      <image>
-                        <Image url="@images/search-book.png" />
+                        <Image url="@images/Pokedex.png" />
                      </image>
                   </ImageView>
                </graphic>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                </padding>
+            </Button>
+
+            <Button fx:id="configurationButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onConfiguration" styleClass="sidebar-button" text="Config">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
+                     <image>
+                        <Image url="@images/Config.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+               <font>
+                  <Font size="10.0" />
+               </font>
             </Button>
          </children>
          <BorderPane.margin>
