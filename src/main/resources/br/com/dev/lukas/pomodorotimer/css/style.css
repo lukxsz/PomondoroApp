@@ -652,9 +652,12 @@
 /* =========================================
    ESTILO PARA A TELA DE DETALHES DO POKÉMON (MODAL)
    ========================================= */
+#FundoPokemonData{
+
+}
 
 .pokemon-modal {
-    -fx-background-color: #001F3F, #f8f8f5;
+    -fx-background-color: transparent;
     -fx-background-insets: 0, 0.13em;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 6);
 }
