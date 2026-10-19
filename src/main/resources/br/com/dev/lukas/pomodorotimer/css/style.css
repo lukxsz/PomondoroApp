@@ -665,21 +665,21 @@
 .pokemon-number {
     -fx-font-family: "Ari-W9500";
     -fx-font-size: 1.6em;
-    -fx-text-fill: #666666;
+    -fx-text-fill: -cor-texto-secundario;
     -fx-font-weight: bold;
 }
 
 .pokemon-category {
     -fx-font-family: "Ari-W9500";
     -fx-font-size: 0.80em;
-    -fx-text-fill: #666666;
+    -fx-text-fill: -cor-texto-secundario;
     -fx-font-weight: bold;
 }
 
 .pokemon-info-box {
-    -fx-background-color: #f0f0ed;
+    -fx-background-color: -cor-fundo-secundaria;
     -fx-background-radius: 0.40em;
-    -fx-border-color: #d9d9d9;
+
     -fx-border-width: 1px;
     -fx-border-radius: 0.40em;
     -fx-min-width: 10.0em;
@@ -688,21 +688,21 @@
 .pokemon-stat-label {
     -fx-font-family: "Ari-W9500";
     -fx-font-size: 0.80em;
-    -fx-text-fill: #666666;
+    -fx-text-fill: -cor-confirmacao;
     -fx-font-weight: bold;
 }
 
 .pokemon-stat-value {
     -fx-font-family: "Ari-W9500";
     -fx-font-size: 0.80em;
-    -fx-text-fill: #001F3F;
+    -fx-text-fill: -cor-texto;
     -fx-font-weight: bold;
 }
 
 .pokemon-title {
     -fx-font-family: "Ari-W9500";
     -fx-font-size: 2.0em;
-    -fx-text-fill: #001F3F;
+    -fx-text-fill: -cor-texto;
     -fx-font-weight: bold;
     -fx-alignment: center;
 }
@@ -725,9 +725,10 @@
 .pokedex-description {
     -fx-font-family: "Ari-W9500";
     -fx-font-size: 0.93em;
-    -fx-text-fill: #001F3F;
+    -fx-text-fill: -cor-texto;
+    -fx-font-weight: bold;
     -fx-line-spacing: 0.33em;
-    -fx-background-color: #b6b5b5;
+    -fx-background-color: -cor-fundo-secundaria;
     -fx-background-radius: 0.40em;
     -fx-padding: 1.0em;
     -fx-min-height: 6.66em;

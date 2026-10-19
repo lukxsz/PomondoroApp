@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<StackPane id="FundoPokemonData" styleClass="FundoPokemonData" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.PokemonDataController">
+<StackPane id="FundoPokemonData" styleClass="FundoPokemonData" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.PokemonDataController">
    <children>
       <ImageView id="ImageViewPokemonData" fitHeight="340.0" fitWidth="450.0" pickOnBounds="true" styleClass="ImageViewPokemonData">
          <image>
