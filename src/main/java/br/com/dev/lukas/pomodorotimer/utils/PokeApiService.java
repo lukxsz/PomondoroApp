@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.function.Consumer;
 
 import br.com.dev.lukas.pomodorotimer.model.PokemonDetails;
@@ -13,27 +14,43 @@ import com.google.gson.JsonParser;
 import javafx.application.Platform;
 
 public class PokeApiService {
-    private final TranslationService translator = new TranslationService();
+    private final TranslationService translator;
 
-    public void buscarPagina(int offset, int limite, Consumer<JsonArray> quandoTerminar) {
+    public PokeApiService(){
+        this.translator = new TranslationService();
+    }
+
+    public PokeApiService(TranslationService translator){
+        this.translator = translator;
+    }
+
+    public void buscarPagina(int offset, int limite, Consumer<JsonArray> quandoTerminar, Consumer<String> quandoFalhar) {
 
         String urlApi = "https://pokeapi.co/api/v2/pokemon?limit=" + limite + "&offset=" + offset;
 
         // Cria a Thread paralela
         new Thread(() -> {
             try {
-                HttpClient client = HttpClient.newHttpClient();
-                HttpRequest request = HttpRequest.newBuilder().uri(URI.create(urlApi)).build();
-                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                HttpClient client = HttpClient.newBuilder()
+                        .connectTimeout(Duration.ofSeconds(5))
+                        .build();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(urlApi))
+                        .timeout(Duration.ofSeconds(10))
+                        .build();
+                HttpResponse<String> response = client.send(request,
+                        HttpResponse.BodyHandlers.ofString());
 
-                JsonObject json = JsonParser.parseString(response.body()).getAsJsonObject();
-                JsonArray resultados = json.getAsJsonArray("results");
-
-                // Avisa quem chamou que os dados estão prontos, entregando a bandeja de resultados!
-                quandoTerminar.accept(resultados);
+                if(response.statusCode() == 200){
+                    JsonObject json = JsonParser.parseString(response.body()).getAsJsonObject();
+                    JsonArray resultados = json.getAsJsonArray("results");
+                    Platform.runLater(() -> quandoTerminar.accept(resultados));
+                } else {
+                    Platform.runLater(() -> quandoFalhar.accept("Falha no servidor (código " + response.statusCode() + ")."));
+                }
 
             } catch (Exception e) {
-                System.out.println("Erro na PokeAPI: " + e.getMessage());
+                Platform.runLater(() -> quandoFalhar.accept("Sem conexão com a internet."));
             }
         }).start();
     }

@@ -1,6 +1,7 @@
 package br.com.dev.lukas.pomodorotimer.utils;
 
 import br.com.dev.lukas.pomodorotimer.model.User;
+import br.com.dev.lukas.pomodorotimer.model.UserSettings;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -19,44 +20,49 @@ public class SaveManager {
         }
         return saveFolder;
     }
-
-    public static void saveData(){
+    public  static void saveData(){
+        saveData(getSaveFolder());
+    }
+    public static void saveData(File saveFolder){
         Gson gson = new Gson();
-        File saveFolder = getSaveFolder();
-
         File file = new File(saveFolder,"userSave.json");
 
         try(FileWriter writer = new FileWriter(file)){
-
             gson.toJson(User.getInstance(), writer);
-            System.out.println("Dados salvos");
-
         } catch (IOException e) {
             System.out.println("Erro ao salvar"+e.getMessage());;
         }
     }
 
     public static void loadData(){
-        File saveFolder = getSaveFolder();
-        File file = new File(saveFolder,"userSave.json");
+        loadData(getSaveFolder());
+    }
 
+    public static void loadData(File saveFolder){
+        File file = new File(saveFolder,"userSave.json");
         if(!file.exists()){
-            System.out.println("Nenhum save foi encontrado. Iniciando um novo save.");
             return;
         }
-
         Gson gson = new Gson();
-
         try(FileReader reader = new FileReader(file)){
             User userSaved = gson.fromJson(reader, User.class);
 
             if(userSaved != null && userSaved.getUserPokemons() != null){
                 User.getInstance().setUserPokemons(userSaved.getUserPokemons());
+
+                if (userSaved.getSettings() != null) {
+                    User.getInstance().setUserSettings(userSaved.getSettings());
+                } else {
+                    User.getInstance().setUserSettings(new UserSettings());
+                }
+
                 System.out.println("Dados carregados");
             }
 
         }catch(IOException e){
             System.out.println("Erro ao ler o save"+e.getMessage());
         }
+
+
     }
 }

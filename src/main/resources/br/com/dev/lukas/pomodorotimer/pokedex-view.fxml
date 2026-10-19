@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<StackPane fx:id="principalScreen" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="main-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.PokedexController">
+<VBox fx:id="pokedexVbox" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.dev.lukas.pomodorotimer.controller.PokedexController">
    <children>
-      <Pagination fx:id="pokedexPagination" maxHeight="1.7976931348623157E308" maxPageIndicatorCount="1" maxWidth="1.7976931348623157E308">
-         <StackPane.margin>
-            <Insets bottom="5.0" />
-         </StackPane.margin></Pagination>
+      <Label fx:id="labelTituloPokedex" text="Pokédex">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin></Label>
+      <Label fx:id="labelDescPokedex" ellipsisString="" text="Aqui, você irá vizualizar todos os pokémons que você capturou durante a jornada e os que faltam para &quot;Pegar Todos!&quot;." textOverrun="CLIP" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="16.0" top="16.0" />
+         </VBox.margin></Label>
+      <Label fx:id="labelPesquisaPokedex" text="Pesquisar Pokémon:">
+         <VBox.margin>
+            <Insets bottom="8.0" />
+         </VBox.margin></Label>
+      <HBox fx:id="HboxPrincipal" alignment="CENTER_LEFT">
+         <children>
+            <HBox fx:id="HboxPesquisa" alignment="CENTER_LEFT" spacing="8.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <TextField fx:id="pokedexTextField" maxWidth="1.7976931348623157E308" prefHeight="48.0" promptText="Digite o nome do Pokémon que você procura..." HBox.hgrow="ALWAYS" />
+               </children>
+               <padding>
+                  <Insets right="8.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </HBox>
+            <VBox fx:id="VboxEncontrados" alignment="CENTER_RIGHT" minWidth="-Infinity">
+               <children>
+                  <Label fx:id="labelEncontrados" text="Label" />
+                  <Label fx:id="labelE" text="Encontrados" />
+               </children>
+               <padding>
+                  <Insets right="8.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="VboxDisponiveis" alignment="CENTER_RIGHT" minWidth="-Infinity">
+               <children>
+                  <Label fx:id="labelTodos" text="Label" />
+                  <Label fx:id="labelD" text="Disponiveis" />
+               </children>
+               <padding>
+                  <Insets left="8.0" right="8.0" />
+               </padding>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="8.0" />
+         </VBox.margin>
+      </HBox>
+      <StackPane fx:id="pokedexStackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="main-background" stylesheets="@css/style.css" VBox.vgrow="ALWAYS">
+         <children>
+            <Pagination fx:id="pokedexPagination" maxHeight="1.7976931348623157E308" maxPageIndicatorCount="7" maxWidth="1.7976931348623157E308">
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </Pagination>
+         </children>
+      </StackPane>
    </children>
-</StackPane>
+</VBox>

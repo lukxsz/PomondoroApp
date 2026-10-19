@@ -1,84 +1,143 @@
 package br.com.dev.lukas.pomodorotimer.controller;
 
+import br.com.dev.lukas.pomodorotimer.model.User;
+import br.com.dev.lukas.pomodorotimer.model.UserSettings;
+import br.com.dev.lukas.pomodorotimer.utils.SaveManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
 public class SettingsController {
-    @FXML private Spinner<Integer> customCicleSpinner;
-    @FXML private Spinner<Integer> spinnerMinutesFocus;
-    @FXML private Spinner<Integer> spinnerSecondsFocus;
-    @FXML private Spinner<Integer> spinnerMinutesBreak;
-    @FXML private Spinner<Integer> spinnerSecondsBreak;
-    @FXML private Spinner<Integer> spinnerMinutesLBreak;
-    @FXML private Spinner<Integer> spinnerSecondsLBreak;
+    @FXML private Label labelFocusValue;
+    @FXML private Label labelBreakValue;
+    @FXML private Label labelLBreakValue;
+    @FXML private Label labelCicloValue;
+
+    @FXML private Button btnMinusFocus;
+    @FXML private Button btnPlusFocus;
+    @FXML private Button btnMinusBreak;
+    @FXML private Button btnPlusBreak;
+    @FXML private Button btnMinusLBreak;
+    @FXML private Button btnPlusLBreak;
+    @FXML private Button btnMinusCiclo;
+    @FXML private Button btnPlusCiclo;
+
     @FXML private Button saveChangesButton;
     private HelloController centralController;
+
+    private int focusMinutes = 25;
+    private int breakMinutes = 5;
+    private int lBreakMinutes = 15;
+    private int cycles = 5;
 
     public void setCentralController(HelloController centralController) {
         this.centralController = centralController;
     }
 
     public void initialize() {
-
-        SpinnerValueFactory<Integer> minutes = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 25);
-        spinnerMinutesFocus.setValueFactory(minutes);
-        SpinnerValueFactory<Integer> seconds = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
-        spinnerSecondsFocus.setValueFactory(seconds);
-
-        SpinnerValueFactory<Integer> minutesBreak = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 15, 5);
-        spinnerMinutesBreak.setValueFactory(minutesBreak);
-        SpinnerValueFactory<Integer> secondsBreak = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
-        spinnerSecondsBreak.setValueFactory(secondsBreak);
-
-        SpinnerValueFactory<Integer> minutesLBreak = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 30, 15);
-        spinnerMinutesLBreak.setValueFactory(minutesLBreak);
-        SpinnerValueFactory<Integer> secondsLBreak = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
-        spinnerSecondsLBreak.setValueFactory(secondsLBreak);
-
-
-
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,9, 5);
-        customCicleSpinner.setValueFactory(valueFactory);
+        UserSettings settings = User.getInstance().getSettings();
+        focusMinutes = settings.getFocusMinutes();
+        breakMinutes = settings.getShortBreakMinutes();
+        lBreakMinutes = settings.getLongBreakMinutes();
+        cycles = settings.getCyclesBeforeLongBreak();
+        updateLabels();
     }
 
+    private void updateLabels() {
+        if (labelFocusValue != null) labelFocusValue.setText(String.valueOf(focusMinutes));
+        if (labelBreakValue != null) labelBreakValue.setText(String.valueOf(breakMinutes));
+        if (labelLBreakValue != null) labelLBreakValue.setText(String.valueOf(lBreakMinutes));
+        if (labelCicloValue != null) labelCicloValue.setText(String.valueOf(cycles));
+    }
 
     @FXML
-    public void onSavedChanges(){
-        try{
-            //Tempo de foco
-            int minutesFocus = spinnerMinutesFocus.getValue();
-            int secondsFocus = spinnerSecondsFocus.getValue();
-            int durationFocus = (minutesFocus*60) + secondsFocus;
-
-            System.out.println("Novo tempo: " + durationFocus);
-
-            //Tempo de pausa
-            int minutesBreak =  spinnerMinutesBreak.getValue();
-            int secondsBreak = spinnerSecondsBreak.getValue();
-            int durationBreak = (minutesBreak*60) + secondsBreak;
-            System.out.println("Novo tempo: " + durationBreak);
-
-            //Tempo de pausa longa
-            int minutesLBreak =  spinnerMinutesLBreak.getValue();
-            int secondsLBreak = spinnerSecondsLBreak.getValue();
-            int durationLBreak = (minutesLBreak*60) + secondsLBreak;
-            System.out.println("Novo tempo: " + durationLBreak);
-
-            //Ciclos ate a pasua longa
-            int howMuchToLongBreak = customCicleSpinner.getValue();
-
-
-            centralController.updateTimer(durationFocus,durationBreak,howMuchToLongBreak,durationLBreak);
-            centralController.openTimer();
-
-        }catch(NumberFormatException e){
-            System.out.println("Ei, digite apenas números!");
+    public void onDecrementFocus() {
+        if (focusMinutes > 1) {
+            focusMinutes--;
+            labelFocusValue.setText(String.valueOf(focusMinutes));
         }
     }
 
+    @FXML
+    public void onIncrementFocus() {
+        if (focusMinutes < 99) {
+            focusMinutes++;
+            labelFocusValue.setText(String.valueOf(focusMinutes));
+        }
+    }
 
+    @FXML
+    public void onDecrementBreak() {
+        if (breakMinutes > 1) {
+            breakMinutes--;
+            labelBreakValue.setText(String.valueOf(breakMinutes));
+        }
+    }
 
+    @FXML
+    public void onIncrementBreak() {
+        if (breakMinutes < 15) {
+            breakMinutes++;
+            labelBreakValue.setText(String.valueOf(breakMinutes));
+        }
+    }
+
+    @FXML
+    public void onDecrementLBreak() {
+        if (lBreakMinutes > 1) {
+            lBreakMinutes--;
+            labelLBreakValue.setText(String.valueOf(lBreakMinutes));
+        }
+    }
+
+    @FXML
+    public void onIncrementLBreak() {
+        if (lBreakMinutes < 30) {
+            lBreakMinutes++;
+            labelLBreakValue.setText(String.valueOf(lBreakMinutes));
+        }
+    }
+
+    @FXML
+    public void onDecrementCiclo() {
+        if (cycles > 1) {
+            cycles--;
+            labelCicloValue.setText(String.valueOf(cycles));
+        }
+    }
+
+    @FXML
+    public void onIncrementCiclo() {
+        if (cycles < 9) {
+            cycles++;
+            labelCicloValue.setText(String.valueOf(cycles));
+        }
+    }
+
+    @FXML
+    public void onSavedChanges() {
+        try {
+             // Persistir no UserSettings
+            UserSettings settings = User.getInstance().getSettings();
+            settings.setFocusMinutes(focusMinutes);
+            settings.setShortBreakMinutes(breakMinutes);
+            settings.setLongBreakMinutes(lBreakMinutes);
+            settings.setCyclesBeforeLongBreak(cycles);
+
+            // Salvar em disco
+            SaveManager.saveData();
+
+            // Aplicar no timer ativo
+            centralController.updateTimer(
+                    focusMinutes * 60,
+                    breakMinutes * 60,
+                    cycles,
+                    lBreakMinutes * 60
+            );
+            centralController.openTimer();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar: " + e.getMessage());
+        }
+    }
 }

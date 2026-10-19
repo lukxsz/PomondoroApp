@@ -1,9 +1,6 @@
 package br.com.dev.lukas.pomodorotimer.controller;
 
-import br.com.dev.lukas.pomodorotimer.model.BreakTimer;
-import br.com.dev.lukas.pomodorotimer.model.Pomodoro;
-import br.com.dev.lukas.pomodorotimer.model.Task;
-import br.com.dev.lukas.pomodorotimer.model.User;
+import br.com.dev.lukas.pomodorotimer.model.*;
 import br.com.dev.lukas.pomodorotimer.utils.SaveManager;
 import br.com.dev.lukas.pomodorotimer.utils.SoundManager;
 import javafx.animation.Animation;
@@ -16,14 +13,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.stage.Popup;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -32,6 +28,10 @@ import java.util.*;
 
 public class HelloController {
 
+    public Label labelTitulo;
+    public TitledPane onGoingPane;
+    public TitledPane toDoPane;
+    public TitledPane finishedPane;
     @FXML private HBox buttonsHbox;
     @FXML private Label labelTimer;
     @FXML public Button buttonTimer;
@@ -48,6 +48,9 @@ public class HelloController {
     @FXML private VBox timerVBox;
     @FXML private VBox rightPane;
     @FXML private VBox leftPane;
+    @FXML private Button timerButton;
+    @FXML private Button pokedexButton;
+    @FXML private Button configurationButton;
     @FXML private Button skipStageButton;
     @FXML private ImageView imgMoita;
     @FXML private  ImageView cenarioView;
@@ -56,6 +59,7 @@ public class HelloController {
     @FXML private VBox toDoList;
     @FXML private VBox finishedList;
     private Timeline animationBushTimiline;
+    @FXML private VBox vBoxConfig;
     @FXML private HBox hBoxCiclo;
     @FXML private HBox hBoxPLonga;
     @FXML private HBox hBoxFoco;
@@ -64,6 +68,15 @@ public class HelloController {
     @FXML private HBox hBoxLogo;
     @FXML private Label textLabel;
     @FXML private VBox textVBox;
+    @FXML private Label labelConfigFocoTitle;
+    @FXML private Label labelConfigFocoDesc;
+    @FXML private Label labelConfigPausaTitle;
+    @FXML private Label labelConfigPausaDesc;
+    @FXML private Label labelConfigPausaLTitle;
+    @FXML private Label labelConfigPausaLDesc;
+    @FXML private Label labelConfigCicloTitle;
+    @FXML private Label labelConfigCicloDesc;
+    @FXML private Label subLabelSpiner;
 
     // ── ETAPA 4: Controle de estado da tela ativa ──
     // Essa variável rastreia qual view está sendo exibida no centro.
@@ -83,6 +96,12 @@ public class HelloController {
 
     @FXML
     private void initialize() {
+        UserSettings settings = User.getInstance().getSettings();
+
+        pomodoroTimer = new Pomodoro(settings.getFocusMinutes());
+        breakTimer = new BreakTimer(settings.getShortBreakMinutes());
+        longbreakTimer = new BreakTimer(settings.getLongBreakMinutes());
+
         labelTimer.setText(pomodoroTimer.formatedTime());
         animationTallGrass();
         pomodoroTimer();
@@ -160,6 +179,18 @@ public class HelloController {
         }));
         longbreaktimeline.setCycleCount(Timeline.INDEFINITE);
 
+        // Expande o cabeçalho (BorderPane) para a largura total do título, fixando a seta na extrema direita
+        configurarCabecalhoTitledPane(onGoingPane);
+        configurarCabecalhoTitledPane(toDoPane);
+        configurarCabecalhoTitledPane(finishedPane);
+
+        atualizarBotoesSidebar();
+    }
+
+    private void configurarCabecalhoTitledPane(TitledPane pane) {
+        if (pane.getGraphic() instanceof Region region) {
+            region.prefWidthProperty().bind(pane.widthProperty().subtract(35));
+        }
     }
 
     @FXML
@@ -213,68 +244,60 @@ public class HelloController {
     private void onAddTask(ActionEvent event) {
         String text = inputTask.getText();
 
-        if(text != null && !text.trim().isEmpty()){
+        if (text != null && !text.trim().isEmpty()) {
             CheckBox newTask = new CheckBox(text);
+            Button deleteTask = new Button();
+            deleteTask.getStyleClass().add("buttonDeleteTask");
+
+            HBox taskItem = new HBox(10);
+            taskItem.setAlignment(Pos.CENTER_LEFT);
+            HBox.setHgrow(newTask, Priority.ALWAYS);
+            newTask.setMaxWidth(Double.MAX_VALUE);
+
+            taskItem.getChildren().addAll(newTask, deleteTask);
+
             int onGoingLimit = 1;
 
-            newTask.setOnAction(e ->{
-                if(newTask.isSelected()){
-                    finishedList.getChildren().add(newTask);
+            newTask.setOnAction(e -> {
+                if (newTask.isSelected()) {
+                    if(newTask.lookup(".text") instanceof
+                            javafx.scene.text.Text textNode){
+                        textNode.setStrikethrough(true);
+                    }
+                    onGoingList.getChildren().remove(taskItem);
+                    toDoList.getChildren().remove(taskItem);
+                    finishedList.getChildren().add(taskItem);
+
                     newTask.setDisable(true);
 
-                    try {
-                        if(onGoingList.getChildren().isEmpty()){
-                            if(!toDoList.getChildren().isEmpty()){
-                                javafx.scene.Node proximaTarefa = toDoList.getChildren().get(0);
-
-                                toDoList.getChildren().remove(proximaTarefa);
-                                onGoingList.getChildren().add(proximaTarefa);
-                            };
-                        }
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
+                    promoteNextTask();
                 }
             });
 
-            if(onGoingList.getChildren().size() < onGoingLimit){
-                onGoingList.getChildren().add(newTask);
-                inputTask.clear();
-            } else{
-                toDoList.getChildren().add(newTask);
-                inputTask.clear();
+            deleteTask.setOnAction(e -> {
+                if (taskItem.getParent() instanceof Pane parentPane) {
+                    parentPane.getChildren().remove(taskItem);
+                }
+                promoteNextTask();
+            });
+
+            if (onGoingList.getChildren().size() < onGoingLimit) {
+                onGoingList.getChildren().add(taskItem);
+            } else {
+                toDoList.getChildren().add(taskItem);
             }
 
+            inputTask.clear();
         }
     }
 
-//    @FXML
-//    public void onMarkAsDone() {
-//        CheckBox selected = toDoList.getChildren().  //TODO implementar finishedList, onGoingList
-//        if (selected != null && selected.isActive() == false) {
-//            selected.setActive(true);
-//
-//            onGoingList.getChildren.add(selected);
-//        } else if (selected != null && selected.isActive()) {
-//            selected.setActive(false);
-//
-//
-//        }
-//
-//        if (selected != null && selected.isDone() == false)  {
-//            selected.setDone(true);
-//
-//            taskView.refresh(); // Força a ‘interface’ a ler o toString() denovo
-//        } else if (selected != null && selected.isDone()) {
-//            int selectedIndex = taskView.getSelectionModel().getSelectedIndex();
-//
-//            if (selectedIndex >= 0) {
-//                visibleTasks.remove(taskView.getSelectionModel().getSelectedIndex());
-//
-//            }
-//        }
-//
-//    }
+    private void promoteNextTask() {
+        if (onGoingList.getChildren().isEmpty() && !toDoList.getChildren().isEmpty()) {
+            javafx.scene.Node proximaTarefa = toDoList.getChildren().get(0);
+            toDoList.getChildren().remove(proximaTarefa);
+            onGoingList.getChildren().add(proximaTarefa);
+        }
+    }
 
     @FXML
     public void onConfiguration() {
@@ -457,27 +480,46 @@ public class HelloController {
         return alert;
     }
 
-    private void showCaptureAlert(int idPokemon) {
+    private void showCaptureAlert(int idPokemon) {   //TODO mudar o Alert para scene
         animationBushTimiline.stop();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Um pokemon selvagem apareceu!");
-        alert.setHeaderText(null);
+        Popup popup = new Popup();
+        popup.setAutoHide(true);
 
         String urlImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official" +
                 "-artwork/" + idPokemon + ".png";
-
         Image pokemonImage = new Image(urlImage, 150, 150, true, true);
         ImageView imageView = new ImageView(pokemonImage);
 
-        alert.setGraphic(imageView);
+        Label captureLabel = new Label("Parabéns! Um novo Pokémon!");
+        captureLabel.getStyleClass().add("captureLabel");
 
-        alert.setContentText("Você encontrou um novo pokemon!\nQue tal checar sua pokédex para saber quem é!");
+        Label contextLabel = new Label("Você encontrou um novo Pokémon!\nEle foi adicionado a sua coleção!\n" +
+                "Para saber mais sobre ele consulte a Pokédex.");
+        contextLabel.getStyleClass().add("contextLabel");
 
-        alert.getDialogPane().getStylesheets().add(getClass().getResource("/br/com/dev/lukas/pomodorotimer/css/style.css").toExternalForm());
-        alert.getDialogPane().getStyleClass().add("pokemon-alert");
+        VBox textContainer = new VBox(5, captureLabel, contextLabel);
+        textContainer.setAlignment(Pos.CENTER_LEFT);
 
-        alert.showAndWait();
+        // 3. Layout Raiz com CSS
+        HBox root = new HBox(imageView, textContainer);
+        root.getStyleClass().add("pokemonRoot");
+
+        String cssPath = getClass().getResource("/br/com/dev/lukas/pomodorotimer/css/style.css").toExternalForm();
+        root.getStylesheets().add(cssPath);
+
+        popup.getContent().add(root);
+
+        javafx.stage.Window window = mainPane.
+                getScene().getWindow();
+        if (window != null) {
+            popup.show(window);
+            popup.setX(window.getX() + (window.
+                    getWidth() - root.prefWidth(-1)) / 2);
+            popup.setY(window.getY() + (window.
+                    getHeight() - root.prefHeight(-1)) / 2);
+        }
     }
+
 
     public void animationTallGrass(){
         Random random = new Random();
@@ -500,19 +542,19 @@ public class HelloController {
 
     public void setPlayIcon (){
         Image playImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/br/com/dev/lukas" +
-                "/pomodorotimer/images/right-arrow.png")));
+                "/pomodorotimer/images/Play.png")));
         ImageView playView = new ImageView(playImg);
-        playView.setFitHeight(30);
-        playView.setFitWidth(30);
+        playView.setFitHeight(24);
+        playView.setFitWidth(20);
         buttonTimer.setGraphic(playView);
     }
 
     public void setPauseIcon (){
         Image pauseImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/br/com/dev/lukas" +
-                "/pomodorotimer/images/pause-button.png")));
+                "/pomodorotimer/images/Pause.png")));
         ImageView pauseView = new ImageView(pauseImg);
-        pauseView.setFitHeight(30);
-        pauseView.setFitWidth(30);
+        pauseView.setFitHeight(24);
+        pauseView.setFitWidth(20);
         buttonTimer.setGraphic(pauseView);
     }
 
@@ -568,6 +610,8 @@ public class HelloController {
             telaAtiva = "timer";
             mainPane.setCenter(timerVBox);
         }
+
+        atualizarBotoesSidebar();
     }
 
     public void redimensionarArea(){
@@ -604,5 +648,33 @@ public class HelloController {
         if (breaktimeline != null) breaktimeline.stop();
         if (longbreaktimeline != null) longbreaktimeline.stop();
         if (animationBushTimiline != null) animationBushTimiline.stop();
+    }
+
+    public void  atualizarBotoesSidebar() {
+        if (timerButton == null || pokedexButton == null || configurationButton == null) {
+            return;
+        }
+
+        timerButton.getStyleClass().remove("active");
+        pokedexButton.getStyleClass().remove("active");
+        configurationButton.getStyleClass().remove("active");
+
+        switch (telaAtiva) {
+            case "timer" -> {
+                if (!timerButton.getStyleClass().contains("active")) {
+                    timerButton.getStyleClass().add("active");
+                }
+            }
+            case "pokedex" -> {
+                if (!pokedexButton.getStyleClass().contains("active")) {
+                    pokedexButton.getStyleClass().add("active");
+                }
+            }
+            case "config" -> {
+                if (!configurationButton.getStyleClass().contains("active")) {
+                    configurationButton.getStyleClass().add("active");
+                }
+            }
+        }
     }
 }

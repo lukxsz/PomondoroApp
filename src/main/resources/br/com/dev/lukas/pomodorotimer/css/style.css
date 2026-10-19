@@ -11,13 +11,13 @@
     src: url('../fonts/VT323-Regular.ttf');
 }
 
-.root {
+.root, .pokemonRoot {
     /* Definição da paleta de cores */
     -cor-fundo: #07332C;
     -cor-fundo-secundaria: #0B3D33;
     -cor-borda: #14907D;
     -cor-destaque: #136655;
-    -cor-confirmação: #89D992;
+    -cor-confirmacao: #89D992;
     -cor-texto: #F1FFE5;
     -cor-texto-secundario: #C1CCB8;
 }
@@ -58,7 +58,8 @@
     -fx-content-display: left;
 }
 
-.sidebar-button:hover {
+.sidebar-button:hover,
+.sidebar-button.active {
     -fx-background-color: -cor-destaque;
 }
 
@@ -66,8 +67,10 @@
     -fx-background-color: rgba(0, 0, 0, 0.15);
     -fx-translate-y: 1px;
 }
-.sidebar-button:focused{
-    -fx-background-color: -cor-destaque;
+
+.sidebar-button:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 #hBoxLogo{
@@ -82,8 +85,8 @@
 
 
 #cenarioView{
-    -fx-border-color: #ffff;
-    -fx-border-width: 3px;
+    -fx-border-color: -cor-borda;
+    -fx-border-width: 2px;
 }
 
 /* TIMER LABEL */
@@ -101,21 +104,20 @@
 }
 
 #vBoxButtons{
-    -fx-background-color: #4a9a38, #85F765 ;
-    -fx-background-insets: 0, 2px 2px 2px 2px;
-    -fx-background-radius: 0, 0;
+    -fx-border-color: -cor-borda;
+    -fx-border-width: 2px;
+    -fx-border-radius: 16px;
+    -fx-background-color: -cor-fundo-secundaria ;
+    -fx-background-radius: 16px;
 }
 
 /* ROUNDED PLAY/PAUSE BUTTON */
 #buttonTimer {
-    /*-fx-border-color: #222220;*/
-    /*-fx-border-width: 2px;*/
-    -fx-background-color: #f8f8f5;
-    -fx-background-radius: 0.07em; /* Circulo */
-    -fx-min-width: 2.67em;
-    -fx-min-height: 2.67em;
-    -fx-max-width: 2.67em;
-    -fx-max-height: 2.67em;
+    -fx-background-color: -cor-fundo-secundaria;
+    -fx-background-radius: 8px;
+    -fx-border-color: -cor-borda;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
     -fx-cursor: hand;
     /*-fx-effect: dropshadow(three-pass-box, rgba(59,76,202,0.4), 10, 0, 0, 4);*/
     -fx-content-display: center;
@@ -123,24 +125,24 @@
 }
 
 #buttonTimer:hover {
+    -fx-background-color: -cor-destaque;
     -fx-cursor: hand;
 }
 
 #buttonTimer:pressed {
+    -fx-background-color: -cor-destaque;
     -fx-effect: none;
-    -fx-translate-y: 2px;
+    -fx-translate-y: 1px;
 }
 
 /* SKIP BUTTON */
+
 #skipStageButton {
-    /*-fx-border-color: #222220;*/
-    /*-fx-border-width: 2px;*/
-    -fx-background-color: #f8f8f5;
-    -fx-background-radius: 0.07em; /* Circulo */
-    -fx-min-width: 2.67em;
-    -fx-min-height: 2.67em;
-    -fx-max-width: 2.67em;
-    -fx-max-height: 2.67em;
+    -fx-background-color: -cor-fundo-secundaria;
+    -fx-background-radius: 8px;
+    -fx-border-color: -cor-borda;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
     -fx-cursor: hand;
     /*-fx-effect: dropshadow(three-pass-box, rgba(59,76,202,0.4), 10, 0, 0, 4);*/
     -fx-content-display: center;
@@ -148,66 +150,221 @@
 }
 
 #skipStageButton:hover {
-    -fx-text-fill: #333333;
-}
-
-#skipStageButton:pressed {
-    -fx-effect: none;
-    -fx-translate-y: 2px;
-}
-
-/* TASK VIEW & LIST */
-#taskView {
-    -fx-background-color: #f8f8f5;
-    -fx-background-radius: 0;
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-}
-#taskView:focused {
-    -fx-background-color: #f8f8f5;
-    -fx-background-radius: 0;
-    -fx-background-insets: 0;
-}
-
-.list-cell {
-    -fx-font-family: "Ari-W9500";
-    -fx-font-size: 0.67em;
-    -fx-text-fill: #444444;
-    -fx-padding: 0.33em;
-    -fx-background-color: white;
-    -fx-border-color: transparent transparent #d9d9d9 transparent;
-}
-
-.list-cell:filled:hover {
+    -fx-background-color: -cor-destaque;
     -fx-cursor: hand;
 }
 
-.list-cell:filled:selected {
-    /*-fx-background-color: #665d9c;*/
-    /*-fx-text-fill: white;*/
+#skipStageButton:pressed {
+    -fx-background-color: -cor-destaque;
+    -fx-effect: none;
+    -fx-translate-y: 1px;
+}
+/* SCROLLPANE */
+.scroll-pane {
+    -fx-background-color: -cor-fundo-secundaria;
+    -fx-background-radius: 16px;
+    -fx-border-color: -cor-borda;
+    -fx-border-width: 2px;
+    -fx-border-radius: 16px;
+    -fx-padding: 4px;
 }
 
-/* INPUT TASK */
-/*#inputTask {*/
-/*    -fx-font-family: "Ari-W9500";*/
-/*    -fx-font-weight: bold;*/
-/*    -fx-font-size: 0.93em;*/
-/*    -fx-prompt-text-fill: #333333;*/
-/*    -fx-text-fill: #333333;*/
-/*    -fx-background-color: #f8f8f5;*/
-/*    -fx-background-radius: 0;*/
-/*    -fx-background-insets: 0;*/
-/*    -fx-padding: 0.80em;*/
-/*    -fx-border-color: transparent transparent #d9d9d9 transparent;*/
-/*}*/
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
 
-/*#inputTask:focused {*/
-/*    -fx-background-color: #f8f8f5;*/
-/*    -fx-background-insets: 0;*/
-/*    -fx-background-radius: 0;*/
-/*    -fx-border-insets: 0 0 1 0 ;*/
-/*    -fx-border-color: transparent transparent #d9d9d9 transparent;*/
-/*}*/
+.scroll-pane > .scroll-bar:vertical {
+    -fx-pref-width: 8px;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .scroll-bar:horizontal {
+    -fx-pref-height: 8px;
+    -fx-background-color: transparent;
+}
+
+/* O TRILHO: recuado 16px do topo/base e 4px da borda direita */
+.scroll-pane > .scroll-bar:vertical .track {
+    -fx-background-color: -cor-fundo;
+    -fx-background-insets: 16px 4px 16px 0;
+    -fx-background-radius: 4px;
+    -fx-border-color: transparent;
+}
+
+/* O THUMB: mantendo o mesmo recuo de 4px da borda para alinhar dentro do trilho */
+.scroll-pane > .scroll-bar:vertical .thumb {
+    -fx-background-color: -cor-borda;
+    -fx-background-insets: 16px 4px 16px 0;
+    -fx-background-radius: 4px;
+}
+
+.scroll-pane > .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: -cor-destaque;
+}
+
+.scroll-pane > .scroll-bar .increment-button,
+.scroll-pane > .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0px;
+    -fx-pref-width: 0px;
+}
+
+.scroll-pane > .scroll-bar .increment-arrow,
+.scroll-pane > .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+
+.buttonDeleteTask {
+    -fx-background-image: url("../images/Close.png");
+    -fx-shape: null;
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: contain; /* 👈 Faz
+    a imagem de 40x40 caber inteira dentro do
+    botão */
+    -fx-padding: 0;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+    }
+
+    .buttonDeleteTask:hover {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-cursor: hand;
+}
+
+#labelTitulo{
+    -fx-font-size: 20px;
+    -fx-text-fill: -cor-texto;
+    -fx-font-family: "VT323";
+}
+
+#inputTask{
+    -fx-background-color: -cor-fundo;
+    -fx-background-radius: 8px;
+    -fx-border-color: -cor-borda;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-text-fill: -cor-texto-secundario;
+    -fx-font-family: "VT323";
+    -fx-font-size: 20px;
+
+}
+
+.titled-pane {
+    -fx-font-family: "VT323";
+    -fx-font-size: 16px;
+    -fx-text-fill: -cor-texto-secundario;
+}
+
+.titled-pane > .title {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-padding: 6px 10px;
+    -fx-cursor: hand;
+    -fx-font-family: "VT323";
+}
+
+/* Texto do Título alinhado na esquerda dentro do BorderPane */
+.titled-pane-text {
+    -fx-font-family: "VT323";
+    -fx-font-size: 20px;
+    -fx-text-fill: -cor-texto-secundario;
+}
+
+/* Ocultar a seta nativa da esquerda */
+.titled-pane > .title > .arrow-button {
+    -fx-padding: 0;
+    -fx-pref-width: 0px;
+    -fx-min-width: 0px;
+    -fx-max-width: 0px;
+    -fx-opacity: 0;
+}
+
+.titled-pane > .title > .arrow-button > .arrow {
+    -fx-padding: 0;
+    -fx-shape: " ";
+}
+
+/* Imagem da seta */
+.seta-img {
+    -fx-cursor: hand;
+    -fx-translate-y: 2px; /* Alinhamento óptico com a linha do texto */
+}
+
+/* Quando aberto/expandido: aponta para baixo */
+.titled-pane:expanded .seta-img {
+    -fx-rotate: 0deg;
+}
+
+/* Quando oculto/fechado: gira apontando para a direita */
+.titled-pane:collapsed .seta-img {
+    -fx-rotate: -90deg;
+}
+
+
+/* Conteúdo Interno onde ficam os CheckBoxes */
+.titled-pane > .content {
+    -fx-background-color: -cor-fundo-secundaria;
+    -fx-border-color: -cor-borda;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+
+    /* Espaçamento de separação (margem) entre o título e o conteúdo */
+    -fx-background-insets: 8px 0 0 0;
+    -fx-border-insets: 8px 0 0 0;
+
+    /* Padding interno (12px no topo para compensar os 8px do inset + 4px de respiro) */
+    -fx-padding: 12px 10px 10px 10px;
+}
+
+.titled-pane .check-box {
+    -fx-font-family: "VT323";
+    -fx-font-size: 16px;
+    -fx-text-fill: -cor-texto;
+    -fx-cursor: hand;
+}
+
+.titled-pane .check-box > .box {
+    -fx-font-size: 10px;
+    -fx-background-color: -cor-fundo-secundaria;
+    -fx-border-color: -cor-texto;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-padding: 2px;
+}
+.titled-pane .check-box:selected > .box{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.titled-pane .check-box:selected > .box > .mark {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../images/check.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: contain;
+    -fx-shape: null; /* Remove o desenho padrão do JavaFX */
+    -fx-pref-width: 24px;
+    -fx-pref-height: 24px;
+}
+.titled-pane .check-box:disabled {
+    -fx-opacity: 1.0;
+    -fx-text-fill: -cor-confirmacao; /* Deixa o texto sutilmente mais discreto */
+}
+
+#onGoingList, #toDoList, #finishedList {
+    -fx-spacing: 8px; /* 👈 Aumente para 12px, 14px, 16px etc. */
+}
 
 /* RIGHT PANE CONTAINER */
 #rightPane {
@@ -222,14 +379,36 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 8, 0, 0, 4);
 }
 
-#configScreen{
-    -fx-border-color: white;
+/*#configScreen{*/
+/*    -fx-border-color: white;*/
+/*    -fx-border-width: 1px;*/
+/*}*/
+
+#vBoxConfig{
+    -fx-border-color: -cor-borda;
+    -fx-border-width: 2px;
+    -fx-border-radius: 16px;
+    -fx-background-color: -cor-fundo-secundaria;
+    -fx-background-radius: 16px;
+}
+
+#hBoxFoco, #hBoxPausa, #hBoxLPausa, #hBoxCiclo{
+    -fx-border-color: -cor-borda;
+    -fx-border-radius: 8px;
     -fx-border-width: 1px;
 }
 
-#hBoxPausa{
-    -fx-border-color: white;
-    -fx-border-width: 1px;
+#labelTitleConfig{
+    -fx-font-family: "VT323";
+    -fx-font-size: 26px;
+    -fx-text-fill: -cor-texto;
+}
+
+#labelSubTitleConfig{
+    -fx-font-family: "VT323";
+    -fx-text-fill: -cor-texto-secundario;
+    -fx-font-size: 18px;
+
 }
 
 /* =========================================
@@ -237,200 +416,237 @@
    ========================================= */
 
 /* Silencia o aviso da IDE para a classe vertical nativa */
-.split-arrows-vertical {
-}
+/*.split-arrows-vertical {*/
+/*}*/
 
 .spinner {
     -fx-font-family: "Ari-W9500";
     -fx-font-weight: bold;
-    -fx-background-color: transparent;
-    -fx-border-radius: 0;
-    -fx-background-radius: 0;
-
+    -fx-background-color: -cor-fundo;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px 8px 16px;
 }
 
-.spinner.split-arrows-vertical .text-field {
+.spinner.split-arrows-horizontal .text-field {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
     -fx-padding: 0;
-    -fx-text-fill: #f8f8f5;
-    -fx-font-weight: bold;
+    -fx-text-fill: -cor-texto;
     -fx-alignment: center;
 
 }
 .text-field{
-    -fx-font-size: 3em;
+    -fx-font-size: 40px;
 }
 
-.spinner.split-arrows-vertical .increment-arrow-button,
-.spinner.split-arrows-vertical .decrement-arrow-button {
-    -fx-background-color: transparent;
+.spinner.split-arrows-horizontal .increment-arrow-button,
+.spinner.split-arrows-horizontal .decrement-arrow-button {
+    -fx-background-color: -cor-fundo-secundaria;
+    -fx-background-radius: 8px;
     -fx-cursor: hand;
+    -fx-padding: 8px;
+
+    -fx-background-insets: 13px -2px 13px -2px;
 }
 
-.spinner.split-arrows-vertical .increment-arrow-button .increment-arrow {
-    -fx-shape: "M 0 10 L 10 0 L 20 10 L 17 13 L 10 6 L 3 13 Z";
-}
-.spinner.split-arrows-vertical .decrement-arrow-button {
-    -fx-shape: "M 0 10 L 10 0 L 20 10 L 17 13 L 10 6 L 3 13 Z";
-}
-
-.spinner.split-arrows-vertical .increment-arrow-button:hover,
-.spinner.split-arrows-vertical .decrement-arrow-button:hover {
-    -fx-shape: "M 0 10 L 10 0 L 20 10 L 17 13 L 10 6 L 3 13 Z";
-}
-
-.spinner.split-arrows-vertical .increment-arrow-button .increment-arrow {
-    -fx-shape: "M 0 10 L 10 0 L 20 10 L 17 13 L 10 6 L 3 13 Z";
-    -fx-background-color: #001F3F;
+.spinner.split-arrows-horizontal .increment-arrow-button .increment-arrow {
+    -fx-shape: null;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../images/PlusIcon.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-padding: 0;
+    -fx-min-width: 18px;
+    -fx-min-height: 18px;
+    -fx-pref-width: 18px;
+    -fx-pref-height: 18px;
 }
 
-.spinner.split-arrows-vertical .decrement-arrow-button .decrement-arrow {
-    -fx-shape: "M 0 3 L 10 13 L 20 3 L 17 0 L 10 7 L 3 0 Z";
-    -fx-background-color: #001F3F;
+.spinner.split-arrows-horizontal .decrement-arrow-button .decrement-arrow {
+    -fx-shape: null;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../images/MinusIcon.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-padding: 0;
+    -fx-min-width: 18px;
+    -fx-min-height: 18px;
+    -fx-pref-width: 18px;
+    -fx-pref-height: 18px;
 }
 
-.spinner.split-arrows-vertical .increment-arrow-button:pressed .increment-arrow,
-.spinner.split-arrows-vertical .decrement-arrow-button:pressed .decrement-arrow {
-    -fx-translate-x: 1px;
-    -fx-background-color: #001831;
+/* =========================================
+   CUSTOM SPINNER / SELETOR COM LABEL
+   ========================================= */
+
+.custom-spinner-box {
+    -fx-background-color: -cor-fundo;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-alignment: center;
+}
+
+.spinner-number {
+    -fx-font-family: "VT323";
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -cor-texto;
+    -fx-alignment: center;
+}
+
+.spinner-sublabel {
+    -fx-font-family: "VT323";
+    -fx-font-size: 16px;
+    -fx-text-fill: -cor-texto-secundario;
+    -fx-alignment: center;
+    -fx-padding: 2px 0px 0px 0px;
+}
+
+.spinner-btn-minus,
+.spinner-btn-plus {
+    -fx-background-color: -cor-fundo-secundaria;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+    -fx-padding: 0;
+}
+
+.spinner-btn-minus {
+    -fx-background-image: url("../images/MinusIcon.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 18px 18px;
+}
+
+.spinner-btn-plus {
+    -fx-background-image: url("../images/PlusIcon.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 18px 18px;
+}
+
+.spinner-btn-minus:hover,
+.spinner-btn-plus:hover {
+    -fx-background-color: -cor-destaque;
+}
+
+.spinner-btn-minus:pressed,
+.spinner-btn-plus:pressed {
+    -fx-background-color: -cor-destaque;
+    -fx-translate-y: 1px;
+}
+
+/*.spinner.split-arrows-horizontal .increment-arrow-button:hover,*/
+/*.spinner.split-arrows-horizontal .decrement-arrow-button:hover {*/
+/*    -fx-shape: "M 0 10 L 10 0 L 20 10 L 17 13 L 10 6 L 3 13 Z";*/
+/*}*/
+
+/*.spinner.split-arrows-horizontal .increment-arrow-button .increment-arrow {*/
+/*    -fx-shape: "M 0 10 L 10 0 L 20 10 L 17 13 L 10 6 L 3 13 Z";*/
+/*    -fx-background-color: #001F3F;*/
+/*}*/
+
+/*.spinner.split-arrows-horizontal .decrement-arrow-button .decrement-arrow {*/
+/*    -fx-shape: "M 0 3 L 10 13 L 20 3 L 17 0 L 10 7 L 3 0 Z";*/
+/*    -fx-background-color: #001F3F;*/
+/*}*/
+
+/*.spinner.split-arrows-horizontal .increment-arrow-button:pressed .increment-arrow,*/
+/*.spinner.split-arrows-horizontal .decrement-arrow-button:pressed .decrement-arrow {*/
+/*    -fx-translate-x: 1px;*/
+/*    -fx-background-color: #001831;*/
+/*}*/
+
+#labelConfigFocoTitle ,
+#labelConfigPausaTitle,
+#labelConfigPausaLTitle,
+#labelConfigCicloTitle{
+    -fx-font-family: "VT323";
+    -fx-text-fill: -cor-texto;
+    -fx-font-size: 20px;
+}
+#labelConfigFocoDesc ,
+#labelConfigPausaDesc,
+#labelConfigPausaLDesc,
+#labelConfigCicloDesc{
+    -fx-font-family: "VT323";
+    -fx-text-fill: -cor-texto-secundario;
+    -fx-font-size: 14px;
 }
 
 #labelSeparatorFocus,
 #labelSeparatorBreak,
 #labelSeparatorLBreak {
     -fx-font-size: 3em;
-    -fx-font-family: "Ari-W9500";
+    -fx-font-family: "VT323";
     -fx-font-weight: bold;
     -fx-text-fill: #f8f8f5;
 
 }
 
+
 #saveChangesButton {
-    -fx-background-radius: 0;
-    -fx-background-color: #f8f8f5;
-    -fx-font-family: "Ari-W9500";
+    -fx-border-color: -cor-borda;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-background-radius: 8px;
+    -fx-background-color: -cor-fundo-secundaria;
+    -fx-font-family: "VT323";
     -fx-font-weight: bold;
-    -fx-font-size: 0.93em;
-    -fx-text-fill: #001F3F;
-    -fx-cursor: hand;
-    -fx-scale-x: 1.0;
-    -fx-scale-y: 1.0;
-    -fx-background-insets: 0;
-    -fx-border-width: 0;
-    -fx-min-width: 6.67em;
-    -fx-max-width: 6.67em;
-    -fx-min-height: 2.67em;
-    -fx-max-height: 2.67em;
+    -fx-font-size: 16px;
+    -fx-text-fill: -cor-texto;
 }
 #saveChangesButton:hover,
 #saveChangesButton:focused,
 #saveChangesButton:pressed {
-    -fx-background-radius: 0;
-    -fx-background-color: #f8f8f5;
-    -fx-font-family: "Ari-W9500";
+    -fx-border-color: -cor-borda;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-background-radius: 8px;
+    -fx-background-color: -cor-destaque;
+    -fx-font-family: "VT323";
     -fx-font-weight: bold;
-    -fx-font-size: 0.93em;
-    -fx-text-fill: #001F3F;
-    -fx-scale-x: 1.0;
-    -fx-scale-y: 1.0;
-    -fx-background-insets: 0;
-    -fx-border-width: 0;
-    -fx-min-width: 6.67em;
-
-    -fx-max-width: 6.67em;
-    -fx-min-height: 2.67em;
-    -fx-max-height: 2.67em;
+    -fx-font-size: 16px;
+    -fx-text-fill: -cor-texto;
+    -fx-cursor: hand;
 }
 #saveChangesButton:pressed{
     -fx-translate-y: 2px;
 }
 
 /* =========================================
-   ESTILO PARA OS ALERTS POKÉMON (DIÁLOGOS)
+            Popup showCaptureAlert
    ========================================= */
-
-.pokemon-alert {
-    -fx-background-color: #001F3F, #f8f8f5;
-    -fx-background-insets: 0, 0.27em;
-    -fx-padding: 1.07em;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.35), 15, 0, 0, 5);
+.captureLabel{
+    -fx-font-size: 40px;
+    -fx-text-fill: -cor-texto;
 }
-
-.pokemon-alert .label {
-    -fx-font-family: "Ari-W9500";
-    -fx-text-fill: #001F3F;
+.contextLabel{
+    -fx-font-size: 20px;
+    -fx-text-fill: -cor-texto-secundario;
+                                                /*-cor-fundo: #07332C;*/
+                                                /*-cor-fundo-secundaria: #0B3D33;*/
+                                                /*-cor-borda: #14907D;*/
+                                                /*-cor-destaque: #136655;*/
+                                                /*-cor-confirmacao: #89D992;*/
+                                                /*-cor-texto: #F1FFE5;*/
+                                                /*-cor-texto-secundario: #C1CCB8;*/
 }
-
-/* Painel de Conteúdo e Texto do Alerta */
-.pokemon-alert > .content.label {
-    -fx-background-color: transparent;
-    -fx-font-size: 0.93em;
-    -fx-line-spacing: 0.40em;
-    -fx-padding: 1.0em 1.33em;
-}
-
-/* Container do Ícone/Imagem (Pokémon) */
-.pokemon-alert > .graphic-container {
-    -fx-background-color: transparent;
-    -fx-padding: 0.67em;
-    -fx-alignment: center;
-}
-
-/* Barra de Botões do Alerta */
-.pokemon-alert > .button-bar {
-    -fx-background-color: transparent;
-    -fx-padding: 0.67em 0 0 0;
-}
-
-.pokemon-alert > .button-bar > .container {
-    -fx-background-color: transparent;
-}
-
-/* Botões do Alerta estilo Pokémon Retro */
-.pokemon-alert > .button-bar > .container > .button {
-    -fx-background-color: #001F3F;
-    -fx-text-fill: #f8f8f5;
-    -fx-font-family: "Ari-W9500";
-    -fx-font-weight: bold;
-    -fx-font-size: 0.87em;
-    -fx-padding: 0.53em 1.33em;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 3, 0, 0, 2);
-    -fx-background-insets: 0;
-    -fx-border-width: 0;
-    -fx-scale-x: 1.0;
-    -fx-scale-y: 1.0;
-}
-
-.pokemon-alert > .button-bar > .container > .button:hover,
-.pokemon-alert > .button-bar > .container > .button:focused {
-    -fx-background-color: #001F3F;
-    -fx-text-fill: #f8f8f5;
-    -fx-font-family: "Ari-W9500";
-    -fx-font-weight: bold;
-    -fx-font-size: 0.87em;
-    -fx-padding: 0.53em 1.33em;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 3, 0, 0, 2);
-    -fx-background-insets: 0;
-    -fx-border-width: 0;
-    -fx-scale-x: 1.0;
-    -fx-scale-y: 1.0;
-}
-
-.pokemon-alert > .button-bar > .container > .button:pressed {
-    -fx-background-color: #001F3F;
-    -fx-text-fill: #f8f8f5;
-    -fx-font-family: "Ari-W9500";
-    -fx-font-weight: bold;
-    -fx-font-size: 0.87em;
-    -fx-padding: 0.53em 1.33em;
-    -fx-background-insets: 0;
-    -fx-border-width: 0;
-    -fx-scale-x: 1.0;
-    -fx-scale-y: 1.0;
-    -fx-translate-y: 2px;
-    -fx-effect: none;
+.pokemonRoot{
+    -fx-spacing: 16px;
+    -fx-background-color: -cor-fundo-secundaria;
+    -fx-background-radius: 12px;
+    -fx-border-color: -cor-borda;
+    -fx-border-radius: 12px;
+    -fx-border-width: 2px;
+    -fx-padding: 16px;
+    -fx-effect: dropshadow(three-pass-box,
+    rgba(0, 0, 0, 0.35), 15, 0, 0, 4);
 }
 
 /* =========================================
@@ -521,7 +737,7 @@
 
 /* Componente principal da paginação */
 #pokedexPagination {
-    -fx-background-color: transparent;
+    -fx-background-color: -cor-fundo-secundaria;
 }
 
 /* Barra inferior que contém os botões e páginas */
@@ -535,6 +751,8 @@
     -fx-alignment: center;
 }
 
+/* Botões numerados de página: escondidos — navegação só pelas setas + "x/y"
+   (não usar .button aqui: as setas também são Buttons e sumiriam juntas) */
 #pokedexPagination > .pagination-control > .control-box > .toggle-button {
     -fx-min-width: 0;
     -fx-max-width: 0;
@@ -544,93 +762,136 @@
     -fx-pref-height: 0;
     -fx-padding: 0;
     -fx-opacity: 0;
+    -fx-text-fill: -cor-texto;
 }
 
-/* Estilo padrão para os botões de navegação (Setas) e número de página */
-#pokedexPagination > .pagination-control > .control-box > .button,
-#pokedexPagination > .pagination-control > .control-box > .toggle-button {
-    -fx-font-family: "Ari-W9500";
-    -fx-font-weight: bold;
-    -fx-font-size: 0.67em;
-    -fx-text-fill: #001F3F;
-    -fx-background-color: transparent;
-    -fx-background-radius: 0.27em;
+/* Estilo padrão para os botões de navegação (Setas) */
+#pokedexPagination > .pagination-control > .control-box > .left-arrow-button,
+#pokedexPagination > .pagination-control > .control-box > .right-arrow-button {
+    -fx-font-family: "VT323";
+    -fx-text-fill: -cor-texto;
+    -fx-background-color: -cor-fundo;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4px;
+    -fx-border-color: -cor-borda;
+    -fx-border-width: 1px;
+    -fx-border-insets: 0;
+    -fx-border-radius: 4px;
     -fx-cursor: hand;
-    -fx-padding: 0.40em 0.80em;
+    -fx-padding: 6px 14px;
+    -fx-alignment: center;
+    -fx-min-width: 40px;
+    -fx-min-height: 32px;
 }
 
+#pokedexPagination > .pagination-control > .control-box > .left-arrow-button:hover,
+#pokedexPagination > .pagination-control > .control-box > .right-arrow-button:hover {
+    -fx-background-color: -cor-destaque;
+}
+
+#pokedexPagination > .pagination-control > .control-box > .left-arrow-button:pressed,
+#pokedexPagination > .pagination-control > .control-box > .right-arrow-button:pressed {
+    -fx-translate-y: 1px;
+}
 
 /* Seta interna (desenho) do botão de ir para esquerda/anterior */
 #pokedexPagination .left-arrow {
-    -fx-background-color: #001F3F;
-    -fx-shape: "M 10 0 L 0 10 L 10 20 L 13 17 L 6 10 L 13 3 Z"; /* Seta em formato pixel retro */
+    -fx-background-color: -cor-texto;
+    -fx-background-insets: 0;
+    -fx-pref-width: 14px;
+    -fx-pref-height: 18px;
 }
 
 /* Seta interna (desenho) do botão de ir para direita/próximo */
 #pokedexPagination .right-arrow {
-    -fx-background-color: #001F3F;
-    -fx-shape: "M 0 0 L 10 10 L 0 20 L -3 17 L 4 10 L -3 3 Z"; /* Seta em formato pixel retro */
+    -fx-background-color: -cor-texto;
+    -fx-background-insets: 0;
+    -fx-pref-width: 14px;
+    -fx-pref-height: 18px;
 }
 
-.right-arrow .left-arrow:pressed{
-    -fx-translate-y: 1px;
-    -fx-background-color: #001831;
+/* Números / informação da página (ex: 1/11) */
+#pokedexPagination .page-information {
+    -fx-text-fill: -cor-texto;
+    -fx-font-family: "VT323";
+    -fx-font-size: 18px;
 }
 
-/* =========================================
-   PERSONALIZAÇÃO DA SCROLLBAR DO TASKVIEW
-   ========================================= */
-
-/* Barra Vertical */
-#taskView .scroll-bar:vertical {
-    -fx-background-color: transparent;
-    -fx-pref-width: 6px;
-    -fx-background-radius: 0;
-}
-#taskView .scroll-bar:vertical .track {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0;
-}
-#taskView .scroll-bar:vertical .thumb {
-    -fx-background-color: #444444;
-    -fx-background-radius: 6px;
+/* Botão de página quando selecionado */
+#pokedexPagination > .pagination-control > .control-box > .toggle-button:selected {
+    -fx-text-fill: -cor-confirmacao;
+    -fx-background-color: -cor-destaque;
 }
 
-/* Barra Horizontal */
-#taskView .scroll-bar:horizontal {
-    -fx-background-color: transparent;
-    -fx-pref-height: 6px;
+#pokedexVbox{
+    -fx-background-color: -cor-fundo-secundaria;
+    -fx-border-width: 2px;
+    -fx-border-color: -cor-borda;
+    -fx-border-radius: 16px;
+    -fx-padding: 24px;
 }
-#taskView .scroll-bar:horizontal .track {
-    -fx-background-color: transparent;
+#labelTituloPokedex{
+    -fx-font-size: 24px;
+    -fx-text-fill: -cor-texto;
 }
-#taskView .scroll-bar:horizontal .thumb {
-    -fx-background-color: #444444;
-    -fx-background-radius: 2px;
+#labelDescPokedex{
+    -fx-font-size: 16px;
+    -fx-text-fill: -cor-texto-secundario;
 }
+#labelPesquisaPokedex{
+    -fx-font-size: 16px;
+    -fx-text-fill: -cor-texto;
 
-/* Prevenir efeito de foco e hover no ScrollBar e Track */
-#taskView .scroll-bar:focused,
-#taskView .scroll-bar:hover,
-#taskView .scroll-bar .track:focused,
-#taskView .scroll-bar .track:hover {
-    -fx-background-color: transparent;
 }
+#pokedexTextField{
+    -fx-background-color: -cor-fundo;
+    -fx-border-color: -cor-borda;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-font-size: 16px;
+    -fx-font-family: "VT323";
+    -fx-text-fill: -cor-texto-secundario;
 
-/* Prevenir alteração de cor no thumb ao passar o mouse ou focar */
-#taskView .scroll-bar .thumb:hover,
-#taskView .scroll-bar .thumb:focused {
-    -fx-background-color: #444444;
-}
+    /* Ícone de busca */
+    -fx-background-image: url("../images/search.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left 12px center;
+    -fx-background-size: 20px 20px;
 
-/* Esconder setas incrementais/decrementais */
-#taskView .scroll-bar .increment-button,
-#taskView .scroll-bar .decrement-button {
-    -fx-background-color: transparent;
-    -fx-padding: 0;
+    /* Espaçamento para o texto não sobrepor o ícone */
+    -fx-padding: 0 12px 0 40px;
 }
-#taskView .scroll-bar .increment-arrow,
-#taskView .scroll-bar .decrement-arrow {
-    -fx-shape: " ";
-    -fx-padding: 0;
+#VboxEncontrados{
+    -fx-border-width: 1px;
+    -fx-border-color: transparent -cor-borda transparent transparent;
+}
+#VboxDisponiveis{
+     -fx-border-width: 1px;
+     -fx-border-color: transparent transparent transparent -cor-borda;
+ }
+#labelEncontrados, #labelTodos{
+    -fx-text-fill: -cor-texto;
+    -fx-font-size: 20px;
+}
+#labelD,#labelE{
+    -fx-text-fill: -cor-texto-secundario;
+    -fx-font-size: 16px;
+}
+.gridPokedex{
+    -fx-background-color: -cor-fundo-secundaria;
+}
+.cardPokemon{
+    -fx-alignment: center;
+    -fx-background-color: -cor-fundo;
+    -fx-background-radius: 16px;
+    -fx-padding: 16px;
+}
+.labelNumero{
+    -fx-text-fill: -cor-texto-secundario;
+}
+.labelNome{
+    -fx-text-fill: -cor-texto-secundario;
+}
+.Descricao{
+    -fx-text-fill: -cor-texto;
 }

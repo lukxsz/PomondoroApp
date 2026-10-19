@@ -7,9 +7,11 @@ import java.util.Set;
 public class User {
     private static User instance;
     private Set<Integer> userPokemons;
+    private UserSettings userSettings;
 
     private User(){
         userPokemons = new HashSet<>();
+        userSettings = new UserSettings();
     }
 
     public static User getInstance(){
@@ -44,8 +46,10 @@ public class User {
         return userPokemons.size();
     }
 
-
-
-
-
+    public UserSettings getSettings(){
+        return userSettings;
+    }
+    public void setUserSettings(UserSettings userSettings) {
+        this.userSettings = userSettings;
+    }
 }

@@ -17,12 +17,8 @@ public class TodoList {
         taskList.clear();
     }
 
-    public void  printList(){
-        String taskId;
-        for(int i = 0; i < taskList.size(); i++){
-            taskId = taskList.get(i).getTaskName();
-            System.out.println(taskId);
-        }
+    public int size(){
+        return taskList.size();
     }
 
 }
