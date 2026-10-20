@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.Objects;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -35,7 +34,7 @@ public class HelloApplication extends Application {
             stage.setMinHeight(200);
 
             stage.getIcons().add(new Image(Objects.requireNonNull(HelloApplication.class.getResourceAsStream("/br/com" +
-                    "/dev/lukas/pomodorotimer/images/clipart1908920.png"))));
+                    "/dev/lukas/pomodorotimer/images/Logoicon.png"))));
 
             //stage.setResizable(false); // Disable resizable window
             stage.setTitle("Pomondoro");

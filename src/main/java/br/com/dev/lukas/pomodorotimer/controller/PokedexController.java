@@ -389,6 +389,8 @@ public class PokedexController {
 
                     Stage modalStage = new Stage();
                     modalStage.setTitle("Dados do Pokemon");
+                    modalStage.getIcons().add(new Image(getClass().getResourceAsStream("/br/com/dev/lukas" +
+                            "/pomodorotimer/images/LogoIcon.png")));
                     modalStage.setScene(new Scene(root));
                     modalStage.setResizable(false);
                     modalStage.show();

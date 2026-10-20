@@ -480,7 +480,7 @@ public class HelloController {
         return alert;
     }
 
-    private void showCaptureAlert(int idPokemon) {   //TODO mudar o Alert para scene
+    private void showCaptureAlert(int idPokemon) {
         animationBushTimiline.stop();
         Popup popup = new Popup();
         popup.setAutoHide(true);
@@ -519,7 +519,6 @@ public class HelloController {
                     getHeight() - root.prefHeight(-1)) / 2);
         }
     }
-
 
     public void animationTallGrass(){
         Random random = new Random();

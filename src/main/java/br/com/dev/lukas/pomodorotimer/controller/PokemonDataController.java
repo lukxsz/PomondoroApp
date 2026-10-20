@@ -69,25 +69,25 @@ public class PokemonDataController {
         if (tipo == null) return "#777777"; // Cor padrão caso seja nulo
 
         switch (tipo.toLowerCase()) {
-            case "fire": return "#E3350D";     // Vermelho
-            case "water": return "#318EFF";    // Azul
-            case "grass": return "#55C844";    // Verde
-            case "electric": return "#F7D02C"; // Amarelo
-            case "bug": return "#A6B91A";      // Verde-inseto
-            case "normal": return "#A8A77A";   // Cinza claro
-            case "poison": return "#A33EA1";   // Roxo
-            case "ground": return "#E2BF65";   // Marrom/Terra
-            case "flying": return "#A98FF3";   // Azul claro
-            case "psychic": return "#F95587";  // Rosa
-            case "rock": return "#B6A136";     // Pedra
-            case "ice": return "#96D9D6";      // Gelo
-            case "ghost": return "#705898";     // Fantasma
-            case "dragon": return "#6F35FC";    // Dragão
-            case "dark": return "#705746";      // Sombrio
-            case "steel": return "#B7B7CE";     // Aço
-            case "fairy": return "#D685AD";     // Fada
-            case "fighting": return "#C22E28";  // Lutador
-            default: return "#777777";          // Cor padrão
+            case "fire": return "#E3350D";
+            case "water": return "#318EFF";
+            case "grass": return "#55C844";
+            case "electric": return "#F7D02C";
+            case "bug": return "#A6B91A";
+            case "normal": return "#A8A77A";
+            case "poison": return "#A33EA1";
+            case "ground": return "#E2BF65";
+            case "flying": return "#A98FF3";
+            case "psychic": return "#F95587";
+            case "rock": return "#B6A136";
+            case "ice": return "#96D9D6";
+            case "ghost": return "#705898";
+            case "dragon": return "#6F35FC";
+            case "dark": return "#705746";
+            case "steel": return "#B7B7CE";
+            case "fairy": return "#D685AD";
+            case "fighting": return "#C22E28";
+            default: return "#777777";
         }
     }
 }
