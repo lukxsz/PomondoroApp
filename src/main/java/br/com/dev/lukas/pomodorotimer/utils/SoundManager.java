@@ -36,25 +36,27 @@ public class SoundManager {
         }
     }
 
-    public static void  playPokemonSound(int idPokemon) {
+    public static MediaPlayer  createPokemonPlayer(int idPokemon) {
         try {
             String soundUrl = "https://pokemoncries.com/cries/" + idPokemon + ".mp3";
             Media media = new Media(soundUrl);
             MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-            mediaPlayer.setOnReady(()-> {
-                mediaPlayer.setVolume(0.05);
-                mediaPlayer.play();
-                System.out.println("O som rodou");
-            });
+            mediaPlayer.setVolume(0.05);
 
             mediaPlayer.setOnError(() -> {
                 System.out.println("Erro no MediaPlayer" + mediaPlayer.getError().getMessage());
             });
 
-
+            return mediaPlayer;
         }catch (Exception e){
             System.out.println("Erro ao tocar o alarme" + e.getMessage());
+            return null;
+        }
+    }
+    public static void playPokemonSound(int idPokemon) {
+        MediaPlayer player = createPokemonPlayer(idPokemon);
+        if (player != null) {
+            player.setOnReady(player::play);
         }
     }
 

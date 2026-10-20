@@ -4,6 +4,7 @@ import br.com.dev.lukas.pomodorotimer.model.Pokemon;
 import br.com.dev.lukas.pomodorotimer.model.PokemonDetails;
 import br.com.dev.lukas.pomodorotimer.model.User;
 import br.com.dev.lukas.pomodorotimer.utils.PokeApiService;
+import br.com.dev.lukas.pomodorotimer.utils.SoundManager;
 import com.google.gson.JsonObject;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -24,10 +25,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Cursor;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+import javax.print.attribute.standard.Media;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -381,6 +384,8 @@ public class PokedexController {
             Parent root = loader.load();
             PokemonDataController controller = loader.getController();
 
+            MediaPlayer cryPlayer = SoundManager.createPokemonPlayer(idPokemon);
+
             PokeApiService service = new  PokeApiService();
             service.getPokemonDetails(idPokemon, details -> {
 
@@ -394,6 +399,11 @@ public class PokedexController {
                     modalStage.setScene(new Scene(root));
                     modalStage.setResizable(false);
                     modalStage.show();
+
+                    if(centralController != null){
+                        cryPlayer.play();
+                    }
+
                 }else{
                     System.out.println("Erro ao buscar dados do Pokemon");
                 }
