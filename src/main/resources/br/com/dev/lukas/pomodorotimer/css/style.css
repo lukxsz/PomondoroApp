@@ -620,22 +620,18 @@
 }
 
 /* =========================================
-            Popup showCaptureAlert
+            Popups (Capture & Unknown Alert)
    ========================================= */
-.captureLabel{
-    -fx-font-size: 40px;
+.captureLabel, .titleLabel {
+    -fx-font-size: 32px;
     -fx-text-fill: -cor-texto;
 }
-.contextLabel{
-    -fx-font-size: 20px;
+
+.contextLabel, .contentLabel {
+    -fx-font-size: 18px;
     -fx-text-fill: -cor-texto-secundario;
-                                                /*-cor-fundo: #07332C;*/
-                                                /*-cor-fundo-secundaria: #0B3D33;*/
-                                                /*-cor-borda: #14907D;*/
-                                                /*-cor-destaque: #136655;*/
-                                                /*-cor-confirmacao: #89D992;*/
-                                                /*-cor-texto: #F1FFE5;*/
-                                                /*-cor-texto-secundario: #C1CCB8;*/
+    -fx-wrap-text: true;
+    -fx-max-width: 320px;
 }
 .pokemonRoot{
     -fx-spacing: 16px;
@@ -898,4 +894,8 @@
 }
 .Descricao{
     -fx-text-fill: -cor-texto;
+}
+
+#pokemon-alert{
+
 }

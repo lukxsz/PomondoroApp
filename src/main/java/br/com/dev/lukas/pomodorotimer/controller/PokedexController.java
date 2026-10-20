@@ -25,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Cursor;
 import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -331,15 +332,42 @@ public class PokedexController {
                 System.out.println("Clicou no card do pokemon: "+ id);
                 openPokemonModal(id);
             }else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Pokemon Desconhecido");
-                alert.setHeaderText(null);
-                alert.setContentText("Você precisa concluir mais ciclos de Pomodoro para descobrir informações sobre este Pokemon.");
+                Popup popup = new Popup();
+                popup.setAutoHide(true);
 
-                alert.getDialogPane().getStylesheets().add(getClass().getResource("/br/com/dev/lukas/pomodorotimer/css/style.css").toExternalForm());
-                alert.getDialogPane().getStyleClass().add("pokemon-alert");
+                String urlImage = getClass().getResource("/br/com/dev/lukas/pomodorotimer/images/info.png").toExternalForm();
+                Image infoImage = new Image(urlImage, 48, 48, true, true);
+                ImageView imageView = new ImageView(infoImage);
 
-                alert.showAndWait();
+                Label titleLabel = new Label("Pokemon Desconhecido");
+                titleLabel.getStyleClass().add("titleLabel");
+
+                Label contentLabel = new Label("Você precisa concluir mais ciclos de Pomodoro para descobrir informações sobre este Pokemon.");
+                contentLabel.getStyleClass().add("contentLabel");
+                contentLabel.setWrapText(true);
+                contentLabel.setMaxWidth(320);
+
+                VBox infoTextContainer = new VBox(8, titleLabel, contentLabel);
+                infoTextContainer.setAlignment(Pos.CENTER_LEFT);
+
+                HBox root = new HBox(imageView, infoTextContainer);
+                root.setAlignment(Pos.CENTER_LEFT);
+                root.getStyleClass().add("pokemonRoot");
+
+                String cssPath = getClass().getResource("/br/com/dev/lukas/pomodorotimer/css/style.css").toExternalForm();
+                root.getStylesheets().add(cssPath);
+
+                popup.getContent().add(root);
+
+                javafx.stage.Window window = card.getScene().getWindow();
+                if (window != null) {
+                    // Exemplo: abrindo centralizado ou perto da tela:
+                    popup.show(window);
+                    popup.setX(window.getX() + (window.getWidth() - root.prefWidth(-
+                            1)) / 2);
+                    popup.setY(window.getY() + (window.getHeight() - root.
+                            prefHeight(-1)) / 2);
+                }
             }
         });
 
@@ -363,8 +391,7 @@ public class PokedexController {
                     modalStage.setTitle("Dados do Pokemon");
                     modalStage.setScene(new Scene(root));
                     modalStage.setResizable(false);
-                    modalStage.initModality(Modality.APPLICATION_MODAL);
-                    modalStage.showAndWait();
+                    modalStage.show();
                 }else{
                     System.out.println("Erro ao buscar dados do Pokemon");
                 }
