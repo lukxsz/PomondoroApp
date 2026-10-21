@@ -648,9 +648,6 @@
 /* =========================================
    ESTILO PARA A TELA DE DETALHES DO POKÉMON (MODAL)
    ========================================= */
-#FundoPokemonData{
-
-}
 
 .pokemon-modal {
     -fx-background-color: transparent;
@@ -825,6 +822,7 @@
 
 #pokedexVbox{
     -fx-background-color: -cor-fundo-secundaria;
+    -fx-background-radius: 16px;
     -fx-border-width: 2px;
     -fx-border-color: -cor-borda;
     -fx-border-radius: 16px;
