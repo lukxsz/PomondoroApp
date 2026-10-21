@@ -4,6 +4,7 @@ import br.com.dev.lukas.pomodorotimer.model.*;
 import br.com.dev.lukas.pomodorotimer.utils.SaveManager;
 import br.com.dev.lukas.pomodorotimer.utils.SoundManager;
 import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
@@ -20,6 +21,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Popup;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -78,6 +81,16 @@ public class HelloController {
     @FXML private Label labelConfigCicloDesc;
     @FXML private Label subLabelSpiner;
 
+    // ── Cenários e gramas por estado do timer ──
+    // Carregados UMA vez no initialize() para não ler do disco a cada troca.
+    // foco = dia, pausa curta = tarde, pausa longa = noite
+    private Image imgCenarioDia;
+    private Image imgCenarioTarde;
+    private Image imgCenarioNoite;
+    private Image imgGramaDia;
+    private Image imgGramaTarde;
+    private Image imgGramaNoite;
+
     // ── ETAPA 4: Controle de estado da tela ativa ──
     // Essa variável rastreia qual view está sendo exibida no centro.
     // Os métodos openTimer(), onConfiguration() e onPokedex() atualizam ela.
@@ -97,6 +110,22 @@ public class HelloController {
     @FXML
     private void initialize() {
         UserSettings settings = User.getInstance().getSettings();
+
+        // Carrega os cenários e gramas por estado uma única vez
+        imgCenarioDia = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                "/br/com/dev/lukas/pomodorotimer/images/fundo_original_dia.png")));
+        imgCenarioTarde = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                "/br/com/dev/lukas/pomodorotimer/images/fundo_original_tarde.png")));
+        imgCenarioNoite = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                "/br/com/dev/lukas/pomodorotimer/images/fundo_original_noite.png")));
+        imgGramaDia = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                "/br/com/dev/lukas/pomodorotimer/images/graminha_dia.png")));
+        imgGramaTarde = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                "/br/com/dev/lukas/pomodorotimer/images/graminha_tarde.png")));
+        imgGramaNoite = new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                "/br/com/dev/lukas/pomodorotimer/images/graminha_noite.png")));
+        cenarioView.setImage(imgCenarioDia);
+        imgMoita.setImage(imgGramaDia);
 
         pomodoroTimer = new Pomodoro(settings.getFocusMinutes());
         breakTimer = new BreakTimer(settings.getShortBreakMinutes());
@@ -123,6 +152,22 @@ public class HelloController {
         // Sempre que a largura da janela mudar, chama atualizarLayout().
         // Esse é o ÚNICO lugar que escuta mudanças de tamanho.
         mainPane.widthProperty().addListener((obs, oldVal, newVal) -> atualizarLayout());
+
+        // Espaço = play/pause em qualquer lugar do app (widget ou fullscreen).
+        // Usa addEventFilter (fase de captura) + consume() para o evento não chegar
+        // nos botões — senão um botão focado também reagiria ao espaço e o timer
+        // ligaria e desligaria no mesmo aperto.
+        mainPane.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.addEventFilter(javafx.scene.input.KeyEvent.KEY_PRESSED, event -> {
+                    if (event.getCode() == javafx.scene.input.KeyCode.SPACE
+                            && !(event.getTarget() instanceof javafx.scene.control.TextInputControl)) {
+                        toggleTimer();
+                        event.consume();
+                    }
+                });
+            }
+        });
 
         cenarioView.fitWidthProperty().bind(battleContainer.prefWidthProperty().subtract(6));
         cenarioView.fitHeightProperty().bind(battleContainer.prefHeightProperty().subtract(6));
@@ -202,6 +247,7 @@ public class HelloController {
         pomodoroTimer.reStartTimer();
         labelTimer.setText(pomodoroTimer.formatedTime());
         pomodoroTimer.increaseCycleCounter();
+        aplicarEstiloEstado();
         if(pomodoroTimer.cycleCheck()){
             isTimeToCatch();
         }
@@ -209,6 +255,13 @@ public class HelloController {
 
     @FXML
     protected void buttonClicked(ActionEvent event) {
+        toggleTimer();
+    }
+
+    // Lógica de play/pause compartilhada pelo botão e pelo atalho de espaço.
+    // Funciona em qualquer modo (widget ou fullscreen) porque depende só do
+    // estado dos timers, não da visibilidade dos botões.
+    private void toggleTimer() {
         if(pomodoroTimer.isStatus()){
             if (timeline.getStatus() == Animation.Status.STOPPED) {
                 timeline.play();
@@ -379,7 +432,36 @@ public class HelloController {
             labelTimer.setText(longbreakTimer.formatedTime());
             breakTimer.resetCycleCounter();
         }
+        aplicarEstiloEstado();
 
+    }
+
+    // Troca o visual do battleContainer conforme o estado do timer:
+    //   foco = cenario_dia, pausa curta = cenario_tarde, pausa longa = cenario_noite
+    // 1. Imagem de cenário via setImage (pré-carregadas no initialize)
+    // 2. Cor da borda via classes do style.css (estado-foco/pausa/pausa-longa)
+    private void aplicarEstiloEstado() {
+        battleContainer.getStyleClass().removeAll("estado-foco", "estado-pausa", "estado-pausa-longa");
+
+        if (longbreakTimer.isStatus()) {
+            battleContainer.getStyleClass().add("estado-pausa-longa");
+            cenarioView.setImage(imgCenarioNoite);
+            imgMoita.setImage(imgGramaNoite);
+        } else if (breakTimer.isStatus()) {
+            battleContainer.getStyleClass().add("estado-pausa");
+            cenarioView.setImage(imgCenarioTarde);
+            imgMoita.setImage(imgGramaTarde);
+        } else {
+            battleContainer.getStyleClass().add("estado-foco");
+            cenarioView.setImage(imgCenarioDia);
+            imgMoita.setImage(imgGramaDia);
+        }
+
+        // Fade rápido para a troca não parecer abrupta
+        FadeTransition fade = new FadeTransition(Duration.millis(300), cenarioView);
+        fade.setFromValue(0.3);
+        fade.setToValue(1.0);
+        fade.play();
     }
 
     @FXML
@@ -600,9 +682,18 @@ public class HelloController {
             mainPane.setRight(null); // Remove completamente do layout
         }
 
-        // Botões de play/skip: ocultos no widget mode
-        buttonsHbox.setVisible(!widgetMode);
-        buttonsHbox.setManaged(!widgetMode);
+        // Botões de play/skip: ocultos no widget mode.
+        // Esconde o vBoxButtons inteiro (não só o buttonsHbox), porque é ele quem tem
+        // o background verde, a borda e a margem — esconder só o filho deixava uma
+        // "linha verde" visível embaixo do battleContainer.
+        vBoxButtons.setVisible(!widgetMode);
+        vBoxButtons.setManaged(!widgetMode);
+
+        // Widget mode vira um widget de verdade: janela sempre no topo
+        Window window = mainPane.getScene() != null ? mainPane.getScene().getWindow() : null;
+        if (window instanceof Stage stage) {
+            stage.setAlwaysOnTop(widgetMode);
+        }
 
         // Widget mode: força a tela do timer (não faz sentido ver config/pokedex tão pequeno)
         if (widgetMode && !"timer".equals(telaAtiva)) {
@@ -625,10 +716,19 @@ public class HelloController {
 
         if (larguraDisponivel <= 0 || alturaDisponivel <= 0) return;
 
-        double proporcaoIdeal = 300.0 / 250.0 ;
-
         double novaLargura;
         double novaAltura;
+
+        if (isWidgetMode) {
+            // Widget mode: o battleContainer preenche 100% do espaço disponível,
+            // sem proporção fixa — a imagem estica junto e não sobram frestas
+            // com o fundo verde do mainPane aparecendo.
+            battleContainer.setPrefWidth(larguraDisponivel);
+            battleContainer.setPrefHeight(alturaDisponivel);
+            return;
+        }
+
+        double proporcaoIdeal = 300.0 / 250.0 ;
 
         if(larguraDisponivel / alturaDisponivel > proporcaoIdeal){
             novaAltura = alturaDisponivel;

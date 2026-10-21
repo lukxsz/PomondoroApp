@@ -379,6 +379,20 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 8, 0, 0, 4);
 }
 
+/* Cor da borda por estado do timer, combinando com a paleta de cada cenário
+   (trocadas via aplicarEstiloEstado() no controller) */
+.battle-container.estado-foco {
+    -fx-border-color: #89D992; /* verde-claro — cena de dia (verde da grama) */
+}
+
+.battle-container.estado-pausa {
+    -fx-border-color: #E8A13D; /* âmbar quente — cena de tarde (laranja das árvores) */
+}
+
+.battle-container.estado-pausa-longa {
+    -fx-border-color: #8FA3E8; /* azul-lavanda — cena de noite (céu azul-escuro) */
+}
+
 /*#configScreen{*/
 /*    -fx-border-color: white;*/
 /*    -fx-border-width: 1px;*/
