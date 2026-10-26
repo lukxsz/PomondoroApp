@@ -65,7 +65,7 @@ https://github.com/user-attachments/assets/ac26c552-2a9d-4036-bbd7-ce8433a51ca5
 ## 📦 Download do Aplicativo                                                                                                  
                                                                                                              
    - 🪟 **[Download para Windows (.zip)](https://github.com/lukxsz/PomondoroApp/releases/latest)**:         
-  Descompacte e execute o arquivo.                                              
+  Descompacte e execute o arquivo app.bat                                              
   - 🐧 **[Download para Linux (.zip)](https://github.com/lukxsz/PomondoroApp/releases/latest)**:           
   Descompacte e execute `./bin/app` pelo terminal ou crie o atalho `.desktop`. 
   
