@@ -40,3 +40,6 @@ build/
 
 # Meus rascunhos pessoais
 /dev/
+
+#Save do Usuario
+/save/
