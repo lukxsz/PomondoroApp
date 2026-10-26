@@ -35,7 +35,7 @@ https://github.com/user-attachments/assets/ac26c552-2a9d-4036-bbd7-ce8433a51ca5
 ## ✨ Principais Funcionalidades
 
 - **⏱️ Ciclos Pomodoro Customizáveis:**
-  - Ajuste personalizado de tempo de foco, pausa curta e pausa longa.(Adicione seu print aqui)*
+  - Ajuste personalizado de tempo de foco, pausa curta e pausa longa.
   - Alertas sonoros nostálgicos inspirados nos jogos clássicos de Pokémon.
 - **🌱 Gamificação Ativa:**
   - Animação interativa da grama balançando e sons temáticos durante a sessão de foco.
