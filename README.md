@@ -18,6 +18,12 @@ O **Pomondoro App** combina a consagrada técnica de gerenciamento de tempo **Po
 
 A cada ciclo de foco completado com sucesso, o usuário é recompensado com a oportunidade de capturar um novo Pokémon para a sua coleção, desbloqueando suas informações em uma Pokédex interativa integrada diretamente à **PokéAPI**.
 
+
+
+https://github.com/user-attachments/assets/ac26c552-2a9d-4036-bbd7-ce8433a51ca5
+
+
+
 ---
 
 | Tela do Timer | Modo Widget Compacto | Pokédex |
