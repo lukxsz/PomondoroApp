@@ -73,7 +73,7 @@ https://github.com/user-attachments/assets/ac26c552-2a9d-4036-bbd7-ce8433a51ca5
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/SEU-USUARIO/PomondoroApp.git
+   git clone https://github.com/lukxsz/PomondoroApp.git
    cd PomondoroApp
    ```
 
