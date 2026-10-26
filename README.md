@@ -8,6 +8,7 @@
   <img src="https://img.shields.io/badge/JavaFX-21-blue?style=for-the-badge" alt="JavaFX 21" />
   <img src="https://img.shields.io/badge/Maven-Build-C71A36?style=for-the-badge&logo=apachemaven" alt="Maven" />
   <img src="https://img.shields.io/badge/Tests-JUnit%205-25A162?style=for-the-badge&logo=junit5" alt="JUnit 5" />
+  <img src="https://img.shields.io/github/v/release/lukxsz/PomondoroApp?style=for-the-badge&color=purple" alt="Último Release" /> 
 </p>
 
 ---
@@ -23,8 +24,6 @@ A cada ciclo de foco completado com sucesso, o usuário é recompensado com a op
 https://github.com/user-attachments/assets/ac26c552-2a9d-4036-bbd7-ce8433a51ca5
 
 
-
----
 
 | Tela do Timer | Modo Widget Compacto | Pokédex |
 | :---: | :---: | :---: |
@@ -63,6 +62,15 @@ https://github.com/user-attachments/assets/ac26c552-2a9d-4036-bbd7-ce8433a51ca5
 
 ---
 
+## 📦 Download do Aplicativo                                                                                                  
+                                                                                                             
+   - 🪟 **[Download para Windows (.zip)](https://github.com/lukxsz/PomondoroApp/releases/latest)**:         
+  Descompacte e execute o arquivo.                                              
+  - 🐧 **[Download para Linux (.zip)](https://github.com/lukxsz/PomondoroApp/releases/latest)**:           
+  Descompacte e execute `./bin/app` pelo terminal ou crie o atalho `.desktop`. 
+  
+---
+
 ## 🚀 Como Executar o Projeto Localmente
 
 ### Pré-requisitos
@@ -70,14 +78,12 @@ https://github.com/user-attachments/assets/ac26c552-2a9d-4036-bbd7-ce8433a51ca5
 - **Git** instalado.
 
 ### Passo a Passo
-
-1. **Clone o repositório:**
+**Clone o repositório:**
    ```bash
    git clone https://github.com/lukxsz/PomondoroApp.git
    cd PomondoroApp
    ```
-
-2. **Execute a aplicação via Maven Wrapper:**
+ **Execute a aplicação via Maven Wrapper:**
    - No **Linux / macOS**:
      ```bash
      ./mvnw clean javafx:run
@@ -86,12 +92,6 @@ https://github.com/user-attachments/assets/ac26c552-2a9d-4036-bbd7-ce8433a51ca5
      ```cmd
      mvnw.cmd clean javafx:run
      ```
-
-3. **Para rodar a suíte de testes unitários:**
-   ```bash
-   ./mvnw test
-   ```
-
 ---
 
 ## Autor
