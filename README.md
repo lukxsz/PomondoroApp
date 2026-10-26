@@ -15,7 +15,7 @@
 
 ## 📖 Sobre o Projeto
 
-O **Pomondoro App** combina a consagrada técnica de gerenciamento de tempo **Pomodoro** com o engajamento e a nostalgia de colecionar Pokémon. 
+O **Pomondoro App** combina a técnica de gerenciamento de tempo **Pomodoro** com o engajamento e a nostalgia de colecionar Pokémon. 
 
 A cada ciclo de foco completado com sucesso, o usuário é recompensado com a oportunidade de capturar um novo Pokémon para a sua coleção, desbloqueando suas informações em uma Pokédex interativa integrada diretamente à **PokéAPI**.
 
