@@ -1,9 +1,6 @@
-# 🍅 Pomondoro App
-
-> Um temporizador Pomodoro desktop gamificado com o universo Pokémon, desenvolvido em Java e JavaFX.
 
 <p align="center">
-  <img src="src/main/resources/br/com/dev/lukas/pomodorotimer/images/LogoIcon.png" alt="Logo Pomondoro" width="120" />
+  <img src="src/main/resources/br/com/dev/lukas/pomodorotimer/images/Logo.png" alt="Logo Pomondoro" />
 </p>
 
 <p align="center">
@@ -23,21 +20,16 @@ A cada ciclo de foco completado com sucesso, o usuário é recompensado com a op
 
 ---
 
-## 📸 Demonstração Visual
-
-<!-- DICA: Tire prints ou grave um GIF curto do aplicativo rodando e adicione aqui! -->
-> *Dica: Insira aqui capturas de tela das principais telas do app (Timer, Modo Widget, Pokédex e Alerta de Captura).*
-
 | Tela do Timer | Modo Widget Compacto | Pokédex |
 | :---: | :---: | :---: |
-| *(Adicione seu print aqui)* | *(Adicione seu print aqui)* | *(Adicione seu print aqui)* |
+| <img src="src/main/resources/br/com/dev/lukas/pomodorotimer/images/telaTimer.png"> | <img src="src/main/resources/br/com/dev/lukas/pomodorotimer/images/timerGif.gif"> | <img src="src/main/resources/br/com/dev/lukas/pomodorotimer/images/telaPokedex.png"> |
 
 ---
 
 ## ✨ Principais Funcionalidades
 
 - **⏱️ Ciclos Pomodoro Customizáveis:**
-  - Ajuste personalizado de tempo de foco, pausa curta e pausa longa.
+  - Ajuste personalizado de tempo de foco, pausa curta e pausa longa.(Adicione seu print aqui)*
   - Alertas sonoros nostálgicos inspirados nos jogos clássicos de Pokémon.
 - **🌱 Gamificação Ativa:**
   - Animação interativa da grama balançando e sons temáticos durante a sessão de foco.
@@ -96,8 +88,8 @@ A cada ciclo de foco completado com sucesso, o usuário é recompensado com a op
 
 ---
 
-## 👤 Autor
+## Autor
 
-Desenvolvido por **Lukas**.  
-- LinkedIn: [Seu Perfil](https://www.linkedin.com)  
-- GitHub: [@lukxs](https://github.com)
+Desenvolvido por **Lukas Grava da Silva**.  
+- LinkedIn: [Lukas Grava](https://www.linkedin.com/in/lukasgravadasilva/)  
+- GitHub: [@lukxsz](https://github.com/lukxsz)
