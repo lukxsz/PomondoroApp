@@ -36,17 +36,32 @@ jobs:
           ./mvnw clean javafx:jlink
           mv target/app.zip target/PomondoroApp-Linux.zip
 
-      - name: Empacotar no Windows
+      - name: Empacotar no Windows (Zip Portátil e Instalador .exe)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           .\mvnw.cmd clean javafx:jlink
           Move-Item target/app.zip target/PomondoroApp-Windows.zip
+          New-Item -ItemType Directory -Force -Path target/dist
+          jpackage --type exe `
+            --name "PomondoroApp" `
+            --app-version "1.0.0" `
+            --runtime-image target/app `
+            --module br.com.dev.lukas.pomodorotimer/br.com.dev.lukas.pomodorotimer.controller.HelloApplication `
+            --icon src/main/resources/br/com/dev/lukas/pomodorotimer/images/LogoIcon.ico `
+            --win-shortcut `
+            --win-menu `
+            --win-dir-chooser `
+            --dest target/dist
+          Get-ChildItem target/dist/*.exe | Rename-Item -NewName "PomondoroApp-Windows-Setup.exe"
+          Move-Item target/dist/PomondoroApp-Windows-Setup.exe target/
 
       - name: Publicar arquivo na Release do GitHub
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: target/PomondoroApp-*.zip
+          files: |
+            target/PomondoroApp-*.zip
+            target/PomondoroApp-*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
